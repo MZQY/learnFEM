@@ -328,15 +328,31 @@ x_1\\
 x_2
 \end{bmatrix}
 $$
+Because the mapping is linear,
+$$
+\begin{bmatrix}
+x\\
+y
+\end{bmatrix} = \mathcal{F}\left( \begin{bmatrix}
+u_1\\
+u_2
+\end{bmatrix} \right) = A_T \begin{bmatrix}
+u_1\\
+u_2
+\end{bmatrix} + \begin{bmatrix}
+x_{0}\\
+y_{0}
+\end{bmatrix}
+$$
+
+
 The integral of any function $\phi(\vec{x})$ is
 $$
-\int_V \phi(\vec{x}) d\vec{x} = \int_{\hat{V}} \phi\left(\mathcal{F}(\vec{u})\right) \frac{\partial \mathcal{F}}{\partial \vec{u}} d\vec{u}
+\int_V \phi(\vec{x}) d\vec{x} = \int_{\hat{V}} \phi\left(\mathcal{F}(\vec{u})\right) \det\left(\frac{\partial \mathcal{F}}{\partial \vec{u}}\right) d\vec{u} = \int_{\hat{V}} \hat{\phi}(\vec{u}) \mathcal{J} d\vec{u}
 $$
-where the $\mathcal{J}=\frac{\partial \mathcal{F}}{\partial \vec{u}}$ is the Jacobian matrix $\mathcal{J}_{ij}=\frac{\partial \mathcal{F}_i}{\partial u_j}$, and $\hat{V}$ denotes the volume of the reference element. 
+where the $J=\frac{\partial \mathcal{F}}{\partial \vec{u}}$ is the Jacobian matrix $\mathcal{J}_{ij}=\frac{\partial \mathcal{F}_i}{\partial u_j} = \frac{\partial A_{Ti}}{\partial u_j}$, $\mathcal{J}=\det(J)=\det(A_T)$ is the Jacobian factor, and $\hat{V}$ denotes the volume of the reference element. (The basis function satisfy $\hat{\phi}=\phi \circ \mathcal{F}$ ? )
 
 
-
-The 2D Gaussian quadrature for the basis function $\hat{\phi}=\phi \circ \mathcal{F}$ ? 
 
 ## Gaussian quadrature
 
