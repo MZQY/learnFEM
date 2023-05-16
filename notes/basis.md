@@ -350,7 +350,7 @@ The integral of any function $\phi(\vec{x})$ is
 $$
 \int_V \phi(\vec{x}) d\vec{x} = \int_{\hat{V}} \phi\left(\mathcal{F}(\vec{u})\right) \det\left(\frac{\partial \mathcal{F}}{\partial \vec{u}}\right) d\vec{u} = \int_{\hat{V}} \hat{\phi}(\vec{u}) \mathcal{J} d\vec{u}
 $$
-where the $J=\frac{\partial \mathcal{F}}{\partial \vec{u}}$ is the Jacobian matrix $\mathcal{J}_{ij}=\frac{\partial \mathcal{F}_i}{\partial u_j} = \frac{\partial A_{Ti}}{\partial u_j}$, $\mathcal{J}=\det(J)=\det(A_T)$ is the Jacobian factor, and $\hat{V}$ denotes the volume of the reference element. (The basis function satisfy $\hat{\phi}=\phi \circ \mathcal{F}$ ? )
+where the $J=\frac{\partial \mathcal{F}}{\partial \vec{u}}$ is the Jacobian matrix $\mathcal{J}_{ij}=\frac{\partial \mathcal{F}_i}{\partial u_j} = \frac{\partial A_{Ti}}{\partial u_j}$, $\mathcal{J}=\det(J)=\det(A_T)$ is the Jacobian factor, and $\hat{V}$ denotes the volume of the reference element. (The basis function satisfy $\hat{\phi}=\phi \circ \mathcal{F}$ ? This conclusion is intuitive without finding a rigorous proof at the moment, which can also be checked in (4.44) eqn. $\phi(x)=\hat{\phi}(\hat{x})$ in book *Automated Solution of Differential Equations by the Finite Element Method, The FEniCS Book, 2011*. )
 
 
 
