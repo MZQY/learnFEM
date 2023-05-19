@@ -1,0 +1,62 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      1738,         54]
+NotebookOptionsPosition[      1354,         39]
+NotebookOutlinePosition[      1786,         56]
+CellTagsIndexPosition[      1743,         53]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"(*", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+   "1.", " ", "Generate", " ", "the", " ", "Gauss", " ", "quadrature", " ", 
+    "points", " ", "and", " ", 
+    RowBox[{"weights", ".", "\[IndentingNewLine]", "2."}], " ", "Generate", 
+    " ", "the", " ", "shape", " ", "function", " ", 
+    RowBox[{"automatically", ".", "\[IndentingNewLine]", 
+     RowBox[{"reference", ":", " ", "https", ":"}]}]}], "//", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"mathematica", ".", "stackexchange", ".", "com"}], "/", 
+       "questions"}], "/", "112907"}], "/", "how"}], "-", "to", "-", "access",
+     "-", "fem", "-", "shape", "-", "functions"}]}], "\[IndentingNewLine]", 
+  "*)"}]], "Input",ExpressionUUID->"4a079e3a-e8fb-44a7-be1c-6913b6f68c42"]
+},
+WindowSize->{1920, 997},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+Magnification:>2.5 Inherited,
+FrontEndVersion->"12.2 for Microsoft Windows (64-bit) (December 7, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"0e79c71a-60cf-411b-a911-3a734237942d"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 792, 17, 312, "Input",ExpressionUUID->"4a079e3a-e8fb-44a7-be1c-6913b6f68c42"]
+}
+]
+*)
+
