@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      1738,         54]
-NotebookOptionsPosition[      1354,         39]
-NotebookOutlinePosition[      1786,         56]
-CellTagsIndexPosition[      1743,         53]
+NotebookDataLength[      4704,        136]
+NotebookOptionsPosition[      3788,        111]
+NotebookOutlinePosition[      4312,        130]
+CellTagsIndexPosition[      4269,        127]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -35,10 +35,84 @@ Cell[BoxData[
        RowBox[{"mathematica", ".", "stackexchange", ".", "com"}], "/", 
        "questions"}], "/", "112907"}], "/", "how"}], "-", "to", "-", "access",
      "-", "fem", "-", "shape", "-", "functions"}]}], "\[IndentingNewLine]", 
-  "*)"}]], "Input",ExpressionUUID->"4a079e3a-e8fb-44a7-be1c-6913b6f68c42"]
+  "*)"}]], "Input",ExpressionUUID->"4a079e3a-e8fb-44a7-be1c-6913b6f68c42"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<NDSolve`FEM`\>\"", "]"}]], "Input",
+ CellLabel->"In[1]:=",ExpressionUUID->"be0d4779-2246-4b14-97a9-0a45748fb337"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "For", " ", "the", " ", "1", "D", " ", "Gauss", " ", "quadrature"}], ",", 
+    " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"fail", " ", "in", " ", "order"}], "\[GreaterEqual]", "3"}], 
+     " ", "..."}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"basis1d", "[", "order_", "]"}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Print", "[", 
+         RowBox[{"\"\<element coordinates:\>\"", ",", 
+          RowBox[{"MeshElementBaseCoordinates", "[", 
+           RowBox[{"LineElement", ",", "order"}], "]"}]}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Print", "[", 
+         RowBox[{"\"\<shape functions\>\"", ",", 
+          RowBox[{
+           RowBox[{"ElementShapeFunction", "[", 
+            RowBox[{"LineElement", ",", "order"}], "]"}], "[", 
+           RowBox[{"r", ",", "s"}], "]"}]}], "]"}], ";"}]}], 
+      "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"basis1d", "[", "3", "]"}], "\n", 
+   "\[IndentingNewLine]"}]}]], "Input",ExpressionUUID->"a4bdd9c6-4b6d-40f5-\
+884e-ba15b51b961e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"element coordinates:\"\>", "\[InvisibleSpace]", 
+   RowBox[{"MeshElementBaseCoordinates", "[", 
+    RowBox[{"LineElement", ",", "3"}], "]"}]}],
+  SequenceForm["element coordinates:", 
+   NDSolve`FEM`MeshElementBaseCoordinates[NDSolve`FEM`LineElement, 3]],
+  Editable->False]], "Print",
+ CellLabel->
+  "During evaluation of \
+In[23]:=",ExpressionUUID->"6fbb6dcc-3008-4d46-8fbc-759e604bcc24"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"shape functions\"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{"ElementShapeFunction", "[", 
+     RowBox[{"LineElement", ",", "3"}], "]"}], "[", 
+    RowBox[{"r", ",", "s"}], "]"}]}],
+  SequenceForm["shape functions", 
+   NDSolve`FEM`ElementShapeFunction[
+   NDSolve`FEM`LineElement, 3][$CellContext`r, $CellContext`s]],
+  Editable->False]], "Print",
+ CellLabel->
+  "During evaluation of \
+In[23]:=",ExpressionUUID->"e1ba3dda-8027-4c00-8c3a-d7036d454222"]
+}, Open  ]]
+}, Open  ]]
 },
-WindowSize->{1920, 997},
-WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+WindowSize->{1904, 981},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+TaggingRules->{
+ "WelcomeScreenSettings" -> {"FEStarting" -> False}, "TryRealOnly" -> False},
 Magnification:>2.5 Inherited,
 FrontEndVersion->"12.2 for Microsoft Windows (64-bit) (December 7, 2020)",
 StyleDefinitions->"Default.nb",
@@ -55,7 +129,15 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 792, 17, 312, "Input",ExpressionUUID->"4a079e3a-e8fb-44a7-be1c-6913b6f68c42"]
+Cell[558, 20, 792, 17, 312, "Input",ExpressionUUID->"4a079e3a-e8fb-44a7-be1c-6913b6f68c42"],
+Cell[1353, 39, 155, 2, 104, "Input",ExpressionUUID->"be0d4779-2246-4b14-97a9-0a45748fb337"],
+Cell[CellGroupData[{
+Cell[1533, 45, 1251, 33, 408, "Input",ExpressionUUID->"a4bdd9c6-4b6d-40f5-884e-ba15b51b961e"],
+Cell[CellGroupData[{
+Cell[2809, 82, 439, 10, 56, "Print",ExpressionUUID->"6fbb6dcc-3008-4d46-8fbc-759e604bcc24"],
+Cell[3251, 94, 509, 13, 56, "Print",ExpressionUUID->"e1ba3dda-8027-4c00-8c3a-d7036d454222"]
+}, Open  ]]
+}, Open  ]]
 }
 ]
 *)
