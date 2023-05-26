@@ -10,16 +10,64 @@ cimport numpy as np
 np.import_array()
 from libc.math cimport sqrt
 from libc.stdio cimport printf
+from libcpp.string cimport string
 
 
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cdef void local_basis_1d():
+cdef (double node[:], double phi[:]) local_basis_1d(int order, int idx, double x) nogil:
     """
-    Gauss-Lobatto points: https://mathworld.wolfram.com/LobattoQuadrature.html
+    Given the interval [-1,1], the local basis functions are derived based on
+        Gauss-Lobatto points.
+    The derivations are represented in basis.nb.
+    :param order: (int) order=1 means linear basis functions correspond to 2 nodes.
+    :param idx: (int) derivative order of x.
+    :param x: (double) reference coordinate.
     """
-    pass
+    cdef double phi[(order+1)] = 0.
+    cdef double node[(order+1)] = 0.
+    cdef string idx_err = "idx (derivative order of the shape function) should be in [0,3]"
+
+    # the basis functions phi = 0 if x locates outside the interval [-1,1]
+    if (x < -1 or x > 1):
+        phi[:] = 0.
+    
+    # linear basis function
+    if (order == 1):
+        node = 
+        if (idx == 0):
+            phi[0] = (1. - x) / 2.
+            phi[1] = (1. + x) / 2.
+        elif (idx == 1):
+            phi[0] = -0.5
+            phi[1] = 0.5
+        elif (idx == 2 or idx == 3):
+            phi[:] = 0.
+        else:
+            printf("Illegal value of idx = %d \n", idx);
+            raise ValueError("idx (derivative order of the shape function) should be ")
+    # quadratic basis function
+    elif (order == 2):
+        if (idx == 0):
+            phi[0] = (1. - x) / 2.
+            phi[1] = (1. + x) / 2.
+            phi[2] = (1. + x) / 2.
+        elif (idx == 1):
+            phi[0] = -0.5
+            phi[1] = 0.5
+        elif (idx == 2 or idx == 3):
+            phi[:] = 0.
+        else:
+            printf("Illegal value of idx = %d \n", idx);
+            raise ValueError("idx (derivative order of the shape function) should be ")
+
+
+
+
+
+
+
 
 
 
@@ -27,7 +75,7 @@ cdef void local_basis_1d():
 @cython.wraparound(False)
 cdef void gauss_legendre_quadrature_set1d(int n, \
                                           double x[:], \
-                                          double w[:]):
+                                          double w[:]) nogil:
     """
     get abscissas and weights for Gauss-Legendre quadrature
     The quadrature interval is [-1, 1]

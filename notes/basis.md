@@ -4,7 +4,21 @@
 
 ## basis functions 
 
+## 1D
 
+The local basis function is $\phi_i (x)$
+$$
+\phi_i(x) = \prod_{j\neq i} \frac{x - x_j}{x_i - x_j} .
+$$
+For the linear basis functions on the interval $[-1,1]$, we just have two linear piecewise functions $\phi_1(x) = \frac{1}{2} (1-x)$, $\phi_2(x)=\frac{1}{2}(x+1)$.  
+
+In theory, the accuracy of Gaussian quadrature is solely determined by the number of quadrature points, i.e. the quadrature of shape functions whose polynomial degree is less than $2N+1$ is always exact using $N+1$ Gauss quadrature points. Therefore,  regardless of how interpolation points of local shape functions are selected, as long as the points are non-repetitive, we will just have the equivalent FEM results. The uniform points are the simplest case. However, I use Gauss-Lobatto points here for shape functions. 
+
+
+
+
+
+## 2D
 
 ```cpp
 void shape_t3 ( double r, double s, double t[3], double dtdr[3], 
