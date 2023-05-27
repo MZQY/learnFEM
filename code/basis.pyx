@@ -10,72 +10,145 @@ cimport numpy as np
 np.import_array()
 from libc.math cimport sqrt
 from libc.stdio cimport printf
-from libcpp.string cimport string
+
+
+def shape1d_node2(idx, x, node, phi):
+    _shape1d_node2(idx, x, node, phi)
+
+def shape1d_node3(idx, x, node, phi):
+    _shape1d_node3(idx, x, node, phi)
+
+def shape1d_node4(idx, x, node, phi):
+    _shape1d_node4(idx, x, node, phi)
+
+def gauss_legendre_quadrature_set1d(n, x, w):
+    _gauss_legendre_quadrature_set1d(n, x, w)
+
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cdef void _shape1d_node2(int idx, double x, double[:] node, double[:] phi) nogil:
+    """
+    linear shape function on the segment interval [-1, 1]
+    2 nodes based on Gauss-Lobatto points
+    The values are derived using Mathematica in basis.nb.
+    :param idx: (int) derivative order for shape function
+    :param x: (double) required coordinate
+    :param node: (double[2]) Gauss-Lobatto points
+    :param phi: (double[2]) the idx order derivative of shape function on x 
+    """
+    node[0] = -1.
+    node[1] = 1.
+    if (x >= -1. and x <= 1.):
+        if (idx == 0):
+            phi[0] = (1. - x) / 2.
+            phi[1] = (1. + x) / 2.
+        elif (idx == 1):
+            phi[0] = -1. / 2.
+            phi[1] =  1. / 2.
+        else:
+            phi[0] = 0.
+            phi[1] = 0.
+    else:
+        phi[0] = 0.
+        phi[1] = 0.
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cdef void _shape1d_node3(int idx, double x, double[:] node, double[:] phi) nogil:
+    """
+    quadratic shape function on the interval [-1, 1]
+    3 nodes based on Gauss-Lobatto points
+    The values are derived using Mathematica in basis.nb.
+    :param idx: (int) derivative order for shape function
+    :param x: (double) required coordinate
+    :param node: (double[3]) Gauss-Lobatto points
+    :param phi: (double[3]) the idx order derivative of shape function on x 
+    """
+    node[0] = -1.
+    node[1] = 0.
+    node[2] = 1.
+    if (x >= -1. and x <= 1.):
+        if (idx == 0):
+            phi[0] = 1. / 2. * (-1. + x) * x
+            phi[1] = 1. - x * x
+            phi[2] = 1. / 2. * x * (1. + x)
+        elif (idx == 1):
+            phi[0] = -1. / 2. + x
+            phi[1] =  -2. * x
+            phi[2] = 1. / 2. + x
+        elif (idx == 2):
+            phi[0] = 1.
+            phi[1] = -2.
+            phi[2] = 1.
+        else:
+            phi[0] = 0.
+            phi[1] = 0.
+            phi[2] = 0.
+    else:
+        phi[0] = 0.
+        phi[1] = 0.
+        phi[2] = 0.
+
 
 
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cdef (double node[:], double phi[:]) local_basis_1d(int order, int idx, double x) nogil:
+cdef void _shape1d_node4(int idx, double x, double[:] node, double[:] phi) nogil:
     """
-    Given the interval [-1,1], the local basis functions are derived based on
-        Gauss-Lobatto points.
-    The derivations are represented in basis.nb.
-    :param order: (int) order=1 means linear basis functions correspond to 2 nodes.
-    :param idx: (int) derivative order of x.
-    :param x: (double) reference coordinate.
+    quadratic shape function on the interval [-1, 1]
+    4 nodes based on Gauss-Lobatto points
+    The values are derived using Mathematica in basis.nb.
+    :param idx: (int) derivative order for shape function
+    :param x: (double) required coordinate
+    :param node: (double[4]) Gauss-Lobatto points
+    :param phi: (double[4]) the idx order derivative of shape function on x 
     """
-    cdef double phi[(order+1)] = 0.
-    cdef double node[(order+1)] = 0.
-    cdef string idx_err = "idx (derivative order of the shape function) should be in [0,3]"
-
-    # the basis functions phi = 0 if x locates outside the interval [-1,1]
-    if (x < -1 or x > 1):
-        phi[:] = 0.
-    
-    # linear basis function
-    if (order == 1):
-        node = 
+    node[0] = -1.
+    node[1] = -sqrt(5.) / 5.
+    node[2] =  sqrt(5.) / 5.
+    node[3] = 1.
+    if (x >= -1. and x <= 1.):
         if (idx == 0):
-            phi[0] = (1. - x) / 2.
-            phi[1] = (1. + x) / 2.
+            phi[0] = 1. / 8. * (-1. + x + 5. * x*x - 5. * x*x*x)
+            phi[1] = -1. / 8. * sqrt(5.) * (sqrt(5.) - 5. * x) * (-1. + x) * (1. + x)
+            phi[2] = -1. / 8. * sqrt(5.) * (-1. + x) * (1. + x) * (sqrt(5.) + 5. * x)
+            phi[3] = 1. / 8. * (-1. - x + 5. * x*x + 5. * x*x*x)
         elif (idx == 1):
-            phi[0] = -0.5
-            phi[1] = 0.5
-        elif (idx == 2 or idx == 3):
-            phi[:] = 0.
+            phi[0] = 1. / 8. * (1. + 10. * x - 15. * x*x)
+            phi[1] =  -1. / 8. * sqrt(5.) * (5. + 2. * sqrt(5.) * x - 15. * x*x)
+            phi[2] = -1. / 8. * sqrt(5.) * (-5. + 2. * sqrt(5.) * x + 15. * x*x)
+            phi[3] = 1. / 8. * (-1. + 10. * x + 15. * x*x)
+        elif (idx == 2):
+            phi[0] = -5. / 4. * (-1. + 3. * x)
+            phi[1] = 5. / 4. * (-1. + 3. * sqrt(5.) * x)
+            phi[2] = -5. / 4. * (1. + 3. * sqrt(5.) * x)
+            phi[3] = 5. / 4. * (1. + 3. * x)
+        elif (idx == 3):
+            phi[0] = -15. / 4.
+            phi[1] = 15. * sqrt(5.) / 4.
+            phi[2] = -15. * sqrt(5.) / 4.
+            phi[3] = 15. / 4.
         else:
-            printf("Illegal value of idx = %d \n", idx);
-            raise ValueError("idx (derivative order of the shape function) should be ")
-    # quadratic basis function
-    elif (order == 2):
-        if (idx == 0):
-            phi[0] = (1. - x) / 2.
-            phi[1] = (1. + x) / 2.
-            phi[2] = (1. + x) / 2.
-        elif (idx == 1):
-            phi[0] = -0.5
-            phi[1] = 0.5
-        elif (idx == 2 or idx == 3):
-            phi[:] = 0.
-        else:
-            printf("Illegal value of idx = %d \n", idx);
-            raise ValueError("idx (derivative order of the shape function) should be ")
-
-
-
-
-
-
+            phi[0] = 0.
+            phi[1] = 0.
+            phi[2] = 0.
+            phi[3] = 0.
+    else:
+        phi[0] = 0.
+        phi[1] = 0.
+        phi[2] = 0.
+        phi[3] = 0.
 
 
 
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cdef void gauss_legendre_quadrature_set1d(int n, \
-                                          double x[:], \
-                                          double w[:]) nogil:
+cdef void _gauss_legendre_quadrature_set1d(int n, \
+                                           double[:] x, \
+                                           double[:] w) nogil:
     """
     get abscissas and weights for Gauss-Legendre quadrature
     The quadrature interval is [-1, 1]

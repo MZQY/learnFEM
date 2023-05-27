@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     16446,        465]
-NotebookOptionsPosition[     14606,        427]
-NotebookOutlinePosition[     15137,        446]
-CellTagsIndexPosition[     15094,        443]
+NotebookDataLength[     19004,        563]
+NotebookOptionsPosition[     17158,        525]
+NotebookOutlinePosition[     17689,        544]
+CellTagsIndexPosition[     17646,        541]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -74,8 +74,9 @@ Cell[BoxData[
             RowBox[{"LineElement", ",", "order"}], "]"}], "[", 
            RowBox[{"r", ",", "s"}], "]"}]}], "]"}], ";"}]}], 
       "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
-   RowBox[{"basis1d", "[", "3", "]"}], "\[IndentingNewLine]", 
-   "\n"}]}]], "Input",ExpressionUUID->"a4bdd9c6-4b6d-40f5-884e-ba15b51b961e"],
+   RowBox[{"basis1d", "[", "3", "]"}], "\n", 
+   "\[IndentingNewLine]"}]}]], "Input",ExpressionUUID->"a4bdd9c6-4b6d-40f5-\
+884e-ba15b51b961e"],
 
 Cell[CellGroupData[{
 
@@ -351,82 +352,179 @@ Cell[BoxData[
            RowBox[{"2", "*", 
             RowBox[{"Sqrt", "[", "7", "]"}]}]}], ")"}]}], "]"}], ",", "1"}], 
       "}"}]}], ";"}], "\[IndentingNewLine]", 
-   RowBox[{"getShapeFunction", "[", "pLobatto3", "]"}]}]}]], "Input",
- CellLabel->"In[56]:=",ExpressionUUID->"94668c8c-e8fc-413f-9cdc-1a520d52fd0c"],
+   RowBox[{"getShapeFunction", "[", "pLobatto4", "]"}]}]}]], "Input",
+ CellLabel->"In[15]:=",ExpressionUUID->"94668c8c-e8fc-413f-9cdc-1a520d52fd0c"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData["\<\"0-order derivative of basis functions\"\>"], "Print",
  CellLabel->
   "During evaluation of \
-In[56]:=",ExpressionUUID->"bb2cdd88-60e6-4972-b79a-2178a484b4bb"],
+In[15]:=",ExpressionUUID->"f65cc066-d7c4-43eb-b874-ec2fa59c1136"],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{
    RowBox[{
-    FractionBox["1", "2"], " ", 
+    FractionBox["1", "8"], " ", 
     RowBox[{"(", 
      RowBox[{
-      RowBox[{"-", "1"}], "+", "x"}], ")"}], " ", "x"}], ",", 
-   RowBox[{"1", "-", 
-    SuperscriptBox["x", "2"]}], ",", 
+      RowBox[{"-", "1"}], "+", "x", "+", 
+      RowBox[{"5", " ", 
+       SuperscriptBox["x", "2"]}], "-", 
+      RowBox[{"5", " ", 
+       SuperscriptBox["x", "3"]}]}], ")"}]}], ",", 
    RowBox[{
-    FractionBox["1", "2"], " ", "x", " ", 
+    RowBox[{"-", 
+     FractionBox["1", "8"]}], " ", 
+    SqrtBox["5"], " ", 
     RowBox[{"(", 
-     RowBox[{"1", "+", "x"}], ")"}]}]}], "}"}]], "Print",
+     RowBox[{
+      SqrtBox["5"], "-", 
+      RowBox[{"5", " ", "x"}]}], ")"}], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", "x"}], ")"}], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", "x"}], ")"}]}], ",", 
+   RowBox[{
+    RowBox[{"-", 
+     FractionBox["1", "8"]}], " ", 
+    SqrtBox["5"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", "x"}], ")"}], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", "x"}], ")"}], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      SqrtBox["5"], "+", 
+      RowBox[{"5", " ", "x"}]}], ")"}]}], ",", 
+   RowBox[{
+    FractionBox["1", "8"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "1"}], "-", "x", "+", 
+      RowBox[{"5", " ", 
+       SuperscriptBox["x", "2"]}], "+", 
+      RowBox[{"5", " ", 
+       SuperscriptBox["x", "3"]}]}], ")"}]}]}], "}"}]], "Print",
  CellLabel->
   "During evaluation of \
-In[56]:=",ExpressionUUID->"c66e50c6-8e67-47f7-bb2d-c3f3045a9bd7"],
+In[15]:=",ExpressionUUID->"3ead4608-7f36-461d-8bf0-c0005b972689"],
 
 Cell[BoxData["\<\"1-order derivative of basis functions\"\>"], "Print",
  CellLabel->
   "During evaluation of \
-In[56]:=",ExpressionUUID->"24441479-e9e1-4ffb-b1ad-17fe1fc99807"],
+In[15]:=",ExpressionUUID->"129e3b53-7146-4dd8-9c00-7a2eafa6d32d"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    FractionBox["1", "8"], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"10", " ", "x"}], "-", 
+      RowBox[{"15", " ", 
+       SuperscriptBox["x", "2"]}]}], ")"}]}], ",", 
+   RowBox[{
+    RowBox[{"-", 
+     FractionBox["1", "8"]}], " ", 
+    SqrtBox["5"], " ", 
+    RowBox[{"(", 
+     RowBox[{"5", "+", 
+      RowBox[{"2", " ", 
+       SqrtBox["5"], " ", "x"}], "-", 
+      RowBox[{"15", " ", 
+       SuperscriptBox["x", "2"]}]}], ")"}]}], ",", 
+   RowBox[{
+    RowBox[{"-", 
+     FractionBox["1", "8"]}], " ", 
+    SqrtBox["5"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "5"}], "+", 
+      RowBox[{"2", " ", 
+       SqrtBox["5"], " ", "x"}], "+", 
+      RowBox[{"15", " ", 
+       SuperscriptBox["x", "2"]}]}], ")"}]}], ",", 
+   RowBox[{
+    FractionBox["1", "8"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", 
+      RowBox[{"10", " ", "x"}], "+", 
+      RowBox[{"15", " ", 
+       SuperscriptBox["x", "2"]}]}], ")"}]}]}], "}"}]], "Print",
+ CellLabel->
+  "During evaluation of \
+In[15]:=",ExpressionUUID->"f02f1dca-0f9c-4090-aa87-38245c0eed22"],
+
+Cell[BoxData["\<\"2-order derivative of basis functions\"\>"], "Print",
+ CellLabel->
+  "During evaluation of \
+In[15]:=",ExpressionUUID->"0b27f065-0959-4ede-b192-bc6dd52e4111"],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{
    RowBox[{
     RowBox[{"-", 
-     FractionBox["1", "2"]}], "+", "x"}], ",", 
+     FractionBox["5", "4"]}], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", 
+      RowBox[{"3", " ", "x"}]}], ")"}]}], ",", 
    RowBox[{
-    RowBox[{"-", "2"}], " ", "x"}], ",", 
+    FractionBox["5", "4"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", 
+      RowBox[{"3", " ", 
+       SqrtBox["5"], " ", "x"}]}], ")"}]}], ",", 
    RowBox[{
-    FractionBox["1", "2"], "+", "x"}]}], "}"}]], "Print",
+    RowBox[{"-", 
+     FractionBox["5", "4"]}], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"3", " ", 
+       SqrtBox["5"], " ", "x"}]}], ")"}]}], ",", 
+   RowBox[{
+    FractionBox["5", "4"], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"3", " ", "x"}]}], ")"}]}]}], "}"}]], "Print",
  CellLabel->
   "During evaluation of \
-In[56]:=",ExpressionUUID->"173eb4c6-7966-455b-be14-589dff8a151a"],
-
-Cell[BoxData["\<\"2-order derivative of basis functions\"\>"], "Print",
- CellLabel->
-  "During evaluation of \
-In[56]:=",ExpressionUUID->"c3193c14-cf30-4cef-bd61-c84c1f6d8a6e"],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"1", ",", 
-   RowBox[{"-", "2"}], ",", "1"}], "}"}]], "Print",
- CellLabel->
-  "During evaluation of \
-In[56]:=",ExpressionUUID->"9959390d-9082-4e12-bfa1-60447232d2c8"],
+In[15]:=",ExpressionUUID->"d3f36735-bcf0-4238-87b6-3763f5e31a34"],
 
 Cell[BoxData["\<\"3-order derivative of basis functions\"\>"], "Print",
  CellLabel->
   "During evaluation of \
-In[56]:=",ExpressionUUID->"b3b59d58-8a84-4670-bae3-7aeabca622c2"],
+In[15]:=",ExpressionUUID->"ebc26acb-e7c3-4be8-9863-e9d2140d3b2b"],
 
 Cell[BoxData[
  RowBox[{"{", 
-  RowBox[{"0", ",", "0", ",", "0"}], "}"}]], "Print",
+  RowBox[{
+   RowBox[{"-", 
+    FractionBox["15", "4"]}], ",", 
+   FractionBox[
+    RowBox[{"15", " ", 
+     SqrtBox["5"]}], "4"], ",", 
+   RowBox[{"-", 
+    FractionBox[
+     RowBox[{"15", " ", 
+      SqrtBox["5"]}], "4"]}], ",", 
+   FractionBox["15", "4"]}], "}"}]], "Print",
  CellLabel->
   "During evaluation of \
-In[56]:=",ExpressionUUID->"5d87bd0f-a630-452e-a860-f74ed4c457c2"]
+In[15]:=",ExpressionUUID->"cc5c9ae7-0f61-4b25-ba63-db4257fbf472"]
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{1080, 1837},
-WindowMargins->{{-1088, Automatic}, {Automatic, -127}},
+WindowSize->{1064, 1829},
+WindowMargins->{{-1080, Automatic}, {Automatic, -119}},
 TaggingRules->{
  "WelcomeScreenSettings" -> {"FEStarting" -> False}, "TryRealOnly" -> False},
 Magnification:>2. Inherited,
@@ -448,23 +546,23 @@ Notebook[{
 Cell[558, 20, 792, 17, 292, "Input",ExpressionUUID->"4a079e3a-e8fb-44a7-be1c-6913b6f68c42"],
 Cell[1353, 39, 155, 2, 57, "Input",ExpressionUUID->"be0d4779-2246-4b14-97a9-0a45748fb337"],
 Cell[CellGroupData[{
-Cell[1533, 45, 1251, 32, 409, "Input",ExpressionUUID->"a4bdd9c6-4b6d-40f5-884e-ba15b51b961e"],
+Cell[1533, 45, 1253, 33, 409, "Input",ExpressionUUID->"a4bdd9c6-4b6d-40f5-884e-ba15b51b961e"],
 Cell[CellGroupData[{
-Cell[2809, 81, 439, 10, 44, "Print",ExpressionUUID->"6fbb6dcc-3008-4d46-8fbc-759e604bcc24"],
-Cell[3251, 93, 509, 13, 44, "Print",ExpressionUUID->"e1ba3dda-8027-4c00-8c3a-d7036d454222"]
+Cell[2811, 82, 439, 10, 44, "Print",ExpressionUUID->"6fbb6dcc-3008-4d46-8fbc-759e604bcc24"],
+Cell[3253, 94, 509, 13, 44, "Print",ExpressionUUID->"e1ba3dda-8027-4c00-8c3a-d7036d454222"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3809, 112, 8805, 242, 2040, "Input",ExpressionUUID->"94668c8c-e8fc-413f-9cdc-1a520d52fd0c"],
+Cell[3811, 113, 8805, 242, 2040, "Input",ExpressionUUID->"94668c8c-e8fc-413f-9cdc-1a520d52fd0c"],
 Cell[CellGroupData[{
-Cell[12639, 358, 176, 3, 44, "Print",ExpressionUUID->"bb2cdd88-60e6-4972-b79a-2178a484b4bb"],
-Cell[12818, 363, 475, 16, 65, "Print",ExpressionUUID->"c66e50c6-8e67-47f7-bb2d-c3f3045a9bd7"],
-Cell[13296, 381, 176, 3, 44, "Print",ExpressionUUID->"24441479-e9e1-4ffb-b1ad-17fe1fc99807"],
-Cell[13475, 386, 346, 12, 65, "Print",ExpressionUUID->"173eb4c6-7966-455b-be14-589dff8a151a"],
-Cell[13824, 400, 176, 3, 44, "Print",ExpressionUUID->"c3193c14-cf30-4cef-bd61-c84c1f6d8a6e"],
-Cell[14003, 405, 206, 6, 44, "Print",ExpressionUUID->"9959390d-9082-4e12-bfa1-60447232d2c8"],
-Cell[14212, 413, 176, 3, 44, "Print",ExpressionUUID->"b3b59d58-8a84-4670-bae3-7aeabca622c2"],
-Cell[14391, 418, 187, 5, 44, "Print",ExpressionUUID->"5d87bd0f-a630-452e-a860-f74ed4c457c2"]
+Cell[12641, 359, 176, 3, 44, "Print",ExpressionUUID->"f65cc066-d7c4-43eb-b874-ec2fa59c1136"],
+Cell[12820, 364, 1361, 49, 124, "Print",ExpressionUUID->"3ead4608-7f36-461d-8bf0-c0005b972689"],
+Cell[14184, 415, 176, 3, 44, "Print",ExpressionUUID->"129e3b53-7146-4dd8-9c00-7a2eafa6d32d"],
+Cell[14363, 420, 1155, 41, 124, "Print",ExpressionUUID->"f02f1dca-0f9c-4090-aa87-38245c0eed22"],
+Cell[15521, 463, 176, 3, 44, "Print",ExpressionUUID->"0b27f065-0959-4ede-b192-bc6dd52e4111"],
+Cell[15700, 468, 837, 31, 65, "Print",ExpressionUUID->"d3f36735-bcf0-4238-87b6-3763f5e31a34"],
+Cell[16540, 501, 176, 3, 44, "Print",ExpressionUUID->"ebc26acb-e7c3-4be8-9863-e9d2140d3b2b"],
+Cell[16719, 506, 411, 15, 74, "Print",ExpressionUUID->"cc5c9ae7-0f61-4b25-ba63-db4257fbf472"]
 }, Open  ]]
 }, Open  ]]
 }
