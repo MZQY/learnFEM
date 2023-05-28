@@ -1,8 +1,18 @@
 # FEM basis
 
+The basis functions used here are Lagrange basis functions, wherein each function evaluates to 1 when assessed at its respective node and yields 0 at all other nodes.
 
+The basis functions are defined on the simplices. The $M$ dimensional simplex is defined by $M+1$ vertices where every points within the simplex are convex combinations of those vertices.
 
-## basis functions 
+A shape is considered convex if and only if any two points on the shape always form a segment that lies entirely within that shape. When a shape is convex, any point on that shape can be represented as the linear combination of the shape's vertices. For example, the triangle $T$ can be represented as
+$$
+T(v_1, v_2, v_3)=\{ p: p = \xi_1 v_1 + \xi_2 v_2 + \xi_3 v_3; \quad \xi_1+\xi_2+\xi_3 \leq 1 \}
+$$
+where the $\xi_n$ are coefficients and $v_n$ are three vertices. 
+
+If the $M$ dimensional simplex has the basis function with highest order $d$, then a basis function can be formed by $(d+1)^M$ monomials, with $d+1$ nodes in each dimension. 
+
+## basis functions
 
 ## 1D
 
@@ -14,11 +24,23 @@ For the linear basis functions on the interval $[-1,1]$, we just have two linear
 
 In theory, the accuracy of Gaussian quadrature is solely determined by the number of quadrature points, i.e. the quadrature of shape functions whose polynomial degree is less than $2N+1$ is always exact using $N+1$ Gauss quadrature points. Therefore,  regardless of how interpolation points of local shape functions are selected, as long as the points are non-repetitive, we will just have the equivalent FEM results. The uniform points are the simplest case. However, I use Gauss-Lobatto points here for shape functions. 
 
-
+The automatic derivation of the 1D basis functions of any order based on Gauss-Lobatto points has been implemented in Mathematica (`basis.nb`).
 
 
 
 ## 2D
+
+### triangle
+
+If the basis function has monomials with the highest order $d$, then the triangle has $d+1$ nodes in each dimension, and the grid point number is $1+2+3+...+(d+1)=\frac{(d+2)(d+1)}{2}$. For instance, the degree-5 gridlines has the form:
+
+<img src="figs/image-20230528211122604.png" alt="image-20230528211122604" style="zoom:50%;" />
+
+We can get expressions of basis functions on this website: https://defelement.com/elements/lagrange.html
+
+
+
+
 
 ```cpp
 void shape_t3 ( double r, double s, double t[3], double dtdr[3], 
@@ -82,69 +104,6 @@ void shape_t3 ( double r, double s, double t[3], double dtdr[3],
 }
 //****************************************************************************80
 
-void shape_t4 ( double r, double s, double t[4], double dtdr[4], 
-  double dtds[4] )
-
-//****************************************************************************80
-//
-//  Purpose: 
-//
-//    SHAPE_T4 evaluates shape functions for a T4 triangle.
-//
-//  Element T4:
-//
-//    |
-//    1  3
-//    |  |.
-//    |  | .
-//    S  |  .
-//    |  | 4 .
-//    |  |    .
-//    0  1-----2
-//    |
-//    +--0--R--1-->
-//
-//  Licensing:
-//
-//    This code is distributed under the GNU LGPL license. 
-//
-//  Modified:
-//
-//    31 March 2005
-//
-//  Author:
-//
-//    John Burkardt
-//
-//  Parameters:
-//
-//    Input, double R, S, the reference coordinates of a point.
-//
-//    Output, double T[4], the basis functions at the point.
-//
-//    Output, double DTDR[3], the R basis derivatives at the point.
-//
-//    Output, double DTDS[3], the S basis derivatives at the point.
-//
-{
-  t[0] = ( 1.0 - 9.0 * r * s ) * ( 1.0 - r - s );
-  t[1] = r * ( 1.0 - 9.0 * ( 1.0 - r - s ) * s );
-  t[2] = s * ( 1.0 - 9.0 * ( 1.0 - r - s ) * r );
-  t[3] = 27.0            * ( 1.0 - r - s ) * r * s;
-
-  dtdr[0] = -1.0 +  9.0 * ( - s + 2.0 * r * s + s * s );
-  dtdr[1] =  1.0 +  9.0 * ( - s + 2.0 * r * s + s * s );
-  dtdr[2] =         9.0 * ( - s + 2.0 * r * s + s * s );
-  dtdr[3] =      - 27.0 * ( - s + 2.0 * r * s + s * s );
-
-  dtds[0] = -1.0 +  9.0 * ( - r + r * r + 2.0 * r * s );
-  dtds[1] =         9.0 * ( - r + r * r + 2.0 * r * s );
-  dtds[2] =  1.0 +  9.0 * ( - r + r * r + 2.0 * r * s );
-  dtds[3] =      - 27.0 * ( - r + r * r + 2.0 * r * s );
-
-  return;
-}
-//****************************************************************************80
 
 void shape_t6 ( double r, double s, double t[6], double dtdr[6], 
   double dtds[6] )
