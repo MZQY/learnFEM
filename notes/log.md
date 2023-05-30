@@ -12,3 +12,4 @@
     * Finished the function about 2D Gauss quadrature.
   * `test_basis.ipynb`
     * Test `basis.pyx` in this notebook. 
+    * Benchmarked the Gaussian quadrature of 1D and 2D.

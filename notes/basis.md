@@ -78,8 +78,65 @@ The integral of any function $\phi(\vec{x})$ is
 $$
 \int_V \phi(\vec{x}) d\vec{x} = \int_{\hat{V}} \phi\left(\mathcal{F}(\vec{u})\right) \det\left(\frac{\partial \mathcal{F}}{\partial \vec{u}}\right) d\vec{u} = \int_{\hat{V}} \hat{\phi}(\vec{u}) \mathcal{J} d\vec{u}
 $$
-where the $J=\frac{\partial \mathcal{F}}{\partial \vec{u}}$ is the Jacobian matrix $\mathcal{J}_{ij}=\frac{\partial \mathcal{F}_i}{\partial u_j} = \frac{\partial A_{Ti}}{\partial u_j}$, $\mathcal{J}=\det(J)=\det(A_T)$ is the Jacobian factor, and $\hat{V}$ denotes the volume of the reference element. (The basis function satisfy $\hat{\phi}=\phi \circ \mathcal{F}$ ? This conclusion is intuitive without finding a rigorous proof at the moment, which can also be checked in (4.44) eqn. $\phi(x)=\hat{\phi}(\hat{x})$ in book *Automated Solution of Differential Equations by the Finite Element Method, The FEniCS Book, 2011*. )
+where the $J=\frac{\partial \mathcal{F}}{\partial \vec{u}}$ is the Jacobian matrix $J_{ij}=\frac{\partial \mathcal{F}_i}{\partial u_j} = \frac{\partial A_{Ti}}{\partial u_j}$, $\mathcal{J}=\det(J)=\det(A_T)$ is the Jacobian factor, and $\hat{V}$ denotes the volume of the reference element. (The basis function satisfy $\hat{\phi}=\phi \circ \mathcal{F}$ ? This conclusion is intuitive without finding a rigorous proof at the moment, which can also be checked in (4.44) eqn. $\phi(x)=\hat{\phi}(\hat{x})$ in book *Automated Solution of Differential Equations by the Finite Element Method, The FEniCS Book, 2011*. )
 
+
+
+## 1D
+
+For the 1D case, we map the interval $x \in [x_1, x_2]$ to $\hat{x} \in [-1,1]$ where $x_1 < x_2$. If we assume that $x = a \hat{x} + b$, then we have
+$$
+x = \frac{x_2 - x_1}{2} \hat{x} + \frac{x_2 + x_1}{2}
+$$
+ Thus the Jacobian factor $\mathcal{J} = \det(\frac{\partial x}{\partial \hat{x}}) = \frac{x_2 - x_1}{2}$. The integral of any function $\phi(x)$ defined in $[x_1, x_2]$ equals
+$$
+\int_{x_1}^{x_2} \phi(x) dx = \int_{-1}^{1} \phi \left(\mathcal{F}(\hat{x}) \right) \mathcal{J} d\hat{x} =  \mathcal{J}  \sum_{i} \phi \left(\mathcal{F}(\hat{x_i}) \right) w_i
+$$
+If the function $\phi(x)$ is the FEM basis function, then we have
+$$
+\int_{x_1}^{x_2} \phi(x) dx = \mathcal{J} \int_{-1}^{1} \hat{\phi}(\hat{x})  d\hat{x} = \mathcal{J}  \sum_{i}  \hat{\phi}(\hat{x}_i) w_i
+$$
+
+## 2D
+
+For the 2D case, we have the triangle area $T$ corresponds to the reference triangle $\hat{T}$ whose vertices are $(0,0)$, $(1,0)$ and $(0,1)$. If we assume
+$$
+\begin{bmatrix}
+x\\
+y
+\end{bmatrix} = A_T \begin{bmatrix}
+\hat{x} \\
+\hat{y}
+\end{bmatrix} +  \begin{bmatrix}
+c_1 \\
+c_2
+\end{bmatrix}
+$$
+and map $(0, 0)$ to $(x_1,y_1)$, $(1, 0)$ to $(x_2,y_2)$, $(0, 1)$ to $(x_3,y_3)$, then we have
+$$
+\begin{bmatrix}
+x\\
+y
+\end{bmatrix} =\begin{bmatrix}
+x_2 - x_1 & x_3 - x_1 \\
+y_2 - y_1 & y_3 - y_1
+\end{bmatrix}
+\begin{bmatrix}
+\hat{x} \\
+\hat{y}
+\end{bmatrix} +  \begin{bmatrix}
+x_1 \\
+y_1
+\end{bmatrix} .
+$$
+Thus the Jacobian factor $\mathcal{J} = \det(A_T) = (x_2 - x_1) (y_3 - y_1) - (x_3 - x_1)(y_2 - y_1)$. The integral of any function $\phi(x, y)$ defined on $T$ equals (the $\frac{1}{2}$ corresponds to https://people.sc.fsu.edu/~jburkardt/datasets/quadrature_rules_tri/quadrature_rules_tri.html)
+$$
+\int_T \phi(x, y) dS =  \int_{\hat{T}} \phi \left( \mathcal{F}(\hat{x}, \hat{y}) \right) \mathcal{J} d\hat{S} = \frac{1}{2} \mathcal{J} \sum_i \phi \left( \mathcal{F}(\hat{x}_i, \hat{y}_i) \right) w_i .
+$$
+If the function $\phi(x, y)$ is the FEM basis function, then we have
+$$
+\int_T \phi(x, y) dS =  \int_{\hat{T}} \phi \left( \mathcal{F}(\hat{x}, \hat{y}) \right) \mathcal{J} d\hat{S} = \frac{1}{2} \mathcal{J} \sum_i \hat{\phi}(\hat{x}, \hat{y}) w_i
+$$
 
 
 ## Gaussian quadrature
@@ -2687,7 +2744,7 @@ void legendre_set ( int n, double x[], double w[] )
 
 ### 2D quadrature
 
-The 2D quadrature for a unit triangle is implemented in the following code:
+The 2D quadrature for a unit triangle is implemented in the following code (ref theory: https://people.sc.fsu.edu/~jburkardt/datasets/quadrature_rules_tri/quadrature_rules_tri.html):
 
 ```cpp
 void triangle_unit_set ( int rule, double xtab[], double ytab[], 
