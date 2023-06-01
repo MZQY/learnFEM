@@ -5,9 +5,11 @@ The basis functions used here are Lagrange basis functions, wherein each functio
 The basis functions are defined on the simplices. The $M$ dimensional simplex is defined by $M+1$ vertices where every points within the simplex are convex combinations of those vertices.
 
 A shape is considered convex if and only if any two points on the shape always form a segment that lies entirely within that shape. When a shape is convex, any point on that shape can be represented as the linear combination of the shape's vertices. For example, the triangle $T$ can be represented as
+
 $$
 T(v_1, v_2, v_3)=\{ p: p = \xi_1 v_1 + \xi_2 v_2 + \xi_3 v_3; \quad \xi_1+\xi_2+\xi_3 \leq 1 \}
 $$
+
 where the $\xi_n$ are coefficients and $v_n$ are three vertices. 
 
 If the $M$ dimensional simplex has the basis function with highest order $d$, then a basis function can be formed by $(d+1)^M$ monomials, with $d+1$ nodes in each dimension. 
@@ -17,9 +19,11 @@ If the $M$ dimensional simplex has the basis function with highest order $d$, th
 ## 1D
 
 The local basis function is $\phi_i (x)$
+
 $$
 \phi_i(x) = \prod_{j\neq i} \frac{x - x_j}{x_i - x_j} .
 $$
+
 For the linear basis functions on the interval $[-1,1]$, we just have two linear piecewise functions $\phi_1(x) = \frac{1}{2} (1-x)$, $\phi_2(x)=\frac{1}{2}(x+1)$.  
 
 In theory, the accuracy of Gaussian quadrature is solely determined by the number of quadrature points, i.e. the quadrature of shape functions whose polynomial degree is less than $2N+1$ is always exact using $N+1$ Gauss quadrature points. Therefore,  regardless of how interpolation points of local shape functions are selected, as long as the points are non-repetitive, we will just have the equivalent FEM results. The uniform points are the simplest case. However, I use Gauss-Lobatto points here for shape functions. 
@@ -43,6 +47,7 @@ We can get expressions of basis functions on this website: https://defelement.co
 ## affine mapping
 
 Let the $\mathcal{F}$ be the transformation that maps the reference element $\vec{u}$ to the actual mesh $\vec{x}$, namely $\mathcal{F}: \vec{u} \rightarrow \vec{x}$, $\mathcal{F}(\vec{u})=\vec{x}$ or $\vec{u}=\mathcal{F}^{-1} (\vec{x})$​. For the 2D case, 
+
 $$
 \mathcal{F}\left( \begin{bmatrix}
 u_1\\
@@ -75,9 +80,11 @@ $$
 
 
 The integral of any function $\phi(\vec{x})$ is
+
 $$
 \int_V \phi(\vec{x}) d\vec{x} = \int_{\hat{V}} \phi\left(\mathcal{F}(\vec{u})\right) \det\left(\frac{\partial \mathcal{F}}{\partial \vec{u}}\right) d\vec{u} = \int_{\hat{V}} \hat{\phi}(\vec{u}) \mathcal{J} d\vec{u}
 $$
+
 where the $J=\frac{\partial \mathcal{F}}{\partial \vec{u}}$ is the Jacobian matrix $J_{ij}=\frac{\partial \mathcal{F}_i}{\partial u_j} = \frac{\partial A_{Ti}}{\partial u_j}$, $\mathcal{J}=\det(J)=\det(A_T)$ is the Jacobian factor, and $\hat{V}$ denotes the volume of the reference element. (The basis function satisfy $\hat{\phi}=\phi \circ \mathcal{F}$ ? This conclusion is intuitive without finding a rigorous proof at the moment, which can also be checked in (4.44) eqn. $\phi(x)=\hat{\phi}(\hat{x})$ in book *Automated Solution of Differential Equations by the Finite Element Method, The FEniCS Book, 2011*. )
 
 
@@ -85,14 +92,19 @@ where the $J=\frac{\partial \mathcal{F}}{\partial \vec{u}}$ is the Jacobian matr
 ## 1D
 
 For the 1D case, we map the interval $x \in [x_1, x_2]$ to $\hat{x} \in [-1,1]$ where $x_1 < x_2$. If we assume that $x = a \hat{x} + b$, then we have
+
 $$
 x = \frac{x_2 - x_1}{2} \hat{x} + \frac{x_2 + x_1}{2}
 $$
+
  Thus the Jacobian factor $\mathcal{J} = \det(\frac{\partial x}{\partial \hat{x}}) = \frac{x_2 - x_1}{2}$. The integral of any function $\phi(x)$ defined in $[x_1, x_2]$ equals
+
 $$
 \int_{x_1}^{x_2} \phi(x) dx = \int_{-1}^{1} \phi \left(\mathcal{F}(\hat{x}) \right) \mathcal{J} d\hat{x} =  \mathcal{J}  \sum_{i} \phi \left(\mathcal{F}(\hat{x_i}) \right) w_i
 $$
+
 If the function $\phi(x)$ is the FEM basis function, then we have
+
 $$
 \int_{x_1}^{x_2} \phi(x) dx = \mathcal{J} \int_{-1}^{1} \hat{\phi}(\hat{x})  d\hat{x} = \mathcal{J}  \sum_{i}  \hat{\phi}(\hat{x}_i) w_i
 $$
@@ -100,6 +112,7 @@ $$
 ## 2D
 
 For the 2D case, we have the triangle area $T$ corresponds to the reference triangle $\hat{T}$ whose vertices are $(0,0)$, $(1,0)$ and $(0,1)$. If we assume
+
 $$
 \begin{bmatrix}
 x\\
@@ -129,11 +142,15 @@ x_1 \\
 y_1
 \end{bmatrix} .
 $$
+
 Thus the Jacobian factor $\mathcal{J} = \det(A_T) = (x_2 - x_1) (y_3 - y_1) - (x_3 - x_1)(y_2 - y_1)$. The integral of any function $\phi(x, y)$ defined on $T$ equals (the $\frac{1}{2}$ corresponds to https://people.sc.fsu.edu/~jburkardt/datasets/quadrature_rules_tri/quadrature_rules_tri.html)
+
 $$
 \int_T \phi(x, y) dS =  \int_{\hat{T}} \phi \left( \mathcal{F}(\hat{x}, \hat{y}) \right) \mathcal{J} d\hat{S} = \frac{1}{2} \mathcal{J} \sum_i \phi \left( \mathcal{F}(\hat{x}_i, \hat{y}_i) \right) w_i .
 $$
+
 If the function $\phi(x, y)$ is the FEM basis function, then we have
+
 $$
 \int_T \phi(x, y) dS =  \int_{\hat{T}} \phi \left( \mathcal{F}(\hat{x}, \hat{y}) \right) \mathcal{J} d\hat{S} = \frac{1}{2} \mathcal{J} \sum_i \hat{\phi}(\hat{x}, \hat{y}) w_i
 $$
@@ -146,6 +163,7 @@ The Gaussian quadrature is based on several definitions and theorems.
 * Definition: **inner product** (Boyd, p65). 
 
   Let $f(x)$ and $g(x)$ be arbitrary functions. Then the inner product of $f(x)$ with $g(x)$ with respect to the weight function $\omega(x)$ on the interval $[a,b]$ is defined by 
+
   $$
   (f,g) = \int_a^b f(x) g(x) \omega(x) dx
   $$
@@ -153,24 +171,30 @@ The Gaussian quadrature is based on several definitions and theorems.
 * Definition: **orthogonality**  (Boyd, p65)
 
   A set of basis functions $\phi_n(x)$ is said to be orthogonal with respect to a given inner product if
+
   $$
   (\phi_m, \phi_n) = \delta_{mn} \nu_n^2
   $$
+
   where the $\nu_n$ is called "normalization constants" and $\nu_n \equiv \sqrt{(\phi_n, \phi_n)}$. If $\nu_n = 1$, the set of basis functions are **orthonormal**.
 
 * **Guass-Jacobi integration** theorem (Boyd, p87).
 
   If the $N+1$ "interpolation points" or "abscissas" ${x_i}$ are chosen to be zero of $P_{N+1}(x)$ where   $P_{N+1}(x)$ is the polynomial of degree $N+1$ of the set of polynomials which are orthogonal on $x\in[a,b]$ with respect to the weight function $\rho(x)$, then the quadrature formula
+
   $$
   \int_a^b f(x) \rho(x) dx = \sum_{i=0}^{N} w_i f(x_i)
   $$
+
   is exact for all $f(x)$ which are polynomials of at most degree $2N+1$.
 
 The Legendre, Chebyshev, Gegenbauer, Hermite, and Laguerre polynomials merely correspond to different weights $w_i$ where (https://mathworld.wolfram.com/GaussianQuadrature.html)
+
 $$
 \pi(x) = \prod_{i=1}^m (x-x_i) \\
 w_i = \frac{1}{\pi^\prime(x_i)} \int_a^b \frac{\pi(x) \rho(x)}{x-x_i} dx
 $$
+
 In summary, given a set of basis functions $P_{N+1}(x)$ and its corresponding integral weight function $\rho(x)$, the Gaussian quadrature is completely determined then (the abscissas are the roots of $P_{N+1}(x)$, and the weights are determined by the weight function and the abscissas). 
 
 ## Gauss-Legendre quadrature
@@ -178,9 +202,11 @@ In summary, given a set of basis functions $P_{N+1}(x)$ and its corresponding in
 ### 1D quadrature
 
 For the Legendre polynomials $P_n(x)$, the integral interval is $[-1,1]$, the weight function is $\rho(x)=1$, and the quadrature is
+
 $$
 \int_{-1}^{1} f(x)  dx = \sum_{i=0}^{N} w_i f(x_i) .
 $$
+
 The weights and abscissas can be computed using the following code:
 
 ```cpp
