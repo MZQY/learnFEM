@@ -10,7 +10,10 @@ cimport numpy as np
 np.import_array()
 from libc.math cimport sqrt
 from libc.stdio cimport printf
+from libc.stdlib cimport exit
 
+def affinemap1d_xhat_to_x(x1, x2, xhat):
+    return _affinemap1d_xhat_to_x(x1, x2, xhat)
 
 def shape1d_node2(idx, x, node, phi):
     _shape1d_node2(idx, x, node, phi)
@@ -37,6 +40,26 @@ def shape2d_t10(idx, idy, x, y, node_x, node_y, phi):
 
 def gauss_quadrature_triangle(n, x, y, w):
     _gauss_quadrature_triangle(n, x, y, w)
+
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cdef double _affinemap1d_xhat_to_x(double x1, double x2, double xhat) nogil:
+    """
+    affine mapping from xhat to x in [x1, x2], where xhat in [-1, 1]
+    :param x1: (double) left point
+    :param x1: (double) right point
+    :param xhat: (double) point on 
+    """
+    cdef double res = 0.
+    if (x1 >= x2):
+        printf("******************************");
+        printf("x1 should be smaller (<) than x2 in affine_map1d_xhat_to_x() function");
+        printf("******************************");
+        exit(1)
+    else:
+        res = (x2 - x1) / 2. * xhat + (x1 + x2) / 2.
+        return res
 
 
 @cython.boundscheck(False)
@@ -290,6 +313,7 @@ cdef void _gauss_legendre_quadrature_set1d(int n, \
         printf("Illegal value of n = %d \n", n);
         printf("Legal values are 1 through 10");
         printf("******************************");
+        exit(1)
 
 
 
@@ -735,3 +759,4 @@ cdef void _gauss_quadrature_triangle(int n, \
         printf("Illegal value of n = %d \n", n)
         printf("Legal values are 3, 4, 6, 9")
         printf("******************************")
+        exit(1)

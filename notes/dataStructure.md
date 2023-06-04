@@ -11,7 +11,7 @@ The choice of the data structure for FEM directly determines the scalability and
 
 * $N_m$
 
-  * (`int`) node number of mesh elements. Subscript 'm' for mesh
+  * (`int`) node number of mesh. Subscript 'm' for mesh
   * nodes on mesh elements are denoted as $Z_k, \quad, k=1,2,...,N_m$ 
 
 * $N_l$

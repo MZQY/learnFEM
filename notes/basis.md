@@ -91,7 +91,7 @@ where the $J=\frac{\partial \mathcal{F}}{\partial \vec{u}}$ is the Jacobian matr
 
 ## 1D
 
-For the 1D case, we map the interval $x \in [x_1, x_2]$ to $\hat{x} \in [-1,1]$ where $x_1 < x_2$. If we assume that $x = a \hat{x} + b$, then we have
+For the 1D case, we map the interval $\hat{x} \in [-1,1]$ to $x \in [x_1, x_2]$  where $x_1 < x_2$. If we assume that $x = a \hat{x} + b$, then we have
 
 $$
 x = \frac{x_2 - x_1}{2} \hat{x} + \frac{x_2 + x_1}{2}
