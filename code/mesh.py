@@ -77,10 +77,120 @@ class Mesh1d:
         print(self.Pb)
         print("*****" * 4)
 
+class TriMesh2d:
+    def __init__(self, x1d_nodes, y1d_nodes, FE_node_num, print_flag=False):
+        self.xmin = np.amin(x1d_nodes)
+        self.xmax = np.amax(x1d_nodes)
+        self.ymin = np.amin(y1d_nodes)
+        self.ymax = np.amax(y1d_nodes)
+        self.x1d_mesh = x1d_nodes
+        self.y1d_mesh = y1d_nodes
+        self.nx = x1d_nodes.shape[0] - 1
+        self.ny = y1d_nodes.shape[0] - 1
+        self.N = self.nx * self.ny * 2
+        self.Nm = (self.nx + 1) * (self.ny + 1)  # nodes number of mesh
+        self.Nl = 3  # local mesh node number, 3 for triangle here
+        self.Nlb = FE_node_num
+        self.Nb = self.Nm + ((self.nx + self.ny) * 2 + self.nx * self.ny) * (self.Nlb - self.Nl)
+                  # vertice number +  side number * inner node number on each side
+        self.P = self._get_P()
+        self.T = self._get_T()
+        if print_flag:
+            self._print()
+
+    def _get_P(self):
+        """
+        ^   4 --- 8 ---12 ---16 ---20
+        |   |     |     |     |     |
+        |   |     |     |     |     |
+        |   3 --- 7 ---11 ---15 ---19
+        |   |     |     |     |     |
+        y   |     |     |     |     |
+        |   2 --- 6 ---10 ---14 ---18
+        |   |     |     |     |     |
+        |   |     |     |     |     |
+        |   1 --- 5 --- 9 --- 13 ---17
+
+        |---------- x ------------- >
+        """
+        # self.nx = x1d_mesh.shape[0] - 1
+        # self.ny = y1d_mesh.shape[0] - 1
+        P = np.zeros((2, self.Nm))
+        for i in range(self.x1d_mesh.shape[0]):
+            for j in range(self.y1d_mesh.shape[0]):
+                P[0, i * (self.ny + 1) + j] = self.x1d_mesh[i]
+                P[1, i * (self.ny + 1) + j] = self.y1d_mesh[j]
+        return P
+
+    def _get_T(self):
+        """
+        ^   4--8--12
+        |   |\ |\ |   
+        |   | \| \|   
+        |   3--7--11
+        |   |\ |\ |   
+        y   | \| \|   
+        |   2--6--10
+        |   |\ |\ |   
+        |   | \| \|  
+        |   1--5--9
+
+        |---- x ---- >
+
+        3       1 - 3
+        |\       \  |
+        | \       \ |
+        |  \       \|
+        1 --2       2
+         """
+        # self.nx = x1d_mesh.shape[0] - 1
+        # self.ny = y1d_mesh.shape[0] - 1
+        T = np.zeros((3, self.N), dtype=int)
+        for i in range(self.nx):
+            for j in range(self.ny):
+                """
+                3--4
+                |\ |
+                | \|
+                1 -2
+                """
+                p1 = i * (self.ny + 1) + j
+                p3 = p1 + 1
+                p2 = (i+1) * (self.ny + 1) + j
+                p4 = p2 + 1
+                T[0, i * 2 * self.ny + j * 2] = p1
+                T[1, i * 2 * self.ny + j * 2] = p2
+                T[2, i * 2 * self.ny + j * 2] = p3
+                T[0, i * 2 * self.ny + j * 2 + 1] = p3
+                T[1, i * 2 * self.ny + j * 2 + 1] = p2
+                T[2, i * 2 * self.ny + j * 2 + 1] = p4
+        T += 1
+        return T
+
+    def _print(self):
+        print("*****" * 4)
+        print("mesh grid from %f to %f" % (self.xmin, self.xmax))
+        print("T matrix is ")
+        print(self.T)
+        # print("Tb matrix is ")
+        # print(self.Tb)
+        print("P matrix is")
+        print(self.P)
+        # print("Pb matrix is")
+        # print(self.Pb)
+        print("*****" * 4)
+
+
+
 def test_mesh1d():
     nodes1d = np.linspace(0., 4., 5)
     mesh1d = Mesh1d(x1d_nodes=nodes1d, FE_node_num=4, print_flag=True)
 
+def test_trimesh2d():
+    x1d_mesh = np.linspace(0., 3., 4)
+    y1d_mesh = np.linspace(0., 4., 5)
+    mesh1d = TriMesh2d(x1d_nodes=x1d_mesh, y1d_nodes=y1d_mesh, FE_node_num=3, print_flag=True)
 
 if __name__ == '__main__':
-    test_mesh1d()
+    # test_mesh1d()
+    test_trimesh2d()

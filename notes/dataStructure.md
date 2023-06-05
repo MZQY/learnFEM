@@ -96,3 +96,11 @@ $N$ elements has $N+1$ mesh points and $(N+1)+(p-2)\times N$ FE points, where $p
 
 If a  rectangular mesh has $N_x$ element in x-dir and $N_y$ element in y-dir, then it will have $(N_x + N_y)\times 2$ element sides on boundaries and $N_x \times N_y$ element side inside (every small rectangle is divided to two triangle elements by a inside segment). If the triangle element has $p$ inner points on every side in addition to vertices, then the rectangular mesh has $\left[ (N_x + N_y)\times 2 + N_x\times N_y \right] \times p + (N_x+1)\times(N_y+1)$  (points on inner side and vertices) FE points.
 
+```python
+"""
+
+"""
+```
+
+
+
