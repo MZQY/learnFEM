@@ -77,6 +77,7 @@ class Mesh1d:
         print(self.Pb)
         print("*****" * 4)
 
+
 class TriMesh2d:
     def __init__(self, x1d_nodes, y1d_nodes, FE_node_num, print_flag=False):
         self.xmin = np.amin(x1d_nodes)
@@ -91,8 +92,12 @@ class TriMesh2d:
         self.Nm = (self.nx + 1) * (self.ny + 1)  # nodes number of mesh
         self.Nl = 3  # local mesh node number, 3 for triangle here
         self.Nlb = FE_node_num
-        self.Nb = self.Nm + ((self.nx + self.ny) * 2 + self.nx * self.ny) * (self.Nlb - self.Nl)
+        if self.Nlb == 3 or self.Nlb == 6:
+            self.Nb = self.Nm + ((self.nx + self.ny) * 2 + self.nx * self.ny) * (self.Nlb - self.Nl)
                   # vertice number +  side number * inner node number on each side
+        elif self.Nlb == 10:
+                  # vertice number +  side number * inner node number on each side + inner node in each element
+            self.Nb = self.Nm + ((self.nx + self.ny) * 2 + self.nx * self.ny) * 2 + self.nx * self.ny
         self.P = self._get_P()
         self.T = self._get_T()
         if print_flag:
@@ -166,6 +171,55 @@ class TriMesh2d:
                 T[2, i * 2 * self.ny + j * 2 + 1] = p4
         T += 1
         return T
+
+    def _get_Pb(self):
+        """
+        ^   4 --- 8 ---12 ---16 ---20
+        |   |     |     |     |     |
+        |   |     |     |     |     |
+        |   3 --- 7 ---11 ---15 ---19
+        |   |     |     |     |     |
+        y   |     |     |     |     |
+        |   2 --- 6 ---10 ---14 ---18
+        |   |     |     |     |     |
+        |   |     |     |     |     |
+        |   1 --- 5 --- 9 --- 13 ---17
+
+        |---------- x ------------- >
+        """
+        Pb = np.zeros((2, self.Nb))
+        if (self.Nlb == 3):
+            return self.P
+        elif (self.Nlb == 6):
+            # node number =       mesh node number       + inner node number
+            x1d_FE = np.zeros(int(self.x1d_mesh.shape[0] + self.x1d_mesh.shape[0] - 1))
+            y1d_FE = np.zeros(int(self.y1d_mesh.shape[0] + self.y1d_mesh.shape[0] - 1))
+            for i in range(x1d_FE.shape[0]):
+                if i%2 == 0:
+                    # mesh node
+                    x1d_FE[i] = self.x1d_mesh[i/2]
+            for i in range(x1d_FE.shape[0]):
+                if i%2 == 1:
+                    # inner FE node
+                    x1d_FE[i] = (x1d_FE[i-1] + x1d_FE[i+1]) / 2.
+            for i in range(y1d_FE.shape[0]):
+                if i%2 == 0:
+                    # mesh node
+                    y1d_FE[i] = self.y1d_mesh[i/2]
+            for i in range(y1d_FE.shape[0]):
+                if i%2 == 1:
+                    # inner FE node
+                    y1d_FE[i] = (y1d_FE[i-1] + y1d_FE[i+1]) / 2.
+            
+            for i in range(x1d_FE.shape[0]):
+                for j in range(y1d_FE.shape[0]):
+                    Pb[0, i * y1d_FE.shape[0] + j] = x1d_FE[i]
+                    Pb[1, i * y1d_FE.shape[0] + j] = y1d_FE[j]
+        elif (self.Nlb == 10):
+            pass
+        else:
+            raise ValueError("Nlb can only be 3, 6, 10")
+
 
     def _print(self):
         print("*****" * 4)
