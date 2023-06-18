@@ -294,6 +294,18 @@ class TriMesh2d:
             nby = self.ny + 1 + self.ny * 2
             for i in range(self.nx):
                 for j in range(self.ny):
+                    """
+                    p4 --- p8 --- p12--- p16
+                    |                    |
+                    |                    |
+                    p3     p7     p11    p15
+                    |                    |
+                    |                    | 
+                    p2     p6     p10    p14
+                    |                    |
+                    |                    | 
+                    p1 --- p5 --- p9 --- p13
+                    """
                     p1 = i * 3 * nby + j * 3
                     p2 = p1 + 1
                     p3 = p1 + 2
