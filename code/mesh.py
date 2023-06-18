@@ -102,8 +102,10 @@ class TriMesh2d:
             raise ValueError("Nlb can only be 3, 6, 10")
         self.P = self._get_P()
         self.T = self._get_T()
+        self.CT = self.T - 1
         self.Pb = self._get_Pb()
         self.Tb = self._get_Tb()
+        self.CTb = self.Tb - 1
         if print_flag:
             self._print()
 
