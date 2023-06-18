@@ -92,14 +92,18 @@ class TriMesh2d:
         self.Nm = (self.nx + 1) * (self.ny + 1)  # nodes number of mesh
         self.Nl = 3  # local mesh node number, 3 for triangle here
         self.Nlb = FE_node_num
-        if self.Nlb == 3 or self.Nlb == 6:
-            self.Nb = self.Nm + ((self.nx + self.ny) * 2 + self.nx * self.ny) * (self.Nlb - self.Nl)
-                  # vertice number +  side number * inner node number on each side
+        if self.Nlb == 3:
+            self.Nb = self.Nm
+        elif self.Nlb == 6:
+            self.Nb = (self.nx + 1 + self.nx) * (self.ny + 1 + self.ny)
         elif self.Nlb == 10:
-                  # vertice number +  side number * inner node number on each side + inner node in each element
-            self.Nb = self.Nm + ((self.nx + self.ny) * 2 + self.nx * self.ny) * 2 + self.nx * self.ny
+            self.Nb = (self.nx + 1 + self.nx * 2) * (self.ny + 1 + self.ny * 2)
+        else:
+            raise ValueError("Nlb can only be 3, 6, 10")
         self.P = self._get_P()
         self.T = self._get_T()
+        self.Pb = self._get_Pb()
+        self.Tb = self._get_Tb()
         if print_flag:
             self._print()
 
@@ -197,15 +201,16 @@ class TriMesh2d:
             for i in range(x1d_FE.shape[0]):
                 if i%2 == 0:
                     # mesh node
-                    x1d_FE[i] = self.x1d_mesh[i/2]
+                    x1d_FE[i] = self.x1d_mesh[int(i/2)]
             for i in range(x1d_FE.shape[0]):
                 if i%2 == 1:
                     # inner FE node
                     x1d_FE[i] = (x1d_FE[i-1] + x1d_FE[i+1]) / 2.
+
             for i in range(y1d_FE.shape[0]):
                 if i%2 == 0:
                     # mesh node
-                    y1d_FE[i] = self.y1d_mesh[i/2]
+                    y1d_FE[i] = self.y1d_mesh[int(i/2)]
             for i in range(y1d_FE.shape[0]):
                 if i%2 == 1:
                     # inner FE node
@@ -216,9 +221,120 @@ class TriMesh2d:
                     Pb[0, i * y1d_FE.shape[0] + j] = x1d_FE[i]
                     Pb[1, i * y1d_FE.shape[0] + j] = y1d_FE[j]
         elif (self.Nlb == 10):
-            pass
+            x1d_FE = np.zeros(int(self.x1d_mesh.shape[0] + (self.x1d_mesh.shape[0] - 1) * 2))
+            y1d_FE = np.zeros(int(self.y1d_mesh.shape[0] + (self.y1d_mesh.shape[0] - 1) * 2))
+            for i in range(x1d_FE.shape[0]):
+                if i%3 == 0:
+                    x1d_FE[i] = self.x1d_mesh[int(i/3)]
+            for i in range(x1d_FE.shape[0]):
+                if i%3 == 1:
+                    x1d_FE[i] = x1d_FE[i-1] + (x1d_FE[i+2] - x1d_FE[i-1]) / 3.
+                elif i%3 == 2:
+                    x1d_FE[i] = x1d_FE[i-2] + (x1d_FE[i+1] - x1d_FE[i-2]) * 2. / 3.
+
+            for i in range(y1d_FE.shape[0]):
+                if i%3 == 0:
+                    y1d_FE[i] = self.y1d_mesh[int(i/3)]
+            for i in range(y1d_FE.shape[0]):
+                if i%3 == 1:
+                    y1d_FE[i] = y1d_FE[i-1] + (y1d_FE[i+2] - y1d_FE[i-1]) / 3.
+                elif i%3 == 2:
+                    y1d_FE[i] = y1d_FE[i-2] + (y1d_FE[i+1] - y1d_FE[i-2]) * 2. / 3.
+
+            for i in range(x1d_FE.shape[0]):
+                for j in range(y1d_FE.shape[0]):
+                    Pb[0, i * y1d_FE.shape[0] + j] = x1d_FE[i]
+                    Pb[1, i * y1d_FE.shape[0] + j] = y1d_FE[j]
         else:
             raise ValueError("Nlb can only be 3, 6, 10")
+        
+        return Pb
+
+
+    def _get_Tb(self):
+        Tb = np.zeros((self.Nlb, self.N), dtype=int)
+        if (self.Nlb == 3):
+            return self.T
+        elif (self.Nlb == 6):
+            """
+            p3 --- p6 --- p9
+            |             |
+            |             |
+            p2     p5     p8
+            |             |
+            |             |
+            p1 --- p4 --- p7
+            """
+            nby = self.ny + 1 + self.ny
+            for i in range(self.nx):
+                for j in range(self.ny):
+                    p1 = i * 2 * nby + j * 2
+                    p2 = p1 + 1
+                    p3 = p1 + 2
+                    p4 = p1 + nby
+                    p5 = p4 + 1
+                    p6 = p4 + 2
+                    p7 = p1 + nby * 2
+                    p8 = p7 + 1
+                    p9 = p8 + 1
+                    Tb[0, i * 2 * self.ny + j*2] = p1
+                    Tb[1, i * 2 * self.ny + j*2] = p7
+                    Tb[2, i * 2 * self.ny + j*2] = p3
+                    Tb[3, i * 2 * self.ny + j*2] = p5
+                    Tb[4, i * 2 * self.ny + j*2] = p2
+                    Tb[5, i * 2 * self.ny + j*2] = p4
+
+                    Tb[0, i * 2 * self.ny + j*2 + 1] = p3
+                    Tb[1, i * 2 * self.ny + j*2 + 1] = p7
+                    Tb[2, i * 2 * self.ny + j*2 + 1] = p9
+                    Tb[3, i * 2 * self.ny + j*2 + 1] = p8
+                    Tb[4, i * 2 * self.ny + j*2 + 1] = p6
+                    Tb[5, i * 2 * self.ny + j*2 + 1] = p5
+        elif (self.Nlb == 10):
+            nby = self.ny + 1 + self.ny * 2
+            for i in range(self.nx):
+                for j in range(self.ny):
+                    p1 = i * 3 * nby + j * 3
+                    p2 = p1 + 1
+                    p3 = p1 + 2
+                    p4 = p1 + 3
+                    p5 = p1 + nby
+                    p6 = p5 + 1
+                    p7 = p5 + 2
+                    p8 = p5 + 3
+                    p9 = p5 + nby
+                    p10 = p9 + 1
+                    p11 = p9 + 2
+                    p12 = p9 + 3
+                    p13 = p9 + nby
+                    p14 = p13 + 1
+                    p15 = p13 + 2
+                    p16 = p13 + 3
+                    Tb[0, i * 2 * self.ny + j*2] = p1
+                    Tb[1, i * 2 * self.ny + j*2] = p13
+                    Tb[2, i * 2 * self.ny + j*2] = p4
+                    Tb[3, i * 2 * self.ny + j*2] = p10
+                    Tb[4, i * 2 * self.ny + j*2] = p7
+                    Tb[5, i * 2 * self.ny + j*2] = p2
+                    Tb[6, i * 2 * self.ny + j*2] = p3
+                    Tb[7, i * 2 * self.ny + j*2] = p5
+                    Tb[8, i * 2 * self.ny + j*2] = p9
+                    Tb[9, i * 2 * self.ny + j*2] = p6
+
+                    Tb[0, i * 2 * self.ny + j*2 + 1] = p4
+                    Tb[1, i * 2 * self.ny + j*2 + 1] = p13
+                    Tb[2, i * 2 * self.ny + j*2 + 1] = p16
+                    Tb[3, i * 2 * self.ny + j*2 + 1] = p14
+                    Tb[4, i * 2 * self.ny + j*2 + 1] = p15
+                    Tb[5, i * 2 * self.ny + j*2 + 1] = p8
+                    Tb[6, i * 2 * self.ny + j*2 + 1] = p12
+                    Tb[7, i * 2 * self.ny + j*2 + 1] = p7
+                    Tb[8, i * 2 * self.ny + j*2 + 1] = p10
+                    Tb[9, i * 2 * self.ny + j*2 + 1] = p11
+        else:
+            raise ValueError("Nlb can only be 3, 6, 10")
+        Tb += 1
+        return Tb
 
 
     def _print(self):
@@ -226,12 +342,12 @@ class TriMesh2d:
         print("mesh grid from %f to %f" % (self.xmin, self.xmax))
         print("T matrix is ")
         print(self.T)
-        # print("Tb matrix is ")
-        # print(self.Tb)
+        print("Tb matrix is ")
+        print(self.Tb)
         print("P matrix is")
         print(self.P)
-        # print("Pb matrix is")
-        # print(self.Pb)
+        print("Pb matrix is")
+        print(self.Pb)
         print("*****" * 4)
 
 
@@ -241,9 +357,9 @@ def test_mesh1d():
     mesh1d = Mesh1d(x1d_nodes=nodes1d, FE_node_num=4, print_flag=True)
 
 def test_trimesh2d():
-    x1d_mesh = np.linspace(0., 3., 4)
-    y1d_mesh = np.linspace(0., 4., 5)
-    mesh1d = TriMesh2d(x1d_nodes=x1d_mesh, y1d_nodes=y1d_mesh, FE_node_num=3, print_flag=True)
+    x1d_mesh = np.linspace(1., 7., 3)
+    y1d_mesh = np.linspace(1., 7., 3)
+    mesh1d = TriMesh2d(x1d_nodes=x1d_mesh, y1d_nodes=y1d_mesh, FE_node_num=10, print_flag=True)
 
 if __name__ == '__main__':
     # test_mesh1d()

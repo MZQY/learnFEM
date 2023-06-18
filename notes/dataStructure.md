@@ -94,13 +94,169 @@ $N$ elements has $N+1$ mesh points and $(N+1)+(p-2)\times N$ FE points, where $p
 
 ## 2D triangle element (uniform rectangular mesh)
 
-If a  rectangular mesh has $N_x$ element in x-dir and $N_y$ element in y-dir, then it will have $(N_x + N_y)\times 2$ element sides on boundaries and $N_x \times N_y$ element side inside (every small rectangle is divided to two triangle elements by a inside segment). If the triangle element has $p$ inner points on every side in addition to vertices, then the rectangular mesh has $\left[ (N_x + N_y)\times 2 + N_x\times N_y \right] \times p + (N_x+1)\times(N_y+1)$  (points on inner side and vertices) FE points.
+
+
+### mesh grid/$N_{lb}=3$
+
+
+
+![2dtriMesh](figs/2dtriMesh.svg)
+
+
+
+element plot
+
+![2dtriMesh_element](figs/2dtriMesh_element.svg)
+
+
 
 ```python
-"""
-
-"""
+test case:
+    x1d_mesh = np.array([1, 2, 3])
+    y1d_mesh = np.array([1, 2, 3])
+    
+    
+my code prints:
+T matrix is
+[[1 2 2 3 4 5 5 6]
+ [4 4 5 5 7 7 8 8]
+ [2 5 3 6 5 8 6 9]]
+Tb matrix is
+[[1 2 2 3 4 5 5 6]
+ [4 4 5 5 7 7 8 8]
+ [2 5 3 6 5 8 6 9]]
+P matrix is
+[[1. 1. 1. 2. 2. 2. 3. 3. 3.]
+ [1. 2. 3. 1. 2. 3. 1. 2. 3.]]
+Pb matrix is
+[[1. 1. 1. 2. 2. 2. 3. 3. 3.]
+ [1. 2. 3. 1. 2. 3. 1. 2. 3.]]
 ```
+
+
+
+
+
+### $N_{lb}=6$
+
+```python
+    """
+     |
+     1  3
+     |  ..
+     |  . .
+     y  5  4
+     |  .   .
+     |  .    .
+     0  1--6--2
+     |
+     +--0--x--1-->
+    """
+```
+
+
+
+![2dtriFE_nlb6](figs/2dtriFE_nlb6.svg)
+
+
+
+```python
+test case:
+    x1d_mesh = np.array([1,  3,  5])
+    y1d_mesh = np.array([1,  3,  5])
+    
+    
+my code prints:
+T matrix is
+[[1 2 2 3 4 5 5 6]
+ [4 4 5 5 7 7 8 8]
+ [2 5 3 6 5 8 6 9]]
+Tb matrix is
+[[ 1  3  3  5 11 13 13 15]
+ [11 11 13 13 21 21 23 23]
+ [ 3 13  5 15 13 23 15 25]
+ [ 7 12  9 14 17 22 19 24]
+ [ 2  8  4 10 12 18 14 20]
+ [ 6  7  8  9 16 17 18 19]]
+P matrix is
+[[1. 1. 1. 3. 3. 3. 5. 5. 5.]
+ [1. 3. 5. 1. 3. 5. 1. 3. 5.]]
+Pb matrix is
+[[1. 1. 1. 1. 1. 2. 2. 2. 2. 2. 3. 3. 3. 3. 3. 4. 4. 4. 4. 4. 5. 5. 5. 5.
+  5.]
+ [1. 2. 3. 4. 5. 1. 2. 3. 4. 5. 1. 2. 3. 4. 5. 1. 2. 3. 4. 5. 1. 2. 3. 4.
+  5.]]
+```
+
+
+
+
+
+
+
+### $N_{lb}=10$
+
+
+
+```python
+    """
+     |
+     1  3
+     |  ..
+     |  . .
+     |  7  5
+     y  .   .
+     |  .    .
+     |  6 10  4
+     |  .      .
+     0  1--8--9-2
+     |
+     +--0--x--1-->
+    """
+```
+
+
+
+![2dtriFE_nlb10](figs/2dtriFE_nlb10.svg)
+
+
+
+```python
+test case:
+    x1d_mesh = np.array([1,  7,  5])
+    y1d_mesh = np.array([1,  7,  5])
+    
+my code prints:
+    T matrix is
+[[1 2 2 3 4 5 5 6]
+ [4 4 5 5 7 7 8 8]
+ [2 5 3 6 5 8 6 9]]
+Tb matrix is
+[[ 1  4  4  7 22 25 25 28]
+ [22 22 25 25 43 43 46 46]
+ [ 4 25  7 28 25 46 28 49]
+ [16 23 19 26 37 44 40 47]
+ [10 24 13 27 31 45 34 48]
+ [ 2 11  5 14 23 32 26 35]
+ [ 3 18  6 21 24 39 27 42]
+ [ 8 10 11 13 29 31 32 34]
+ [15 16 18 19 36 37 39 40]
+ [ 9 17 12 20 30 38 33 41]]
+P matrix is
+[[1. 1. 1. 4. 4. 4. 7. 7. 7.]
+ [1. 4. 7. 1. 4. 7. 1. 4. 7.]]
+Pb matrix is
+[[1. 1. 1. 1. 1. 1. 1. 2. 2. 2. 2. 2. 2. 2. 3. 3. 3. 3. 3. 3. 3. 4. 4. 4.
+  4. 4. 4. 4. 5. 5. 5. 5. 5. 5. 5. 6. 6. 6. 6. 6. 6. 6. 7. 7. 7. 7. 7. 7.
+  7.]
+ [1. 2. 3. 4. 5. 6. 7. 1. 2. 3. 4. 5. 6. 7. 1. 2. 3. 4. 5. 6. 7. 1. 2. 3.
+  4. 5. 6. 7. 1. 2. 3. 4. 5. 6. 7. 1. 2. 3. 4. 5. 6. 7. 1. 2. 3. 4. 5. 6.
+  7.]]
+```
+
+
+
+
 
 
 
