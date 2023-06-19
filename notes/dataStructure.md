@@ -88,11 +88,11 @@ The choice of the data structure for FEM directly determines the scalability and
 
 ## 1D
 
-$N$ elements has $N+1$ mesh points and $(N+1)+(p-2)\times N$ FE points, where $p$ is the internal FE point number in each element.
+$N$ elements has $N+1$ mesh points and $(N+1)+(p-2)\times N$ FE points, where $p$ is the FE point number in each element.
 
 
 
-## 2D triangle element (uniform rectangular mesh)
+## 2D triangle element
 
 
 
