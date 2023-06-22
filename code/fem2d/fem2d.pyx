@@ -12,6 +12,11 @@ from libc.math cimport sqrt
 from libc.stdio cimport printf
 from libc.stdlib cimport exit
 
+# import sys, os
+# sys.path.append(os.path.dirname(os.getcwd()) + '/basis/')
+# print(sys.path)
+cimport basis.basis
+
 
 # def get_matA(Nlb,  N,  Nb,  matP,  matT, \
 #          matTb,  matPb, \
@@ -34,11 +39,19 @@ ctypedef double (*COEFF_FUNC)(double x, double y)
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cdef void _get_matA (COEFF_FUNC cfunc, int Nlb, int N, int Nb, double[:,:] matP, double[:,:] matT, \
-        double[:,:] matTb, double[:,:] matPb, \
+cdef void _get_matA (COEFF_FUNC cfunc, \
+        int Nlb, int N, int Nb,\
+        double[:,:] matP, double[:,:] CmatT, \
+        double[:,:] CmatTb, double[:,:] matPb, \
         int trial_func_num, int test_func_num,\
         int trial_func_ndx,  int trial_func_ndy,  \
         int test_func_ndx,  int test_func_ndy, double[:,:] matA) nogil:
+    cdef int i =0;
+    cdef int j;
+    for i in range(0,100):
+        j=i;
+
+    
     pass
 
 

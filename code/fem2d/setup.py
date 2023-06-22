@@ -1,6 +1,8 @@
 from distutils.core import setup, Extension
 from Cython.Build import cythonize
 import numpy
+import sys
+sys.path.append('../')
 
 setup(ext_modules = cythonize(Extension(
     'fem2d',
