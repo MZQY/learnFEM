@@ -1027,17 +1027,17 @@ static const char *__pyx_f[] = {
   "stringsource",
   "type.pxd",
 };
-/* ForceInitThreads.proto */
-#ifndef __PYX_FORCE_INIT_THREADS
-  #define __PYX_FORCE_INIT_THREADS 0
-#endif
-
 /* NoFastGil.proto */
 #define __Pyx_PyGILState_Ensure PyGILState_Ensure
 #define __Pyx_PyGILState_Release PyGILState_Release
 #define __Pyx_FastGIL_Remember()
 #define __Pyx_FastGIL_Forget()
 #define __Pyx_FastGilFuncInit()
+
+/* ForceInitThreads.proto */
+#ifndef __PYX_FORCE_INIT_THREADS
+  #define __PYX_FORCE_INIT_THREADS 0
+#endif
 
 /* BufferFormatStructs.proto */
 #define IS_UNSIGNED(type) (((type) -1) > 0)
@@ -2207,14 +2207,14 @@ static CYTHON_INLINE int __pyx_sub_acquisition_count_locked(
 static CYTHON_INLINE void __Pyx_INC_MEMVIEW(__Pyx_memviewslice *, int, int);
 static CYTHON_INLINE void __Pyx_XDEC_MEMVIEW(__Pyx_memviewslice *, int, int);
 
+/* CIntToPy.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value);
+
 /* CIntFromPy.proto */
 static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *);
 
 /* CIntFromPy.proto */
 static CYTHON_INLINE long __Pyx_PyInt_As_long(PyObject *);
-
-/* CIntToPy.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value);
 
 /* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value);
@@ -2288,8 +2288,6 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void); /*proto*/
 
 /* Module declarations from 'basis.basis' */
 
-/* Module declarations from 'basis' */
-
 /* Module declarations from 'fem2d' */
 static PyTypeObject *__pyx_array_type = 0;
 static PyTypeObject *__pyx_MemviewEnum_type = 0;
@@ -2302,6 +2300,7 @@ static PyObject *contiguous = 0;
 static PyObject *indirect_contiguous = 0;
 static int __pyx_memoryview_thread_locks_used;
 static PyThread_type_lock __pyx_memoryview_thread_locks[8];
+static void __pyx_f_5fem2d__matA_element_loop(__pyx_t_5fem2d_COEFF_FUNC, int, int, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, int, int, int, int, int, int, __Pyx_memviewslice); /*proto*/
 static struct __pyx_array_obj *__pyx_array_new(PyObject *, Py_ssize_t, char *, char *, char *); /*proto*/
 static void *__pyx_align_pointer(void *, size_t); /*proto*/
 static PyObject *__pyx_memoryview_new(PyObject *, int, int, __Pyx_TypeInfo *); /*proto*/
@@ -2649,54 +2648,234 @@ static double __pyx_f_5fem2d_coeff_function(CYTHON_UNUSED double __pyx_v_x, CYTH
   return __pyx_r;
 }
 
-/* "fem2d.pyx":42
+/* "fem2d.pyx":58
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void _get_matA (COEFF_FUNC cfunc, \             # <<<<<<<<<<<<<<
- *         int Nlb, int N, int Nb,\
- *         double[:,:] matP, double[:,:] CmatT, \
+ *         int N, int Nb,\
+ *         double[:,:] matP, int[:,:] CmatT, \
  */
 
-static void __pyx_f_5fem2d__get_matA(CYTHON_UNUSED __pyx_t_5fem2d_COEFF_FUNC __pyx_v_cfunc, CYTHON_UNUSED int __pyx_v_Nlb, CYTHON_UNUSED int __pyx_v_N, CYTHON_UNUSED int __pyx_v_Nb, CYTHON_UNUSED __Pyx_memviewslice __pyx_v_matP, CYTHON_UNUSED __Pyx_memviewslice __pyx_v_CmatT, CYTHON_UNUSED __Pyx_memviewslice __pyx_v_CmatTb, CYTHON_UNUSED __Pyx_memviewslice __pyx_v_matPb, CYTHON_UNUSED int __pyx_v_trial_func_num, CYTHON_UNUSED int __pyx_v_test_func_num, CYTHON_UNUSED int __pyx_v_trial_func_ndx, CYTHON_UNUSED int __pyx_v_trial_func_ndy, CYTHON_UNUSED int __pyx_v_test_func_ndx, CYTHON_UNUSED int __pyx_v_test_func_ndy, CYTHON_UNUSED __Pyx_memviewslice __pyx_v_matA) {
-  int __pyx_v_i;
-  CYTHON_UNUSED int __pyx_v_j;
+static void __pyx_f_5fem2d__get_matA(__pyx_t_5fem2d_COEFF_FUNC __pyx_v_cfunc, CYTHON_UNUSED int __pyx_v_N, int __pyx_v_Nb, __Pyx_memviewslice __pyx_v_matP, __Pyx_memviewslice __pyx_v_CmatT, __Pyx_memviewslice __pyx_v_CmatTb_trial, __Pyx_memviewslice __pyx_v_matPb_trial, __Pyx_memviewslice __pyx_v_CmatTb_test, __Pyx_memviewslice __pyx_v_matPb_test, int __pyx_v_Nlb_trial, int __pyx_v_Nlb_test, int __pyx_v_trial_func_ndx, int __pyx_v_trial_func_ndy, int __pyx_v_test_func_ndx, int __pyx_v_test_func_ndy, __Pyx_memviewslice __pyx_v_matA) {
+  int __pyx_v_n;
   int __pyx_t_1;
+  int __pyx_t_2;
+  int __pyx_t_3;
 
-  /* "fem2d.pyx":49
- *         int trial_func_ndx,  int trial_func_ndy,  \
- *         int test_func_ndx,  int test_func_ndy, double[:,:] matA) nogil:
- *     cdef int i =0;             # <<<<<<<<<<<<<<
- *     cdef int j;
- *     for i in range(0,100):
+  /* "fem2d.pyx":67
+ *         int test_func_ndx,  int test_func_ndy, \
+ *         double[:,:] matA) nogil:
+ *     cdef int n=0             # <<<<<<<<<<<<<<
+ *     for n in prange(N, nogil=True):
+ *         _matA_element_loop(cfunc, \
  */
-  __pyx_v_i = 0;
+  __pyx_v_n = 0;
 
-  /* "fem2d.pyx":51
- *     cdef int i =0;
- *     cdef int j;
- *     for i in range(0,100):             # <<<<<<<<<<<<<<
- *         j=i;
- * 
+  /* "fem2d.pyx":68
+ *         double[:,:] matA) nogil:
+ *     cdef int n=0
+ *     for n in prange(N, nogil=True):             # <<<<<<<<<<<<<<
+ *         _matA_element_loop(cfunc, \
+ *         n, Nb,\
  */
-  for (__pyx_t_1 = 0; __pyx_t_1 < 0x64; __pyx_t_1+=1) {
-    __pyx_v_i = __pyx_t_1;
+  {
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
+      __Pyx_FastGIL_Remember();
+      #endif
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if ((1 == 0)) abort();
+        {
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #pragma omp for firstprivate(__pyx_v_n) lastprivate(__pyx_v_n)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        {
+                            __pyx_v_n = (int)(0 + 1 * __pyx_t_2);
 
-    /* "fem2d.pyx":52
- *     cdef int j;
- *     for i in range(0,100):
- *         j=i;             # <<<<<<<<<<<<<<
- * 
- * 
+                            /* "fem2d.pyx":69
+ *     cdef int n=0
+ *     for n in prange(N, nogil=True):
+ *         _matA_element_loop(cfunc, \             # <<<<<<<<<<<<<<
+ *         n, Nb,\
+ *         matP, CmatT, \
  */
-    __pyx_v_j = __pyx_v_i;
+                            __pyx_f_5fem2d__matA_element_loop(__pyx_v_cfunc, __pyx_v_n, __pyx_v_Nb, __pyx_v_matP, __pyx_v_CmatT, __pyx_v_CmatTb_trial, __pyx_v_matPb_trial, __pyx_v_CmatTb_test, __pyx_v_matPb_test, __pyx_v_Nlb_trial, __pyx_v_Nlb_test, __pyx_v_trial_func_ndx, __pyx_v_trial_func_ndy, __pyx_v_test_func_ndx, __pyx_v_test_func_ndy, __pyx_v_matA);
+                        }
+                    }
+                }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
+      }
+
+      /* "fem2d.pyx":68
+ *         double[:,:] matA) nogil:
+ *     cdef int n=0
+ *     for n in prange(N, nogil=True):             # <<<<<<<<<<<<<<
+ *         _matA_element_loop(cfunc, \
+ *         n, Nb,\
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          __Pyx_FastGIL_Forget();
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L5:;
+      }
   }
 
-  /* "fem2d.pyx":42
+  /* "fem2d.pyx":58
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void _get_matA (COEFF_FUNC cfunc, \             # <<<<<<<<<<<<<<
- *         int Nlb, int N, int Nb,\
- *         double[:,:] matP, double[:,:] CmatT, \
+ *         int N, int Nb,\
+ *         double[:,:] matP, int[:,:] CmatT, \
+ */
+
+  /* function exit code */
+}
+
+/* "fem2d.pyx":82
+ * @cython.boundscheck(False)
+ * @cython.wraparound(False)
+ * cdef void _matA_element_loop(COEFF_FUNC cfunc, \             # <<<<<<<<<<<<<<
+ *         int n, int Nb,\
+ *         double[:,:] matP, int[:,:] CmatT, \
+ */
+
+static void __pyx_f_5fem2d__matA_element_loop(CYTHON_UNUSED __pyx_t_5fem2d_COEFF_FUNC __pyx_v_cfunc, int __pyx_v_n, CYTHON_UNUSED int __pyx_v_Nb, __Pyx_memviewslice __pyx_v_matP, __Pyx_memviewslice __pyx_v_CmatT, CYTHON_UNUSED __Pyx_memviewslice __pyx_v_CmatTb_trial, CYTHON_UNUSED __Pyx_memviewslice __pyx_v_matPb_trial, CYTHON_UNUSED __Pyx_memviewslice __pyx_v_CmatTb_test, CYTHON_UNUSED __Pyx_memviewslice __pyx_v_matPb_test, int __pyx_v_Nlb_trial, int __pyx_v_Nlb_test, CYTHON_UNUSED int __pyx_v_trial_func_ndx, CYTHON_UNUSED int __pyx_v_trial_func_ndy, CYTHON_UNUSED int __pyx_v_test_func_ndx, CYTHON_UNUSED int __pyx_v_test_func_ndy, CYTHON_UNUSED __Pyx_memviewslice __pyx_v_matA) {
+  int __pyx_v_vertNum1;
+  CYTHON_UNUSED double __pyx_v_x1;
+  CYTHON_UNUSED double __pyx_v_y1;
+  CYTHON_UNUSED int __pyx_v_alpha;
+  CYTHON_UNUSED int __pyx_v_beta;
+  CYTHON_UNUSED double __pyx_v_temp;
+  Py_ssize_t __pyx_t_1;
+  Py_ssize_t __pyx_t_2;
+  int __pyx_t_3;
+  int __pyx_t_4;
+  int __pyx_t_5;
+  int __pyx_t_6;
+  int __pyx_t_7;
+  int __pyx_t_8;
+
+  /* "fem2d.pyx":92
+ *         double[:,:] matA) nogil:
+ *     # cdef double[2,3] vertMat = matP[:,CmatT[:,n]]
+ *     cdef int vertNum1 = CmatT[0,n]             # <<<<<<<<<<<<<<
+ *     cdef double x1 = matP[0, vertNum1]
+ *     cdef double y1 = matP[1, vertNum1]
+ */
+  __pyx_t_1 = 0;
+  __pyx_t_2 = __pyx_v_n;
+  __pyx_v_vertNum1 = (*((int *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_CmatT.data + __pyx_t_1 * __pyx_v_CmatT.strides[0]) ) + __pyx_t_2 * __pyx_v_CmatT.strides[1]) )));
+
+  /* "fem2d.pyx":93
+ *     # cdef double[2,3] vertMat = matP[:,CmatT[:,n]]
+ *     cdef int vertNum1 = CmatT[0,n]
+ *     cdef double x1 = matP[0, vertNum1]             # <<<<<<<<<<<<<<
+ *     cdef double y1 = matP[1, vertNum1]
+ *     # cdef double x2 = matP[0, CmatT[1, n]]
+ */
+  __pyx_t_2 = 0;
+  __pyx_t_1 = __pyx_v_vertNum1;
+  __pyx_v_x1 = (*((double *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_matP.data + __pyx_t_2 * __pyx_v_matP.strides[0]) ) + __pyx_t_1 * __pyx_v_matP.strides[1]) )));
+
+  /* "fem2d.pyx":94
+ *     cdef int vertNum1 = CmatT[0,n]
+ *     cdef double x1 = matP[0, vertNum1]
+ *     cdef double y1 = matP[1, vertNum1]             # <<<<<<<<<<<<<<
+ *     # cdef double x2 = matP[0, CmatT[1, n]]
+ *     # cdef double y2 = matP[1, CmatT[1, n]]
+ */
+  __pyx_t_1 = 1;
+  __pyx_t_2 = __pyx_v_vertNum1;
+  __pyx_v_y1 = (*((double *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_matP.data + __pyx_t_1 * __pyx_v_matP.strides[0]) ) + __pyx_t_2 * __pyx_v_matP.strides[1]) )));
+
+  /* "fem2d.pyx":99
+ *     # cdef double x3 = matP[0, CmatT[2, n]]
+ *     # cdef double y3 = matP[1, CmatT[2, n]]
+ *     cdef int alpha=0, beta=0             # <<<<<<<<<<<<<<
+ *     cdef double temp = 0.
+ *     for alpha in range(Nlb_trial):
+ */
+  __pyx_v_alpha = 0;
+  __pyx_v_beta = 0;
+
+  /* "fem2d.pyx":100
+ *     # cdef double y3 = matP[1, CmatT[2, n]]
+ *     cdef int alpha=0, beta=0
+ *     cdef double temp = 0.             # <<<<<<<<<<<<<<
+ *     for alpha in range(Nlb_trial):
+ *         for beta in range(Nlb_test):
+ */
+  __pyx_v_temp = 0.;
+
+  /* "fem2d.pyx":101
+ *     cdef int alpha=0, beta=0
+ *     cdef double temp = 0.
+ *     for alpha in range(Nlb_trial):             # <<<<<<<<<<<<<<
+ *         for beta in range(Nlb_test):
+ *             temp = 1.
+ */
+  __pyx_t_3 = __pyx_v_Nlb_trial;
+  __pyx_t_4 = __pyx_t_3;
+  for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
+    __pyx_v_alpha = __pyx_t_5;
+
+    /* "fem2d.pyx":102
+ *     cdef double temp = 0.
+ *     for alpha in range(Nlb_trial):
+ *         for beta in range(Nlb_test):             # <<<<<<<<<<<<<<
+ *             temp = 1.
+ * 
+ */
+    __pyx_t_6 = __pyx_v_Nlb_test;
+    __pyx_t_7 = __pyx_t_6;
+    for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
+      __pyx_v_beta = __pyx_t_8;
+
+      /* "fem2d.pyx":103
+ *     for alpha in range(Nlb_trial):
+ *         for beta in range(Nlb_test):
+ *             temp = 1.             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+      __pyx_v_temp = 1.;
+    }
+  }
+
+  /* "fem2d.pyx":82
+ * @cython.boundscheck(False)
+ * @cython.wraparound(False)
+ * cdef void _matA_element_loop(COEFF_FUNC cfunc, \             # <<<<<<<<<<<<<<
+ *         int n, int Nb,\
+ *         double[:,:] matP, int[:,:] CmatT, \
  */
 
   /* function exit code */
@@ -17627,7 +17806,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 101, __pyx_L1_error)
   __pyx_builtin_ImportError = __Pyx_GetBuiltinName(__pyx_n_s_ImportError); if (!__pyx_builtin_ImportError) __PYX_ERR(1, 945, __pyx_L1_error)
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(2, 134, __pyx_L1_error)
   __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(2, 149, __pyx_L1_error)
@@ -21240,6 +21419,44 @@ static CYTHON_INLINE void __Pyx_XDEC_MEMVIEW(__Pyx_memviewslice *memslice,
     }
 }
 
+/* CIntToPy */
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value) {
+#ifdef __Pyx_HAS_GCC_DIAGNOSTIC
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wconversion"
+#endif
+    const int neg_one = (int) -1, const_zero = (int) 0;
+#ifdef __Pyx_HAS_GCC_DIAGNOSTIC
+#pragma GCC diagnostic pop
+#endif
+    const int is_unsigned = neg_one > const_zero;
+    if (is_unsigned) {
+        if (sizeof(int) < sizeof(long)) {
+            return PyInt_FromLong((long) value);
+        } else if (sizeof(int) <= sizeof(unsigned long)) {
+            return PyLong_FromUnsignedLong((unsigned long) value);
+#ifdef HAVE_LONG_LONG
+        } else if (sizeof(int) <= sizeof(unsigned PY_LONG_LONG)) {
+            return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
+#endif
+        }
+    } else {
+        if (sizeof(int) <= sizeof(long)) {
+            return PyInt_FromLong((long) value);
+#ifdef HAVE_LONG_LONG
+        } else if (sizeof(int) <= sizeof(PY_LONG_LONG)) {
+            return PyLong_FromLongLong((PY_LONG_LONG) value);
+#endif
+        }
+    }
+    {
+        int one = 1; int little = (int)*(unsigned char *)&one;
+        unsigned char *bytes = (unsigned char *)&value;
+        return _PyLong_FromByteArray(bytes, sizeof(int),
+                                     little, !is_unsigned);
+    }
+}
+
 /* CIntFromPy */
 static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *x) {
 #ifdef __Pyx_HAS_GCC_DIAGNOSTIC
@@ -21630,44 +21847,6 @@ raise_neg_overflow:
     PyErr_SetString(PyExc_OverflowError,
         "can't convert negative value to long");
     return (long) -1;
-}
-
-/* CIntToPy */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value) {
-#ifdef __Pyx_HAS_GCC_DIAGNOSTIC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wconversion"
-#endif
-    const int neg_one = (int) -1, const_zero = (int) 0;
-#ifdef __Pyx_HAS_GCC_DIAGNOSTIC
-#pragma GCC diagnostic pop
-#endif
-    const int is_unsigned = neg_one > const_zero;
-    if (is_unsigned) {
-        if (sizeof(int) < sizeof(long)) {
-            return PyInt_FromLong((long) value);
-        } else if (sizeof(int) <= sizeof(unsigned long)) {
-            return PyLong_FromUnsignedLong((unsigned long) value);
-#ifdef HAVE_LONG_LONG
-        } else if (sizeof(int) <= sizeof(unsigned PY_LONG_LONG)) {
-            return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
-#endif
-        }
-    } else {
-        if (sizeof(int) <= sizeof(long)) {
-            return PyInt_FromLong((long) value);
-#ifdef HAVE_LONG_LONG
-        } else if (sizeof(int) <= sizeof(PY_LONG_LONG)) {
-            return PyLong_FromLongLong((PY_LONG_LONG) value);
-#endif
-        }
-    }
-    {
-        int one = 1; int little = (int)*(unsigned char *)&one;
-        unsigned char *bytes = (unsigned char *)&value;
-        return _PyLong_FromByteArray(bytes, sizeof(int),
-                                     little, !is_unsigned);
-    }
 }
 
 /* CIntToPy */

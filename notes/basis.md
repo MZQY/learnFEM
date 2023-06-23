@@ -140,11 +140,19 @@ y_2 - y_1 & y_3 - y_1
 \end{bmatrix} +  \begin{bmatrix}
 x_1 \\
 y_1
-\end{bmatrix} .
+\end{bmatrix} 
 $$
 
-Thus the Jacobian factor $\mathcal{J} = \det(A_T) = (x_2 - x_1) (y_3 - y_1) - (x_3 - x_1)(y_2 - y_1)$. The integral of any function $\phi(x, y)$ defined on $T$ equals (the $\frac{1}{2}$ corresponds to https://people.sc.fsu.edu/~jburkardt/datasets/quadrature_rules_tri/quadrature_rules_tri.html)
+and
 
+
+$$
+\hat{x} = \frac{(y_3 - y_1) (x - x_1) - (x_3 - x_1) (y-y_1)}{\mathcal{J}} \\
+\hat{y} = \frac{-(y_2 - y_1) (x - x_1) + (x_2 - x_1) (y-y_1)}{\mathcal{J}}
+$$
+
+
+Thus the Jacobian factor $\mathcal{J} = \det(A_T) = \det(J) = (x_2 - x_1) (y_3 - y_1) - (x_3 - x_1)(y_2 - y_1)$, where the $J$ is the Jacobian matrix.  The integral of any function $\phi(x, y)$ defined on $T$ equals (the $\frac{1}{2}$ corresponds to https://people.sc.fsu.edu/~jburkardt/datasets/quadrature_rules_tri/quadrature_rules_tri.html)
 $$
 \int_T \phi(x, y) dS =  \int_{\hat{T}} \phi \left( \mathcal{F}(\hat{x}, \hat{y}) \right) \mathcal{J} d\hat{S} = \frac{1}{2} \mathcal{J} \sum_i \phi \left( \mathcal{F}(\hat{x}_i, \hat{y}_i) \right) w_i .
 $$
@@ -153,6 +161,104 @@ If the function $\phi(x, y)$ is the FEM basis function, then we have
 
 $$
 \int_T \phi(x, y) dS =  \int_{\hat{T}} \phi \left( \mathcal{F}(\hat{x}, \hat{y}) \right) \mathcal{J} d\hat{S} = \frac{1}{2} \mathcal{J} \sum_i \hat{\phi}(\hat{x}, \hat{y}) w_i
+$$
+
+Note that , 
+$$
+\frac{\partial}{\partial y} = \frac{\partial}{\partial \hat{y}}
+\frac{\partial \hat{y}}{\partial y} + \frac{\partial}{\partial \hat{x}}
+\frac{\partial \hat{x}}{\partial y} 
+$$
+
+$$
+\frac{\partial}{\partial x} = \frac{\partial}{\partial \hat{x}}
+\frac{\partial \hat{x}}{\partial x} + \frac{\partial}{\partial \hat{y}}
+\frac{\partial \hat{y}}{\partial x}
+$$
+
+$$
+\frac{\partial \phi}{\partial y} = \frac{\partial \hat{\phi}}{\partial \hat{y}}
+\frac{\partial \hat{y}}{\partial y} + \frac{\partial \hat{\phi}}{\partial \hat{x}}
+\frac{\partial \hat{x}}{\partial y}
+$$
+
+$$
+\frac{\partial \phi}{\partial x} = \frac{\partial \hat{\phi}}{\partial \hat{x}}
+\frac{\partial \hat{x}}{\partial x} + \frac{\partial \hat{\phi}}{\partial \hat{y}}
+\frac{\partial \hat{y}}{\partial x}
+$$
+
+$$
+\frac{\partial^2 \phi}{\partial y^2} &= \left( \frac{\partial}{\partial
+\hat{y}} \frac{\partial \hat{y}}{\partial y} + \frac{\partial}{\partial
+\hat{x}} \frac{\partial \hat{x}}{\partial y} \right) \left( \frac{\partial
+\hat{\phi}}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial y} + \frac{\partial
+\hat{\phi}}{\partial \hat{x}} \frac{\partial \hat{x}}{\partial y} \right) \\
+&=
+\frac{\partial^2 \hat{\phi}}{\partial \hat{y}^2} \left( \frac{\partial
+\hat{y}}{\partial y} \right)^2 + 2 \frac{\partial^2 \hat{\phi}}{\partial \hat{x}
+\partial \hat{y}} \frac{\partial \hat{x}}{\partial y} \frac{\partial
+\hat{y}}{\partial y} + \frac{\partial^2 \hat{\phi}}{\partial  \hat{x}^2}  \left(
+\frac{\partial \hat{x}}{\partial y} \right)^2
+$$
+
+$$
+\frac{\partial^2 \phi}{\partial x^2} &= \left( \frac{\partial}{\partial
+\hat{x}} \frac{\partial \hat{x}}{\partial x} + \frac{\partial}{\partial
+\hat{y}} \frac{\partial \hat{y}}{\partial x} \right) \left( \frac{\partial
+\hat{\phi}}{\partial \hat{x}} \frac{\partial \hat{x}}{\partial x} + \frac{\partial
+\hat{\phi}}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial x} \right) \\
+&=
+\frac{\partial^2 \hat{\phi}}{\partial \hat{x}^2} \left( \frac{\partial
+\hat{x}}{\partial x} \right)^2 + 2 \frac{\partial^2 \hat{\phi}}{\partial \hat{x}
+\partial \hat{y}} \frac{\partial \hat{y}}{\partial x} \frac{\partial
+\hat{x}}{\partial x} + \frac{\partial^2 \hat{\phi}}{\partial \hat{y}^2} \left(
+\frac{\partial \hat{y}}{\partial x} \right)^2
+$$
+
+$$
+\frac{\partial^2 \phi}{\partial x \partial y} &= \frac{\partial}{\partial x}
+\left( \frac{\partial \phi}{\partial y} \right) = \left(
+\frac{\partial}{\partial \hat{x}} \frac{\partial \hat{x}}{\partial x} +
+\frac{\partial}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial x} \right)
+\left( \frac{\partial \hat{\phi}}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial
+y} + \frac{\partial \hat{\phi}}{\partial \hat{x}} \frac{\partial \hat{x}}{\partial
+y} \right)\\
+&= \frac{\partial^2 \hat{\phi}}{\partial \hat{x} \partial \hat{y}}
+\frac{\partial \hat{y}}{\partial y} \frac{\partial \hat{x}}{\partial x} +
+\frac{\partial^2 \hat{\phi}}{\partial \hat{x}^2} \frac{\partial \hat{x}}{\partial y}
+\frac{\partial \hat{x}}{\partial x} + \frac{\partial^2 \hat{\phi}}{\partial
+\hat{y}^2} \frac{\partial \hat{y}}{\partial y} \frac{\partial
+\hat{y}}{\partial x} + \frac{\partial^2 \hat{\phi}}{\partial \hat{x} \partial
+\hat{y}} \frac{\partial \hat{x}}{\partial y} \frac{\partial \hat{y}}{\partial
+x}
+$$
+
+and 
+$$
+\frac{\partial \hat{x}}{\partial x} = \frac{y_3 - y_1}{| J |}
+$$
+
+$$
+\frac{\partial \hat{y}}{\partial x} = \frac{y_1 - y_2}{| J |}
+$$
+
+$$
+\frac{\partial \hat{x}}{\partial y} = \frac{x_1 - x_3}{| J |}
+$$
+
+$$
+\frac{\partial \hat{y}}{\partial y} = \frac{x_2 - x_1}{| J |}
+$$
+
+Thus in the Cartesian coordinate
+$$
+\nabla \phi = \left( \frac{\partial \phi}{\partial x}, \frac{\partial
+\phi}{\partial y} \right) = \left( \frac{\partial \hat{\phi}}{\partial \hat{x}}
+\frac{\partial \hat{x}}{\partial x} + \frac{\partial \hat{\phi}}{\partial \hat{y}}
+\frac{\partial \hat{y}}{\partial x}, \frac{\partial \hat{\phi}}{\partial \hat{y}}
+\frac{\partial \hat{y}}{\partial y} + \frac{\partial \hat{\phi}}{\partial \hat{x}}
+\frac{\partial \hat{x}}{\partial y} \right)
 $$
 
 
