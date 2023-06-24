@@ -1,5 +1,5 @@
 """
-FEM basis functions and Gaussian quadrature
+FEM basis functions and Gaussian quadrature for parallel running
 ymma98
 """
 
@@ -12,319 +12,12 @@ from libc.math cimport sqrt
 from libc.stdio cimport printf
 from libc.stdlib cimport exit
 
-def affinemap1d_xhat_to_x(x1, x2, xhat):
-    return _affinemap1d_xhat_to_x(x1, x2, xhat)
-
-def shape1d_node2(idx, x, node, phi):
-    _shape1d_node2(idx, x, node, phi)
-
-def shape1d_node3(idx, x, node, phi):
-    _shape1d_node3(idx, x, node, phi)
-
-def shape1d_node4(idx, x, node, phi):
-    _shape1d_node4(idx, x, node, phi)
-
-def gauss_legendre_quadrature_set1d(n, x, w):
-    _gauss_legendre_quadrature_set1d(n, x, w)
-
-def shape2d_t3(idx, idy, x, y, node_x, node_y, phi):
-    _shape2d_t3(idx, idy, x, y, node_x, node_y, phi)
-
-
-def shape2d_t6(idx, idy, x, y, node_x, node_y, phi):
-    _shape2d_t6(idx, idy, x, y, node_x, node_y, phi)
-
-
-def shape2d_t10(idx, idy, x, y, node_x, node_y, phi):
-    _shape2d_t10(idx, idy, x, y, node_x, node_y, phi)
-
-def gauss_quadrature_triangle(n, x, y, w):
-    _gauss_quadrature_triangle(n, x, y, w)
-
-
-@cython.boundscheck(False)
-@cython.wraparound(False)
-cdef double _affinemap1d_xhat_to_x(double x1, double x2, double xhat) nogil:
-    """
-    affine mapping from xhat to x in [x1, x2], where xhat in [-1, 1]
-    :param x1: (double) left point
-    :param x1: (double) right point
-    :param xhat: (double) point on 
-    """
-    cdef double res = 0.
-    if (x1 >= x2):
-        printf("******************************");
-        printf("x1 should be smaller (<) than x2 in affine_map1d_xhat_to_x() function");
-        printf("******************************");
-        exit(1)
-    else:
-        res = (x2 - x1) / 2. * xhat + (x1 + x2) / 2.
-        return res
-
-
-@cython.boundscheck(False)
-@cython.wraparound(False)
-cdef void _shape1d_node2(int idx, double x, double[:] node, double[:] phi) nogil:
-    """
-    linear shape function on the segment interval [-1, 1]
-    2 nodes based on Gauss-Lobatto points
-    The values are derived using Mathematica in basis.nb.
-    :param idx: (int) derivative order for shape function
-    :param x: (double) required coordinate
-    :param node: (double[2]) Gauss-Lobatto points
-    :param phi: (double[2]) the idx order derivative of shape function on x 
-    """
-    node[0] = -1.
-    node[1] = 1.
-    if (x >= -1. and x <= 1.):
-        if (idx == 0):
-            phi[0] = (1. - x) / 2.
-            phi[1] = (1. + x) / 2.
-        elif (idx == 1):
-            phi[0] = -1. / 2.
-            phi[1] =  1. / 2.
-        else:
-            phi[0] = 0.
-            phi[1] = 0.
-    else:
-        phi[0] = 0.
-        phi[1] = 0.
-
-
-
-@cython.boundscheck(False)
-@cython.wraparound(False)
-cdef void _shape1d_node3(int idx, double x, double[:] node, double[:] phi) nogil:
-    """
-    quadratic shape function on the interval [-1, 1]
-    3 nodes based on Gauss-Lobatto points
-    The values are derived using Mathematica in basis.nb.
-    :param idx: (int) derivative order for shape function
-    :param x: (double) required coordinate
-    :param node: (double[3]) Gauss-Lobatto points
-    :param phi: (double[3]) the idx order derivative of shape function on x 
-    """
-    node[0] = -1.
-    node[1] = 0.
-    node[2] = 1.
-    if (x >= -1. and x <= 1.):
-        if (idx == 0):
-            phi[0] = 1. / 2. * (-1. + x) * x
-            phi[1] = 1. - x * x
-            phi[2] = 1. / 2. * x * (1. + x)
-        elif (idx == 1):
-            phi[0] = -1. / 2. + x
-            phi[1] =  -2. * x
-            phi[2] = 1. / 2. + x
-        elif (idx == 2):
-            phi[0] = 1.
-            phi[1] = -2.
-            phi[2] = 1.
-        else:
-            phi[0] = 0.
-            phi[1] = 0.
-            phi[2] = 0.
-    else:
-        phi[0] = 0.
-        phi[1] = 0.
-        phi[2] = 0.
-
-
-
-
-@cython.boundscheck(False)
-@cython.wraparound(False)
-cdef void _shape1d_node4(int idx, double x, double[:] node, double[:] phi) nogil:
-    """
-    quadratic shape function on the interval [-1, 1]
-    4 nodes based on Gauss-Lobatto points
-    The values are derived using Mathematica in basis.nb.
-    :param idx: (int) derivative order for shape function
-    :param x: (double) required coordinate
-    :param node: (double[4]) Gauss-Lobatto points
-    :param phi: (double[4]) the idx order derivative of shape function on x 
-    """
-    node[0] = -1.
-    node[1] = -sqrt(5.) / 5.
-    node[2] =  sqrt(5.) / 5.
-    node[3] = 1.
-    if (x >= -1. and x <= 1.):
-        if (idx == 0):
-            phi[0] = 1. / 8. * (-1. + x + 5. * x*x - 5. * x*x*x)
-            phi[1] = -1. / 8. * sqrt(5.) * (sqrt(5.) - 5. * x) * (-1. + x) * (1. + x)
-            phi[2] = -1. / 8. * sqrt(5.) * (-1. + x) * (1. + x) * (sqrt(5.) + 5. * x)
-            phi[3] = 1. / 8. * (-1. - x + 5. * x*x + 5. * x*x*x)
-        elif (idx == 1):
-            phi[0] = 1. / 8. * (1. + 10. * x - 15. * x*x)
-            phi[1] =  -1. / 8. * sqrt(5.) * (5. + 2. * sqrt(5.) * x - 15. * x*x)
-            phi[2] = -1. / 8. * sqrt(5.) * (-5. + 2. * sqrt(5.) * x + 15. * x*x)
-            phi[3] = 1. / 8. * (-1. + 10. * x + 15. * x*x)
-        elif (idx == 2):
-            phi[0] = -5. / 4. * (-1. + 3. * x)
-            phi[1] = 5. / 4. * (-1. + 3. * sqrt(5.) * x)
-            phi[2] = -5. / 4. * (1. + 3. * sqrt(5.) * x)
-            phi[3] = 5. / 4. * (1. + 3. * x)
-        elif (idx == 3):
-            phi[0] = -15. / 4.
-            phi[1] = 15. * sqrt(5.) / 4.
-            phi[2] = -15. * sqrt(5.) / 4.
-            phi[3] = 15. / 4.
-        else:
-            phi[0] = 0.
-            phi[1] = 0.
-            phi[2] = 0.
-            phi[3] = 0.
-    else:
-        phi[0] = 0.
-        phi[1] = 0.
-        phi[2] = 0.
-        phi[3] = 0.
-
-
-
-
-@cython.boundscheck(False)
-@cython.wraparound(False)
-cdef void _gauss_legendre_quadrature_set1d(int n, \
-                                           double[:] x, \
-                                           double[:] w) nogil:
-    """
-    get abscissas and weights for Gauss-Legendre quadrature
-    The quadrature interval is [-1, 1]
-    Integrate (-1 <= X <= 1) F(x) dX = Sum (1 <= I <= N) W(I) * F(X(I))
-    
-    The quadrature rule will integrate exactly all polynomials up to x**(2*N-1)
-
-    :param n: (int) number of node points
-    :param x: (double[n]) abscissas
-    :param w: (double[n]) weights for Gauss-Legendre quadrature
-
-    author: ymma98
-
-    this function is modified from
-        void legendre_set ( int n, double x[], double w[] )
-        which is created by John Burkardt, the licence of the legendre_set()
-        are copied as follows:
-
-        Licensing:
-          This code is distributed under the GNU LGPL license. 
-        Modified:
-          19 October 2009
-        Author:
-          John Burkardt
-        Reference:
-          Milton Abramowitz, Irene Stegun,
-          Handbook of Mathematical Functions,
-          National Bureau of Standards, 1964,
-          ISBN: 0-486-61272-4,
-          LC: QA47.A34.
-
-          Vladimir Krylov,
-          Approximate Calculation of Integrals,
-          Dover, 2006,
-          ISBN: 0486445798.
-
-          Arthur Stroud, Don Secrest,
-          Gaussian Quadrature Formulas,
-          Prentice Hall, 1966,
-          LC: QA299.4G3S7.
-
-          Daniel Zwillinger, editor,
-          CRC Standard Mathematical Tables and Formulae,
-          30th Edition,
-          CRC Press, 1996,
-          ISBN: 0-8493-2479-3.
-    """
-    if ( n == 1 ):
-        x[0] = 0.0
-        w[0] = 2.0
-
-    elif ( n == 2 ):
-        x[0] = - 0.577350269189625764509148780502
-        x[1] =   0.577350269189625764509148780502
-
-        w[0] = 1.0
-        w[1] = 1.0
-
-    elif ( n == 3 ):
-        x[0] = - 0.774596669241483377035853079956
-        x[1] =   0.0
-        x[2] =   0.774596669241483377035853079956
-
-        w[0] = 5.0 / 9.0
-        w[1] = 8.0 / 9.0
-        w[2] = 5.0 / 9.0
-
-    elif ( n == 4 ):
-        x[0] = - 0.861136311594052575223946488893
-        x[1] = - 0.339981043584856264802665759103
-        x[2] =   0.339981043584856264802665759103
-        x[3] =   0.861136311594052575223946488893
-
-        w[0] = 0.347854845137453857373063949222
-        w[1] = 0.652145154862546142626936050778
-        w[2] = 0.652145154862546142626936050778
-        w[3] = 0.347854845137453857373063949222
-
-    elif ( n == 5 ):
-        x[0] = - 0.906179845938663992797626878299
-        x[1] = - 0.538469310105683091036314420700
-        x[2] =   0.0
-        x[3] =   0.538469310105683091036314420700
-        x[4] =   0.906179845938663992797626878299
-
-        w[0] = 0.236926885056189087514264040720
-        w[1] = 0.478628670499366468041291514836
-        w[2] = 0.568888888888888888888888888889
-        w[3] = 0.478628670499366468041291514836
-        w[4] = 0.236926885056189087514264040720
-
-    elif ( n == 6 ):
-        x[0] = - 0.932469514203152027812301554494
-        x[1] = - 0.661209386466264513661399595020
-        x[2] = - 0.238619186083196908630501721681
-        x[3] =   0.238619186083196908630501721681
-        x[4] =   0.661209386466264513661399595020
-        x[5] =   0.932469514203152027812301554494
-
-        w[0] = 0.171324492379170345040296142173
-        w[1] = 0.360761573048138607569833513838
-        w[2] = 0.467913934572691047389870343990
-        w[3] = 0.467913934572691047389870343990
-        w[4] = 0.360761573048138607569833513838
-        w[5] = 0.171324492379170345040296142173
-    elif ( n == 7 ):
-        x[0] = - 0.949107912342758524526189684048
-        x[1] = - 0.741531185599394439863864773281
-        x[2] = - 0.405845151377397166906606412077
-        x[3] =   0.0
-        x[4] =   0.405845151377397166906606412077
-        x[5] =   0.741531185599394439863864773281
-        x[6] =   0.949107912342758524526189684048
-
-        w[0] = 0.129484966168869693270611432679
-        w[1] = 0.279705391489276667901467771424
-        w[2] = 0.381830050505118944950369775489
-        w[3] = 0.417959183673469387755102040816
-        w[4] = 0.381830050505118944950369775489
-        w[5] = 0.279705391489276667901467771424
-        w[6] = 0.129484966168869693270611432679
-
-    else:
-        printf("******************************");
-        printf("Illegal value of n = %d \n", n);
-        printf("Legal values are 1 through 10");
-        printf("******************************");
-        exit(1)
-
-
-
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
 cdef void _shape2d_t3(int idx, int idy,  \
                       double x, double y, \
-                      double[:] node_x, double[:] node_y, double[:] phi) nogil:
+                      double[3] node_x, double[3] node_y, double[3] phi) nogil:
     """
     quadratic shape function on the reference triangle with vertices (0,0), (1,0) and (0,1)
     The values are derived using Mathematica in basis.nb.
@@ -377,7 +70,7 @@ cdef void _shape2d_t3(int idx, int idy,  \
 @cython.wraparound(False)
 cdef void _shape2d_t6(int idx, int idy,  \
                       double x, double y, \
-                      double[:] node_x, double[:] node_y, double[:] phi) nogil:
+                      double[6] node_x, double[6] node_y, double[6] phi) nogil:
     """
     quadratic shape function on the reference triangle with vertices (0,0), (1,0) and (0,1)
     The values are derived using Mathematica in basis.nb.
@@ -463,7 +156,7 @@ cdef void _shape2d_t6(int idx, int idy,  \
 @cython.wraparound(False)
 cdef void _shape2d_t10(int idx, int idy,  \
                        double x, double y, \
-                       double[:] node_x, double[:] node_y, double[:] phi) nogil:
+                       double[10] node_x, double[10] node_y, double[10] phi) nogil:
     """
     quadratic shape function on the reference triangle with vertices (0,0), (1,0) and (0,1)
     The values are derived using Mathematica in basis.nb.
@@ -619,6 +312,64 @@ cdef void _shape2d_t10(int idx, int idy,  \
         phi[7] = 0.
         phi[8] = 0.
         phi[9] = 0.
+
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cdef void _gauss_quad_triangle_6p(double[6] x, double[6] y, double[6] w) nogil:
+    #  6 points, precision 4, Strang and Fix, formula #5
+    x[0] = 0.816847572980459
+    x[1] = 0.091576213509771
+    x[2] = 0.091576213509771
+    x[3] = 0.108103018168070
+    x[4] = 0.445948490915965
+    x[5] = 0.445948490915965
+
+    y[0] = 0.091576213509771
+    y[1] = 0.816847572980459
+    y[2] = 0.091576213509771
+    y[3] = 0.445948490915965
+    y[4] = 0.108103018168070
+    y[5] = 0.445948490915965
+
+    w[0] = 0.109951743655322
+    w[1] = 0.109951743655322
+    w[2] = 0.109951743655322
+    w[3] = 0.223381589678011
+    w[4] = 0.223381589678011
+    w[5] = 0.223381589678011
+
+cdef void _gauss_quad_triangle_9p(double[9] x, double[9] y, double[9] w) nogil:
+    # 9 points, precision 6, Strang and Fix formula #8.
+    x[0] = 0.124949503233232
+    x[1] = 0.437525248383384
+    x[2] = 0.437525248383384
+    x[3] = 0.797112651860071
+    x[4] = 0.797112651860071
+    x[5] = 0.165409927389841
+    x[6] = 0.165409927389841
+    x[7] = 0.037477420750088
+    x[8] = 0.037477420750088
+
+    y[0] = 0.437525248383384
+    y[1] = 0.124949503233232
+    y[2] = 0.437525248383384
+    y[3] = 0.165409927389841
+    y[4] = 0.037477420750088
+    y[5] = 0.797112651860071
+    y[6] = 0.037477420750088
+    y[7] = 0.797112651860071
+    y[8] = 0.165409927389841
+
+    w[0] = 0.205950504760887
+    w[1] = 0.205950504760887
+    w[2] = 0.205950504760887
+    w[3] = 0.063691414286223
+    w[4] = 0.063691414286223
+    w[5] = 0.063691414286223
+    w[6] = 0.063691414286223
+    w[7] = 0.063691414286223
+    w[8] = 0.063691414286223
 
 
 

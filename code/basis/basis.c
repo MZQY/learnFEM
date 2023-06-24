@@ -2242,9 +2242,6 @@ static CYTHON_INLINE char __Pyx_PyInt_As_char(PyObject *);
 /* CheckBinaryVersion.proto */
 static int __Pyx_check_binary_version(void);
 
-/* FunctionExport.proto */
-static int __Pyx_ExportFunction(const char *name, void (*f)(void), const char *sig);
-
 /* InitStrings.proto */
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
@@ -4432,7 +4429,7 @@ static void __pyx_f_5basis__shape1d_node2(int __pyx_v_idx, double __pyx_v_x, __P
  *         phi[0] = 0.
  *         phi[1] = 0.             # <<<<<<<<<<<<<<
  * 
- * @cython.boundscheck(False)
+ * 
  */
     __pyx_t_1 = 1;
     *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
@@ -4450,7 +4447,7 @@ static void __pyx_f_5basis__shape1d_node2(int __pyx_v_idx, double __pyx_v_x, __P
   /* function exit code */
 }
 
-/* "basis.pyx":95
+/* "basis.pyx":97
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void _shape1d_node3(int idx, double x, double[:] node, double[:] phi) nogil:             # <<<<<<<<<<<<<<
@@ -4463,7 +4460,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
   int __pyx_t_2;
   int __pyx_t_3;
 
-  /* "basis.pyx":105
+  /* "basis.pyx":107
  *     :param phi: (double[3]) the idx order derivative of shape function on x
  *     """
  *     node[0] = -1.             # <<<<<<<<<<<<<<
@@ -4473,7 +4470,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
   __pyx_t_1 = 0;
   *((double *) ( /* dim=0 */ (__pyx_v_node.data + __pyx_t_1 * __pyx_v_node.strides[0]) )) = -1.;
 
-  /* "basis.pyx":106
+  /* "basis.pyx":108
  *     """
  *     node[0] = -1.
  *     node[1] = 0.             # <<<<<<<<<<<<<<
@@ -4483,7 +4480,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
   __pyx_t_1 = 1;
   *((double *) ( /* dim=0 */ (__pyx_v_node.data + __pyx_t_1 * __pyx_v_node.strides[0]) )) = 0.;
 
-  /* "basis.pyx":107
+  /* "basis.pyx":109
  *     node[0] = -1.
  *     node[1] = 0.
  *     node[2] = 1.             # <<<<<<<<<<<<<<
@@ -4493,7 +4490,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
   __pyx_t_1 = 2;
   *((double *) ( /* dim=0 */ (__pyx_v_node.data + __pyx_t_1 * __pyx_v_node.strides[0]) )) = 1.;
 
-  /* "basis.pyx":108
+  /* "basis.pyx":110
  *     node[1] = 0.
  *     node[2] = 1.
  *     if (x >= -1. and x <= 1.):             # <<<<<<<<<<<<<<
@@ -4511,7 +4508,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "basis.pyx":109
+    /* "basis.pyx":111
  *     node[2] = 1.
  *     if (x >= -1. and x <= 1.):
  *         if (idx == 0):             # <<<<<<<<<<<<<<
@@ -4521,7 +4518,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
     switch (__pyx_v_idx) {
       case 0:
 
-      /* "basis.pyx":110
+      /* "basis.pyx":112
  *     if (x >= -1. and x <= 1.):
  *         if (idx == 0):
  *             phi[0] = 1. / 2. * (-1. + x) * x             # <<<<<<<<<<<<<<
@@ -4531,7 +4528,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (((1. / 2.) * (-1. + __pyx_v_x)) * __pyx_v_x);
 
-      /* "basis.pyx":111
+      /* "basis.pyx":113
  *         if (idx == 0):
  *             phi[0] = 1. / 2. * (-1. + x) * x
  *             phi[1] = 1. - x * x             # <<<<<<<<<<<<<<
@@ -4541,7 +4538,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (1. - (__pyx_v_x * __pyx_v_x));
 
-      /* "basis.pyx":112
+      /* "basis.pyx":114
  *             phi[0] = 1. / 2. * (-1. + x) * x
  *             phi[1] = 1. - x * x
  *             phi[2] = 1. / 2. * x * (1. + x)             # <<<<<<<<<<<<<<
@@ -4551,7 +4548,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (((1. / 2.) * __pyx_v_x) * (1. + __pyx_v_x));
 
-      /* "basis.pyx":109
+      /* "basis.pyx":111
  *     node[2] = 1.
  *     if (x >= -1. and x <= 1.):
  *         if (idx == 0):             # <<<<<<<<<<<<<<
@@ -4561,7 +4558,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
       break;
       case 1:
 
-      /* "basis.pyx":114
+      /* "basis.pyx":116
  *             phi[2] = 1. / 2. * x * (1. + x)
  *         elif (idx == 1):
  *             phi[0] = -1. / 2. + x             # <<<<<<<<<<<<<<
@@ -4571,7 +4568,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((-1. / 2.) + __pyx_v_x);
 
-      /* "basis.pyx":115
+      /* "basis.pyx":117
  *         elif (idx == 1):
  *             phi[0] = -1. / 2. + x
  *             phi[1] =  -2. * x             # <<<<<<<<<<<<<<
@@ -4581,7 +4578,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (-2. * __pyx_v_x);
 
-      /* "basis.pyx":116
+      /* "basis.pyx":118
  *             phi[0] = -1. / 2. + x
  *             phi[1] =  -2. * x
  *             phi[2] = 1. / 2. + x             # <<<<<<<<<<<<<<
@@ -4591,7 +4588,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((1. / 2.) + __pyx_v_x);
 
-      /* "basis.pyx":113
+      /* "basis.pyx":115
  *             phi[1] = 1. - x * x
  *             phi[2] = 1. / 2. * x * (1. + x)
  *         elif (idx == 1):             # <<<<<<<<<<<<<<
@@ -4601,7 +4598,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
       break;
       case 2:
 
-      /* "basis.pyx":118
+      /* "basis.pyx":120
  *             phi[2] = 1. / 2. + x
  *         elif (idx == 2):
  *             phi[0] = 1.             # <<<<<<<<<<<<<<
@@ -4611,7 +4608,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 1.;
 
-      /* "basis.pyx":119
+      /* "basis.pyx":121
  *         elif (idx == 2):
  *             phi[0] = 1.
  *             phi[1] = -2.             # <<<<<<<<<<<<<<
@@ -4621,7 +4618,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = -2.;
 
-      /* "basis.pyx":120
+      /* "basis.pyx":122
  *             phi[0] = 1.
  *             phi[1] = -2.
  *             phi[2] = 1.             # <<<<<<<<<<<<<<
@@ -4631,7 +4628,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 1.;
 
-      /* "basis.pyx":117
+      /* "basis.pyx":119
  *             phi[1] =  -2. * x
  *             phi[2] = 1. / 2. + x
  *         elif (idx == 2):             # <<<<<<<<<<<<<<
@@ -4641,7 +4638,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
       break;
       default:
 
-      /* "basis.pyx":122
+      /* "basis.pyx":124
  *             phi[2] = 1.
  *         else:
  *             phi[0] = 0.             # <<<<<<<<<<<<<<
@@ -4651,7 +4648,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":123
+      /* "basis.pyx":125
  *         else:
  *             phi[0] = 0.
  *             phi[1] = 0.             # <<<<<<<<<<<<<<
@@ -4661,7 +4658,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":124
+      /* "basis.pyx":126
  *             phi[0] = 0.
  *             phi[1] = 0.
  *             phi[2] = 0.             # <<<<<<<<<<<<<<
@@ -4673,7 +4670,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
       break;
     }
 
-    /* "basis.pyx":108
+    /* "basis.pyx":110
  *     node[1] = 0.
  *     node[2] = 1.
  *     if (x >= -1. and x <= 1.):             # <<<<<<<<<<<<<<
@@ -4683,7 +4680,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
     goto __pyx_L3;
   }
 
-  /* "basis.pyx":126
+  /* "basis.pyx":128
  *             phi[2] = 0.
  *     else:
  *         phi[0] = 0.             # <<<<<<<<<<<<<<
@@ -4694,7 +4691,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
     __pyx_t_1 = 0;
     *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-    /* "basis.pyx":127
+    /* "basis.pyx":129
  *     else:
  *         phi[0] = 0.
  *         phi[1] = 0.             # <<<<<<<<<<<<<<
@@ -4704,7 +4701,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
     __pyx_t_1 = 1;
     *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-    /* "basis.pyx":128
+    /* "basis.pyx":130
  *         phi[0] = 0.
  *         phi[1] = 0.
  *         phi[2] = 0.             # <<<<<<<<<<<<<<
@@ -4716,7 +4713,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
   }
   __pyx_L3:;
 
-  /* "basis.pyx":95
+  /* "basis.pyx":97
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void _shape1d_node3(int idx, double x, double[:] node, double[:] phi) nogil:             # <<<<<<<<<<<<<<
@@ -4727,7 +4724,7 @@ static void __pyx_f_5basis__shape1d_node3(int __pyx_v_idx, double __pyx_v_x, __P
   /* function exit code */
 }
 
-/* "basis.pyx":135
+/* "basis.pyx":137
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void _shape1d_node4(int idx, double x, double[:] node, double[:] phi) nogil:             # <<<<<<<<<<<<<<
@@ -4740,7 +4737,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
   int __pyx_t_2;
   int __pyx_t_3;
 
-  /* "basis.pyx":145
+  /* "basis.pyx":147
  *     :param phi: (double[4]) the idx order derivative of shape function on x
  *     """
  *     node[0] = -1.             # <<<<<<<<<<<<<<
@@ -4750,7 +4747,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
   __pyx_t_1 = 0;
   *((double *) ( /* dim=0 */ (__pyx_v_node.data + __pyx_t_1 * __pyx_v_node.strides[0]) )) = -1.;
 
-  /* "basis.pyx":146
+  /* "basis.pyx":148
  *     """
  *     node[0] = -1.
  *     node[1] = -sqrt(5.) / 5.             # <<<<<<<<<<<<<<
@@ -4760,7 +4757,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
   __pyx_t_1 = 1;
   *((double *) ( /* dim=0 */ (__pyx_v_node.data + __pyx_t_1 * __pyx_v_node.strides[0]) )) = ((-sqrt(5.)) / 5.);
 
-  /* "basis.pyx":147
+  /* "basis.pyx":149
  *     node[0] = -1.
  *     node[1] = -sqrt(5.) / 5.
  *     node[2] =  sqrt(5.) / 5.             # <<<<<<<<<<<<<<
@@ -4770,7 +4767,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
   __pyx_t_1 = 2;
   *((double *) ( /* dim=0 */ (__pyx_v_node.data + __pyx_t_1 * __pyx_v_node.strides[0]) )) = (sqrt(5.) / 5.);
 
-  /* "basis.pyx":148
+  /* "basis.pyx":150
  *     node[1] = -sqrt(5.) / 5.
  *     node[2] =  sqrt(5.) / 5.
  *     node[3] = 1.             # <<<<<<<<<<<<<<
@@ -4780,7 +4777,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
   __pyx_t_1 = 3;
   *((double *) ( /* dim=0 */ (__pyx_v_node.data + __pyx_t_1 * __pyx_v_node.strides[0]) )) = 1.;
 
-  /* "basis.pyx":149
+  /* "basis.pyx":151
  *     node[2] =  sqrt(5.) / 5.
  *     node[3] = 1.
  *     if (x >= -1. and x <= 1.):             # <<<<<<<<<<<<<<
@@ -4798,7 +4795,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "basis.pyx":150
+    /* "basis.pyx":152
  *     node[3] = 1.
  *     if (x >= -1. and x <= 1.):
  *         if (idx == 0):             # <<<<<<<<<<<<<<
@@ -4808,7 +4805,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
     switch (__pyx_v_idx) {
       case 0:
 
-      /* "basis.pyx":151
+      /* "basis.pyx":153
  *     if (x >= -1. and x <= 1.):
  *         if (idx == 0):
  *             phi[0] = 1. / 8. * (-1. + x + 5. * x*x - 5. * x*x*x)             # <<<<<<<<<<<<<<
@@ -4818,7 +4815,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((1. / 8.) * (((-1. + __pyx_v_x) + ((5. * __pyx_v_x) * __pyx_v_x)) - (((5. * __pyx_v_x) * __pyx_v_x) * __pyx_v_x)));
 
-      /* "basis.pyx":152
+      /* "basis.pyx":154
  *         if (idx == 0):
  *             phi[0] = 1. / 8. * (-1. + x + 5. * x*x - 5. * x*x*x)
  *             phi[1] = -1. / 8. * sqrt(5.) * (sqrt(5.) - 5. * x) * (-1. + x) * (1. + x)             # <<<<<<<<<<<<<<
@@ -4828,7 +4825,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (((((-1. / 8.) * sqrt(5.)) * (sqrt(5.) - (5. * __pyx_v_x))) * (-1. + __pyx_v_x)) * (1. + __pyx_v_x));
 
-      /* "basis.pyx":153
+      /* "basis.pyx":155
  *             phi[0] = 1. / 8. * (-1. + x + 5. * x*x - 5. * x*x*x)
  *             phi[1] = -1. / 8. * sqrt(5.) * (sqrt(5.) - 5. * x) * (-1. + x) * (1. + x)
  *             phi[2] = -1. / 8. * sqrt(5.) * (-1. + x) * (1. + x) * (sqrt(5.) + 5. * x)             # <<<<<<<<<<<<<<
@@ -4838,7 +4835,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (((((-1. / 8.) * sqrt(5.)) * (-1. + __pyx_v_x)) * (1. + __pyx_v_x)) * (sqrt(5.) + (5. * __pyx_v_x)));
 
-      /* "basis.pyx":154
+      /* "basis.pyx":156
  *             phi[1] = -1. / 8. * sqrt(5.) * (sqrt(5.) - 5. * x) * (-1. + x) * (1. + x)
  *             phi[2] = -1. / 8. * sqrt(5.) * (-1. + x) * (1. + x) * (sqrt(5.) + 5. * x)
  *             phi[3] = 1. / 8. * (-1. - x + 5. * x*x + 5. * x*x*x)             # <<<<<<<<<<<<<<
@@ -4848,7 +4845,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 3;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((1. / 8.) * (((-1. - __pyx_v_x) + ((5. * __pyx_v_x) * __pyx_v_x)) + (((5. * __pyx_v_x) * __pyx_v_x) * __pyx_v_x)));
 
-      /* "basis.pyx":150
+      /* "basis.pyx":152
  *     node[3] = 1.
  *     if (x >= -1. and x <= 1.):
  *         if (idx == 0):             # <<<<<<<<<<<<<<
@@ -4858,7 +4855,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       break;
       case 1:
 
-      /* "basis.pyx":156
+      /* "basis.pyx":158
  *             phi[3] = 1. / 8. * (-1. - x + 5. * x*x + 5. * x*x*x)
  *         elif (idx == 1):
  *             phi[0] = 1. / 8. * (1. + 10. * x - 15. * x*x)             # <<<<<<<<<<<<<<
@@ -4868,7 +4865,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((1. / 8.) * ((1. + (10. * __pyx_v_x)) - ((15. * __pyx_v_x) * __pyx_v_x)));
 
-      /* "basis.pyx":157
+      /* "basis.pyx":159
  *         elif (idx == 1):
  *             phi[0] = 1. / 8. * (1. + 10. * x - 15. * x*x)
  *             phi[1] =  -1. / 8. * sqrt(5.) * (5. + 2. * sqrt(5.) * x - 15. * x*x)             # <<<<<<<<<<<<<<
@@ -4878,7 +4875,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (((-1. / 8.) * sqrt(5.)) * ((5. + ((2. * sqrt(5.)) * __pyx_v_x)) - ((15. * __pyx_v_x) * __pyx_v_x)));
 
-      /* "basis.pyx":158
+      /* "basis.pyx":160
  *             phi[0] = 1. / 8. * (1. + 10. * x - 15. * x*x)
  *             phi[1] =  -1. / 8. * sqrt(5.) * (5. + 2. * sqrt(5.) * x - 15. * x*x)
  *             phi[2] = -1. / 8. * sqrt(5.) * (-5. + 2. * sqrt(5.) * x + 15. * x*x)             # <<<<<<<<<<<<<<
@@ -4888,7 +4885,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (((-1. / 8.) * sqrt(5.)) * ((-5. + ((2. * sqrt(5.)) * __pyx_v_x)) + ((15. * __pyx_v_x) * __pyx_v_x)));
 
-      /* "basis.pyx":159
+      /* "basis.pyx":161
  *             phi[1] =  -1. / 8. * sqrt(5.) * (5. + 2. * sqrt(5.) * x - 15. * x*x)
  *             phi[2] = -1. / 8. * sqrt(5.) * (-5. + 2. * sqrt(5.) * x + 15. * x*x)
  *             phi[3] = 1. / 8. * (-1. + 10. * x + 15. * x*x)             # <<<<<<<<<<<<<<
@@ -4898,7 +4895,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 3;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((1. / 8.) * ((-1. + (10. * __pyx_v_x)) + ((15. * __pyx_v_x) * __pyx_v_x)));
 
-      /* "basis.pyx":155
+      /* "basis.pyx":157
  *             phi[2] = -1. / 8. * sqrt(5.) * (-1. + x) * (1. + x) * (sqrt(5.) + 5. * x)
  *             phi[3] = 1. / 8. * (-1. - x + 5. * x*x + 5. * x*x*x)
  *         elif (idx == 1):             # <<<<<<<<<<<<<<
@@ -4908,7 +4905,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       break;
       case 2:
 
-      /* "basis.pyx":161
+      /* "basis.pyx":163
  *             phi[3] = 1. / 8. * (-1. + 10. * x + 15. * x*x)
  *         elif (idx == 2):
  *             phi[0] = -5. / 4. * (-1. + 3. * x)             # <<<<<<<<<<<<<<
@@ -4918,7 +4915,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((-5. / 4.) * (-1. + (3. * __pyx_v_x)));
 
-      /* "basis.pyx":162
+      /* "basis.pyx":164
  *         elif (idx == 2):
  *             phi[0] = -5. / 4. * (-1. + 3. * x)
  *             phi[1] = 5. / 4. * (-1. + 3. * sqrt(5.) * x)             # <<<<<<<<<<<<<<
@@ -4928,7 +4925,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((5. / 4.) * (-1. + ((3. * sqrt(5.)) * __pyx_v_x)));
 
-      /* "basis.pyx":163
+      /* "basis.pyx":165
  *             phi[0] = -5. / 4. * (-1. + 3. * x)
  *             phi[1] = 5. / 4. * (-1. + 3. * sqrt(5.) * x)
  *             phi[2] = -5. / 4. * (1. + 3. * sqrt(5.) * x)             # <<<<<<<<<<<<<<
@@ -4938,7 +4935,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((-5. / 4.) * (1. + ((3. * sqrt(5.)) * __pyx_v_x)));
 
-      /* "basis.pyx":164
+      /* "basis.pyx":166
  *             phi[1] = 5. / 4. * (-1. + 3. * sqrt(5.) * x)
  *             phi[2] = -5. / 4. * (1. + 3. * sqrt(5.) * x)
  *             phi[3] = 5. / 4. * (1. + 3. * x)             # <<<<<<<<<<<<<<
@@ -4948,7 +4945,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 3;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((5. / 4.) * (1. + (3. * __pyx_v_x)));
 
-      /* "basis.pyx":160
+      /* "basis.pyx":162
  *             phi[2] = -1. / 8. * sqrt(5.) * (-5. + 2. * sqrt(5.) * x + 15. * x*x)
  *             phi[3] = 1. / 8. * (-1. + 10. * x + 15. * x*x)
  *         elif (idx == 2):             # <<<<<<<<<<<<<<
@@ -4958,7 +4955,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       break;
       case 3:
 
-      /* "basis.pyx":166
+      /* "basis.pyx":168
  *             phi[3] = 5. / 4. * (1. + 3. * x)
  *         elif (idx == 3):
  *             phi[0] = -15. / 4.             # <<<<<<<<<<<<<<
@@ -4968,7 +4965,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (-15. / 4.);
 
-      /* "basis.pyx":167
+      /* "basis.pyx":169
  *         elif (idx == 3):
  *             phi[0] = -15. / 4.
  *             phi[1] = 15. * sqrt(5.) / 4.             # <<<<<<<<<<<<<<
@@ -4978,7 +4975,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((15. * sqrt(5.)) / 4.);
 
-      /* "basis.pyx":168
+      /* "basis.pyx":170
  *             phi[0] = -15. / 4.
  *             phi[1] = 15. * sqrt(5.) / 4.
  *             phi[2] = -15. * sqrt(5.) / 4.             # <<<<<<<<<<<<<<
@@ -4988,7 +4985,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((-15. * sqrt(5.)) / 4.);
 
-      /* "basis.pyx":169
+      /* "basis.pyx":171
  *             phi[1] = 15. * sqrt(5.) / 4.
  *             phi[2] = -15. * sqrt(5.) / 4.
  *             phi[3] = 15. / 4.             # <<<<<<<<<<<<<<
@@ -4998,7 +4995,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 3;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (15. / 4.);
 
-      /* "basis.pyx":165
+      /* "basis.pyx":167
  *             phi[2] = -5. / 4. * (1. + 3. * sqrt(5.) * x)
  *             phi[3] = 5. / 4. * (1. + 3. * x)
  *         elif (idx == 3):             # <<<<<<<<<<<<<<
@@ -5008,7 +5005,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       break;
       default:
 
-      /* "basis.pyx":171
+      /* "basis.pyx":173
  *             phi[3] = 15. / 4.
  *         else:
  *             phi[0] = 0.             # <<<<<<<<<<<<<<
@@ -5018,7 +5015,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":172
+      /* "basis.pyx":174
  *         else:
  *             phi[0] = 0.
  *             phi[1] = 0.             # <<<<<<<<<<<<<<
@@ -5028,7 +5025,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":173
+      /* "basis.pyx":175
  *             phi[0] = 0.
  *             phi[1] = 0.
  *             phi[2] = 0.             # <<<<<<<<<<<<<<
@@ -5038,7 +5035,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":174
+      /* "basis.pyx":176
  *             phi[1] = 0.
  *             phi[2] = 0.
  *             phi[3] = 0.             # <<<<<<<<<<<<<<
@@ -5050,7 +5047,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
       break;
     }
 
-    /* "basis.pyx":149
+    /* "basis.pyx":151
  *     node[2] =  sqrt(5.) / 5.
  *     node[3] = 1.
  *     if (x >= -1. and x <= 1.):             # <<<<<<<<<<<<<<
@@ -5060,7 +5057,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
     goto __pyx_L3;
   }
 
-  /* "basis.pyx":176
+  /* "basis.pyx":178
  *             phi[3] = 0.
  *     else:
  *         phi[0] = 0.             # <<<<<<<<<<<<<<
@@ -5071,7 +5068,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
     __pyx_t_1 = 0;
     *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-    /* "basis.pyx":177
+    /* "basis.pyx":179
  *     else:
  *         phi[0] = 0.
  *         phi[1] = 0.             # <<<<<<<<<<<<<<
@@ -5081,7 +5078,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
     __pyx_t_1 = 1;
     *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-    /* "basis.pyx":178
+    /* "basis.pyx":180
  *         phi[0] = 0.
  *         phi[1] = 0.
  *         phi[2] = 0.             # <<<<<<<<<<<<<<
@@ -5091,7 +5088,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
     __pyx_t_1 = 2;
     *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-    /* "basis.pyx":179
+    /* "basis.pyx":181
  *         phi[1] = 0.
  *         phi[2] = 0.
  *         phi[3] = 0.             # <<<<<<<<<<<<<<
@@ -5103,7 +5100,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
   }
   __pyx_L3:;
 
-  /* "basis.pyx":135
+  /* "basis.pyx":137
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void _shape1d_node4(int idx, double x, double[:] node, double[:] phi) nogil:             # <<<<<<<<<<<<<<
@@ -5114,7 +5111,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
   /* function exit code */
 }
 
-/* "basis.pyx":186
+/* "basis.pyx":188
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void _gauss_legendre_quadrature_set1d(int n, \             # <<<<<<<<<<<<<<
@@ -5125,7 +5122,7 @@ static void __pyx_f_5basis__shape1d_node4(int __pyx_v_idx, double __pyx_v_x, __P
 static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx_memviewslice __pyx_v_x, __Pyx_memviewslice __pyx_v_w) {
   Py_ssize_t __pyx_t_1;
 
-  /* "basis.pyx":236
+  /* "basis.pyx":238
  *           ISBN: 0-8493-2479-3.
  *     """
  *     if ( n == 1 ):             # <<<<<<<<<<<<<<
@@ -5135,7 +5132,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
   switch (__pyx_v_n) {
     case 1:
 
-    /* "basis.pyx":237
+    /* "basis.pyx":239
  *     """
  *     if ( n == 1 ):
  *         x[0] = 0.0             # <<<<<<<<<<<<<<
@@ -5145,7 +5142,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 0;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = 0.0;
 
-    /* "basis.pyx":238
+    /* "basis.pyx":240
  *     if ( n == 1 ):
  *         x[0] = 0.0
  *         w[0] = 2.0             # <<<<<<<<<<<<<<
@@ -5155,7 +5152,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 0;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 2.0;
 
-    /* "basis.pyx":236
+    /* "basis.pyx":238
  *           ISBN: 0-8493-2479-3.
  *     """
  *     if ( n == 1 ):             # <<<<<<<<<<<<<<
@@ -5165,7 +5162,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     break;
     case 2:
 
-    /* "basis.pyx":241
+    /* "basis.pyx":243
  * 
  *     elif ( n == 2 ):
  *         x[0] = - 0.577350269189625764509148780502             # <<<<<<<<<<<<<<
@@ -5175,7 +5172,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 0;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = -0.577350269189625764509148780502;
 
-    /* "basis.pyx":242
+    /* "basis.pyx":244
  *     elif ( n == 2 ):
  *         x[0] = - 0.577350269189625764509148780502
  *         x[1] =   0.577350269189625764509148780502             # <<<<<<<<<<<<<<
@@ -5185,7 +5182,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 1;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = 0.577350269189625764509148780502;
 
-    /* "basis.pyx":244
+    /* "basis.pyx":246
  *         x[1] =   0.577350269189625764509148780502
  * 
  *         w[0] = 1.0             # <<<<<<<<<<<<<<
@@ -5195,7 +5192,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 0;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 1.0;
 
-    /* "basis.pyx":245
+    /* "basis.pyx":247
  * 
  *         w[0] = 1.0
  *         w[1] = 1.0             # <<<<<<<<<<<<<<
@@ -5205,7 +5202,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 1;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 1.0;
 
-    /* "basis.pyx":240
+    /* "basis.pyx":242
  *         w[0] = 2.0
  * 
  *     elif ( n == 2 ):             # <<<<<<<<<<<<<<
@@ -5215,7 +5212,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     break;
     case 3:
 
-    /* "basis.pyx":248
+    /* "basis.pyx":250
  * 
  *     elif ( n == 3 ):
  *         x[0] = - 0.774596669241483377035853079956             # <<<<<<<<<<<<<<
@@ -5225,7 +5222,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 0;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = -0.774596669241483377035853079956;
 
-    /* "basis.pyx":249
+    /* "basis.pyx":251
  *     elif ( n == 3 ):
  *         x[0] = - 0.774596669241483377035853079956
  *         x[1] =   0.0             # <<<<<<<<<<<<<<
@@ -5235,7 +5232,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 1;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = 0.0;
 
-    /* "basis.pyx":250
+    /* "basis.pyx":252
  *         x[0] = - 0.774596669241483377035853079956
  *         x[1] =   0.0
  *         x[2] =   0.774596669241483377035853079956             # <<<<<<<<<<<<<<
@@ -5245,7 +5242,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 2;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = 0.774596669241483377035853079956;
 
-    /* "basis.pyx":252
+    /* "basis.pyx":254
  *         x[2] =   0.774596669241483377035853079956
  * 
  *         w[0] = 5.0 / 9.0             # <<<<<<<<<<<<<<
@@ -5255,7 +5252,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 0;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = (5.0 / 9.0);
 
-    /* "basis.pyx":253
+    /* "basis.pyx":255
  * 
  *         w[0] = 5.0 / 9.0
  *         w[1] = 8.0 / 9.0             # <<<<<<<<<<<<<<
@@ -5265,7 +5262,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 1;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = (8.0 / 9.0);
 
-    /* "basis.pyx":254
+    /* "basis.pyx":256
  *         w[0] = 5.0 / 9.0
  *         w[1] = 8.0 / 9.0
  *         w[2] = 5.0 / 9.0             # <<<<<<<<<<<<<<
@@ -5275,7 +5272,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 2;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = (5.0 / 9.0);
 
-    /* "basis.pyx":247
+    /* "basis.pyx":249
  *         w[1] = 1.0
  * 
  *     elif ( n == 3 ):             # <<<<<<<<<<<<<<
@@ -5285,7 +5282,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     break;
     case 4:
 
-    /* "basis.pyx":257
+    /* "basis.pyx":259
  * 
  *     elif ( n == 4 ):
  *         x[0] = - 0.861136311594052575223946488893             # <<<<<<<<<<<<<<
@@ -5295,7 +5292,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 0;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = -0.861136311594052575223946488893;
 
-    /* "basis.pyx":258
+    /* "basis.pyx":260
  *     elif ( n == 4 ):
  *         x[0] = - 0.861136311594052575223946488893
  *         x[1] = - 0.339981043584856264802665759103             # <<<<<<<<<<<<<<
@@ -5305,7 +5302,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 1;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = -0.339981043584856264802665759103;
 
-    /* "basis.pyx":259
+    /* "basis.pyx":261
  *         x[0] = - 0.861136311594052575223946488893
  *         x[1] = - 0.339981043584856264802665759103
  *         x[2] =   0.339981043584856264802665759103             # <<<<<<<<<<<<<<
@@ -5315,7 +5312,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 2;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = 0.339981043584856264802665759103;
 
-    /* "basis.pyx":260
+    /* "basis.pyx":262
  *         x[1] = - 0.339981043584856264802665759103
  *         x[2] =   0.339981043584856264802665759103
  *         x[3] =   0.861136311594052575223946488893             # <<<<<<<<<<<<<<
@@ -5325,7 +5322,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 3;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = 0.861136311594052575223946488893;
 
-    /* "basis.pyx":262
+    /* "basis.pyx":264
  *         x[3] =   0.861136311594052575223946488893
  * 
  *         w[0] = 0.347854845137453857373063949222             # <<<<<<<<<<<<<<
@@ -5335,7 +5332,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 0;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 0.347854845137453857373063949222;
 
-    /* "basis.pyx":263
+    /* "basis.pyx":265
  * 
  *         w[0] = 0.347854845137453857373063949222
  *         w[1] = 0.652145154862546142626936050778             # <<<<<<<<<<<<<<
@@ -5345,7 +5342,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 1;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 0.652145154862546142626936050778;
 
-    /* "basis.pyx":264
+    /* "basis.pyx":266
  *         w[0] = 0.347854845137453857373063949222
  *         w[1] = 0.652145154862546142626936050778
  *         w[2] = 0.652145154862546142626936050778             # <<<<<<<<<<<<<<
@@ -5355,7 +5352,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 2;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 0.652145154862546142626936050778;
 
-    /* "basis.pyx":265
+    /* "basis.pyx":267
  *         w[1] = 0.652145154862546142626936050778
  *         w[2] = 0.652145154862546142626936050778
  *         w[3] = 0.347854845137453857373063949222             # <<<<<<<<<<<<<<
@@ -5365,7 +5362,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 3;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 0.347854845137453857373063949222;
 
-    /* "basis.pyx":256
+    /* "basis.pyx":258
  *         w[2] = 5.0 / 9.0
  * 
  *     elif ( n == 4 ):             # <<<<<<<<<<<<<<
@@ -5375,7 +5372,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     break;
     case 5:
 
-    /* "basis.pyx":268
+    /* "basis.pyx":270
  * 
  *     elif ( n == 5 ):
  *         x[0] = - 0.906179845938663992797626878299             # <<<<<<<<<<<<<<
@@ -5385,7 +5382,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 0;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = -0.906179845938663992797626878299;
 
-    /* "basis.pyx":269
+    /* "basis.pyx":271
  *     elif ( n == 5 ):
  *         x[0] = - 0.906179845938663992797626878299
  *         x[1] = - 0.538469310105683091036314420700             # <<<<<<<<<<<<<<
@@ -5395,7 +5392,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 1;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = -0.538469310105683091036314420700;
 
-    /* "basis.pyx":270
+    /* "basis.pyx":272
  *         x[0] = - 0.906179845938663992797626878299
  *         x[1] = - 0.538469310105683091036314420700
  *         x[2] =   0.0             # <<<<<<<<<<<<<<
@@ -5405,7 +5402,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 2;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = 0.0;
 
-    /* "basis.pyx":271
+    /* "basis.pyx":273
  *         x[1] = - 0.538469310105683091036314420700
  *         x[2] =   0.0
  *         x[3] =   0.538469310105683091036314420700             # <<<<<<<<<<<<<<
@@ -5415,7 +5412,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 3;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = 0.538469310105683091036314420700;
 
-    /* "basis.pyx":272
+    /* "basis.pyx":274
  *         x[2] =   0.0
  *         x[3] =   0.538469310105683091036314420700
  *         x[4] =   0.906179845938663992797626878299             # <<<<<<<<<<<<<<
@@ -5425,7 +5422,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 4;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = 0.906179845938663992797626878299;
 
-    /* "basis.pyx":274
+    /* "basis.pyx":276
  *         x[4] =   0.906179845938663992797626878299
  * 
  *         w[0] = 0.236926885056189087514264040720             # <<<<<<<<<<<<<<
@@ -5435,7 +5432,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 0;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 0.236926885056189087514264040720;
 
-    /* "basis.pyx":275
+    /* "basis.pyx":277
  * 
  *         w[0] = 0.236926885056189087514264040720
  *         w[1] = 0.478628670499366468041291514836             # <<<<<<<<<<<<<<
@@ -5445,7 +5442,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 1;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 0.478628670499366468041291514836;
 
-    /* "basis.pyx":276
+    /* "basis.pyx":278
  *         w[0] = 0.236926885056189087514264040720
  *         w[1] = 0.478628670499366468041291514836
  *         w[2] = 0.568888888888888888888888888889             # <<<<<<<<<<<<<<
@@ -5455,7 +5452,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 2;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 0.568888888888888888888888888889;
 
-    /* "basis.pyx":277
+    /* "basis.pyx":279
  *         w[1] = 0.478628670499366468041291514836
  *         w[2] = 0.568888888888888888888888888889
  *         w[3] = 0.478628670499366468041291514836             # <<<<<<<<<<<<<<
@@ -5465,7 +5462,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 3;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 0.478628670499366468041291514836;
 
-    /* "basis.pyx":278
+    /* "basis.pyx":280
  *         w[2] = 0.568888888888888888888888888889
  *         w[3] = 0.478628670499366468041291514836
  *         w[4] = 0.236926885056189087514264040720             # <<<<<<<<<<<<<<
@@ -5475,7 +5472,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 4;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 0.236926885056189087514264040720;
 
-    /* "basis.pyx":267
+    /* "basis.pyx":269
  *         w[3] = 0.347854845137453857373063949222
  * 
  *     elif ( n == 5 ):             # <<<<<<<<<<<<<<
@@ -5485,7 +5482,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     break;
     case 6:
 
-    /* "basis.pyx":281
+    /* "basis.pyx":283
  * 
  *     elif ( n == 6 ):
  *         x[0] = - 0.932469514203152027812301554494             # <<<<<<<<<<<<<<
@@ -5495,7 +5492,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 0;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = -0.932469514203152027812301554494;
 
-    /* "basis.pyx":282
+    /* "basis.pyx":284
  *     elif ( n == 6 ):
  *         x[0] = - 0.932469514203152027812301554494
  *         x[1] = - 0.661209386466264513661399595020             # <<<<<<<<<<<<<<
@@ -5505,7 +5502,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 1;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = -0.661209386466264513661399595020;
 
-    /* "basis.pyx":283
+    /* "basis.pyx":285
  *         x[0] = - 0.932469514203152027812301554494
  *         x[1] = - 0.661209386466264513661399595020
  *         x[2] = - 0.238619186083196908630501721681             # <<<<<<<<<<<<<<
@@ -5515,7 +5512,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 2;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = -0.238619186083196908630501721681;
 
-    /* "basis.pyx":284
+    /* "basis.pyx":286
  *         x[1] = - 0.661209386466264513661399595020
  *         x[2] = - 0.238619186083196908630501721681
  *         x[3] =   0.238619186083196908630501721681             # <<<<<<<<<<<<<<
@@ -5525,7 +5522,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 3;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = 0.238619186083196908630501721681;
 
-    /* "basis.pyx":285
+    /* "basis.pyx":287
  *         x[2] = - 0.238619186083196908630501721681
  *         x[3] =   0.238619186083196908630501721681
  *         x[4] =   0.661209386466264513661399595020             # <<<<<<<<<<<<<<
@@ -5535,7 +5532,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 4;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = 0.661209386466264513661399595020;
 
-    /* "basis.pyx":286
+    /* "basis.pyx":288
  *         x[3] =   0.238619186083196908630501721681
  *         x[4] =   0.661209386466264513661399595020
  *         x[5] =   0.932469514203152027812301554494             # <<<<<<<<<<<<<<
@@ -5545,7 +5542,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 5;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = 0.932469514203152027812301554494;
 
-    /* "basis.pyx":288
+    /* "basis.pyx":290
  *         x[5] =   0.932469514203152027812301554494
  * 
  *         w[0] = 0.171324492379170345040296142173             # <<<<<<<<<<<<<<
@@ -5555,7 +5552,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 0;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 0.171324492379170345040296142173;
 
-    /* "basis.pyx":289
+    /* "basis.pyx":291
  * 
  *         w[0] = 0.171324492379170345040296142173
  *         w[1] = 0.360761573048138607569833513838             # <<<<<<<<<<<<<<
@@ -5565,7 +5562,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 1;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 0.360761573048138607569833513838;
 
-    /* "basis.pyx":290
+    /* "basis.pyx":292
  *         w[0] = 0.171324492379170345040296142173
  *         w[1] = 0.360761573048138607569833513838
  *         w[2] = 0.467913934572691047389870343990             # <<<<<<<<<<<<<<
@@ -5575,7 +5572,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 2;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 0.467913934572691047389870343990;
 
-    /* "basis.pyx":291
+    /* "basis.pyx":293
  *         w[1] = 0.360761573048138607569833513838
  *         w[2] = 0.467913934572691047389870343990
  *         w[3] = 0.467913934572691047389870343990             # <<<<<<<<<<<<<<
@@ -5585,7 +5582,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 3;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 0.467913934572691047389870343990;
 
-    /* "basis.pyx":292
+    /* "basis.pyx":294
  *         w[2] = 0.467913934572691047389870343990
  *         w[3] = 0.467913934572691047389870343990
  *         w[4] = 0.360761573048138607569833513838             # <<<<<<<<<<<<<<
@@ -5595,7 +5592,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 4;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 0.360761573048138607569833513838;
 
-    /* "basis.pyx":293
+    /* "basis.pyx":295
  *         w[3] = 0.467913934572691047389870343990
  *         w[4] = 0.360761573048138607569833513838
  *         w[5] = 0.171324492379170345040296142173             # <<<<<<<<<<<<<<
@@ -5605,7 +5602,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 5;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 0.171324492379170345040296142173;
 
-    /* "basis.pyx":280
+    /* "basis.pyx":282
  *         w[4] = 0.236926885056189087514264040720
  * 
  *     elif ( n == 6 ):             # <<<<<<<<<<<<<<
@@ -5615,7 +5612,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     break;
     case 7:
 
-    /* "basis.pyx":295
+    /* "basis.pyx":297
  *         w[5] = 0.171324492379170345040296142173
  *     elif ( n == 7 ):
  *         x[0] = - 0.949107912342758524526189684048             # <<<<<<<<<<<<<<
@@ -5625,7 +5622,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 0;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = -0.949107912342758524526189684048;
 
-    /* "basis.pyx":296
+    /* "basis.pyx":298
  *     elif ( n == 7 ):
  *         x[0] = - 0.949107912342758524526189684048
  *         x[1] = - 0.741531185599394439863864773281             # <<<<<<<<<<<<<<
@@ -5635,7 +5632,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 1;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = -0.741531185599394439863864773281;
 
-    /* "basis.pyx":297
+    /* "basis.pyx":299
  *         x[0] = - 0.949107912342758524526189684048
  *         x[1] = - 0.741531185599394439863864773281
  *         x[2] = - 0.405845151377397166906606412077             # <<<<<<<<<<<<<<
@@ -5645,7 +5642,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 2;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = -0.405845151377397166906606412077;
 
-    /* "basis.pyx":298
+    /* "basis.pyx":300
  *         x[1] = - 0.741531185599394439863864773281
  *         x[2] = - 0.405845151377397166906606412077
  *         x[3] =   0.0             # <<<<<<<<<<<<<<
@@ -5655,7 +5652,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 3;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = 0.0;
 
-    /* "basis.pyx":299
+    /* "basis.pyx":301
  *         x[2] = - 0.405845151377397166906606412077
  *         x[3] =   0.0
  *         x[4] =   0.405845151377397166906606412077             # <<<<<<<<<<<<<<
@@ -5665,7 +5662,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 4;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = 0.405845151377397166906606412077;
 
-    /* "basis.pyx":300
+    /* "basis.pyx":302
  *         x[3] =   0.0
  *         x[4] =   0.405845151377397166906606412077
  *         x[5] =   0.741531185599394439863864773281             # <<<<<<<<<<<<<<
@@ -5675,7 +5672,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 5;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = 0.741531185599394439863864773281;
 
-    /* "basis.pyx":301
+    /* "basis.pyx":303
  *         x[4] =   0.405845151377397166906606412077
  *         x[5] =   0.741531185599394439863864773281
  *         x[6] =   0.949107912342758524526189684048             # <<<<<<<<<<<<<<
@@ -5685,7 +5682,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 6;
     *((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )) = 0.949107912342758524526189684048;
 
-    /* "basis.pyx":303
+    /* "basis.pyx":305
  *         x[6] =   0.949107912342758524526189684048
  * 
  *         w[0] = 0.129484966168869693270611432679             # <<<<<<<<<<<<<<
@@ -5695,7 +5692,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 0;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 0.129484966168869693270611432679;
 
-    /* "basis.pyx":304
+    /* "basis.pyx":306
  * 
  *         w[0] = 0.129484966168869693270611432679
  *         w[1] = 0.279705391489276667901467771424             # <<<<<<<<<<<<<<
@@ -5705,7 +5702,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 1;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 0.279705391489276667901467771424;
 
-    /* "basis.pyx":305
+    /* "basis.pyx":307
  *         w[0] = 0.129484966168869693270611432679
  *         w[1] = 0.279705391489276667901467771424
  *         w[2] = 0.381830050505118944950369775489             # <<<<<<<<<<<<<<
@@ -5715,7 +5712,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 2;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 0.381830050505118944950369775489;
 
-    /* "basis.pyx":306
+    /* "basis.pyx":308
  *         w[1] = 0.279705391489276667901467771424
  *         w[2] = 0.381830050505118944950369775489
  *         w[3] = 0.417959183673469387755102040816             # <<<<<<<<<<<<<<
@@ -5725,7 +5722,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 3;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 0.417959183673469387755102040816;
 
-    /* "basis.pyx":307
+    /* "basis.pyx":309
  *         w[2] = 0.381830050505118944950369775489
  *         w[3] = 0.417959183673469387755102040816
  *         w[4] = 0.381830050505118944950369775489             # <<<<<<<<<<<<<<
@@ -5735,7 +5732,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 4;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 0.381830050505118944950369775489;
 
-    /* "basis.pyx":308
+    /* "basis.pyx":310
  *         w[3] = 0.417959183673469387755102040816
  *         w[4] = 0.381830050505118944950369775489
  *         w[5] = 0.279705391489276667901467771424             # <<<<<<<<<<<<<<
@@ -5745,7 +5742,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 5;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 0.279705391489276667901467771424;
 
-    /* "basis.pyx":309
+    /* "basis.pyx":311
  *         w[4] = 0.381830050505118944950369775489
  *         w[5] = 0.279705391489276667901467771424
  *         w[6] = 0.129484966168869693270611432679             # <<<<<<<<<<<<<<
@@ -5755,7 +5752,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     __pyx_t_1 = 6;
     *((double *) ( /* dim=0 */ (__pyx_v_w.data + __pyx_t_1 * __pyx_v_w.strides[0]) )) = 0.129484966168869693270611432679;
 
-    /* "basis.pyx":294
+    /* "basis.pyx":296
  *         w[4] = 0.360761573048138607569833513838
  *         w[5] = 0.171324492379170345040296142173
  *     elif ( n == 7 ):             # <<<<<<<<<<<<<<
@@ -5765,7 +5762,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     break;
     default:
 
-    /* "basis.pyx":312
+    /* "basis.pyx":314
  * 
  *     else:
  *         printf("******************************");             # <<<<<<<<<<<<<<
@@ -5774,7 +5771,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
  */
     (void)(printf(((char const *)"******************************")));
 
-    /* "basis.pyx":313
+    /* "basis.pyx":315
  *     else:
  *         printf("******************************");
  *         printf("Illegal value of n = %d \n", n);             # <<<<<<<<<<<<<<
@@ -5783,7 +5780,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
  */
     (void)(printf(((char const *)"Illegal value of n = %d \n"), __pyx_v_n));
 
-    /* "basis.pyx":314
+    /* "basis.pyx":316
  *         printf("******************************");
  *         printf("Illegal value of n = %d \n", n);
  *         printf("Legal values are 1 through 10");             # <<<<<<<<<<<<<<
@@ -5792,7 +5789,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
  */
     (void)(printf(((char const *)"Legal values are 1 through 10")));
 
-    /* "basis.pyx":315
+    /* "basis.pyx":317
  *         printf("Illegal value of n = %d \n", n);
  *         printf("Legal values are 1 through 10");
  *         printf("******************************");             # <<<<<<<<<<<<<<
@@ -5801,7 +5798,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
  */
     (void)(printf(((char const *)"******************************")));
 
-    /* "basis.pyx":316
+    /* "basis.pyx":318
  *         printf("Legal values are 1 through 10");
  *         printf("******************************");
  *         exit(1)             # <<<<<<<<<<<<<<
@@ -5812,7 +5809,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
     break;
   }
 
-  /* "basis.pyx":186
+  /* "basis.pyx":188
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void _gauss_legendre_quadrature_set1d(int n, \             # <<<<<<<<<<<<<<
@@ -5823,7 +5820,7 @@ static void __pyx_f_5basis__gauss_legendre_quadrature_set1d(int __pyx_v_n, __Pyx
   /* function exit code */
 }
 
-/* "basis.pyx":323
+/* "basis.pyx":325
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void _shape2d_t3(int idx, int idy,  \             # <<<<<<<<<<<<<<
@@ -5836,7 +5833,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
   int __pyx_t_2;
   int __pyx_t_3;
 
-  /* "basis.pyx":347
+  /* "basis.pyx":349
  *     :param phi: (double[3])  shape function after idx order derivative on x and idy order derivative on y
  *     """
  *     node_x[0] = 0.   ;  node_y[0] = 0.             # <<<<<<<<<<<<<<
@@ -5848,7 +5845,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
   __pyx_t_1 = 0;
   *((double *) ( /* dim=0 */ (__pyx_v_node_y.data + __pyx_t_1 * __pyx_v_node_y.strides[0]) )) = 0.;
 
-  /* "basis.pyx":348
+  /* "basis.pyx":350
  *     """
  *     node_x[0] = 0.   ;  node_y[0] = 0.
  *     node_x[1] = 1.   ;  node_y[1] = 0.             # <<<<<<<<<<<<<<
@@ -5860,7 +5857,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
   __pyx_t_1 = 1;
   *((double *) ( /* dim=0 */ (__pyx_v_node_y.data + __pyx_t_1 * __pyx_v_node_y.strides[0]) )) = 0.;
 
-  /* "basis.pyx":349
+  /* "basis.pyx":351
  *     node_x[0] = 0.   ;  node_y[0] = 0.
  *     node_x[1] = 1.   ;  node_y[1] = 0.
  *     node_x[2] = 0.   ;  node_y[2] = 1.             # <<<<<<<<<<<<<<
@@ -5872,7 +5869,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
   __pyx_t_1 = 2;
   *((double *) ( /* dim=0 */ (__pyx_v_node_y.data + __pyx_t_1 * __pyx_v_node_y.strides[0]) )) = 1.;
 
-  /* "basis.pyx":350
+  /* "basis.pyx":352
  *     node_x[1] = 1.   ;  node_y[1] = 0.
  *     node_x[2] = 0.   ;  node_y[2] = 1.
  *     if ( (x+y-1)<=0. and x >= 0. and y >= 0.):             # <<<<<<<<<<<<<<
@@ -5896,7 +5893,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "basis.pyx":351
+    /* "basis.pyx":353
  *     node_x[2] = 0.   ;  node_y[2] = 1.
  *     if ( (x+y-1)<=0. and x >= 0. and y >= 0.):
  *         if (idx == 0 and idy == 0):             # <<<<<<<<<<<<<<
@@ -5914,7 +5911,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
     __pyx_L8_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "basis.pyx":352
+      /* "basis.pyx":354
  *     if ( (x+y-1)<=0. and x >= 0. and y >= 0.):
  *         if (idx == 0 and idy == 0):
  *             phi[0] = 1. - x - y             # <<<<<<<<<<<<<<
@@ -5924,7 +5921,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((1. - __pyx_v_x) - __pyx_v_y);
 
-      /* "basis.pyx":353
+      /* "basis.pyx":355
  *         if (idx == 0 and idy == 0):
  *             phi[0] = 1. - x - y
  *             phi[1] = x             # <<<<<<<<<<<<<<
@@ -5934,7 +5931,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = __pyx_v_x;
 
-      /* "basis.pyx":354
+      /* "basis.pyx":356
  *             phi[0] = 1. - x - y
  *             phi[1] = x
  *             phi[2] = y             # <<<<<<<<<<<<<<
@@ -5944,7 +5941,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = __pyx_v_y;
 
-      /* "basis.pyx":351
+      /* "basis.pyx":353
  *     node_x[2] = 0.   ;  node_y[2] = 1.
  *     if ( (x+y-1)<=0. and x >= 0. and y >= 0.):
  *         if (idx == 0 and idy == 0):             # <<<<<<<<<<<<<<
@@ -5954,7 +5951,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
       goto __pyx_L7;
     }
 
-    /* "basis.pyx":355
+    /* "basis.pyx":357
  *             phi[1] = x
  *             phi[2] = y
  *         elif (idx == 1 and idy == 0):             # <<<<<<<<<<<<<<
@@ -5972,7 +5969,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
     __pyx_L10_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "basis.pyx":356
+      /* "basis.pyx":358
  *             phi[2] = y
  *         elif (idx == 1 and idy == 0):
  *             phi[0] = -1.             # <<<<<<<<<<<<<<
@@ -5982,7 +5979,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = -1.;
 
-      /* "basis.pyx":357
+      /* "basis.pyx":359
  *         elif (idx == 1 and idy == 0):
  *             phi[0] = -1.
  *             phi[1] = 1.             # <<<<<<<<<<<<<<
@@ -5992,7 +5989,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 1.;
 
-      /* "basis.pyx":358
+      /* "basis.pyx":360
  *             phi[0] = -1.
  *             phi[1] = 1.
  *             phi[2] = 0.             # <<<<<<<<<<<<<<
@@ -6002,7 +5999,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":355
+      /* "basis.pyx":357
  *             phi[1] = x
  *             phi[2] = y
  *         elif (idx == 1 and idy == 0):             # <<<<<<<<<<<<<<
@@ -6012,7 +6009,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
       goto __pyx_L7;
     }
 
-    /* "basis.pyx":359
+    /* "basis.pyx":361
  *             phi[1] = 1.
  *             phi[2] = 0.
  *         elif (idx == 0 and idy == 1):             # <<<<<<<<<<<<<<
@@ -6030,7 +6027,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
     __pyx_L12_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "basis.pyx":360
+      /* "basis.pyx":362
  *             phi[2] = 0.
  *         elif (idx == 0 and idy == 1):
  *             phi[0] = -1.             # <<<<<<<<<<<<<<
@@ -6040,7 +6037,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = -1.;
 
-      /* "basis.pyx":361
+      /* "basis.pyx":363
  *         elif (idx == 0 and idy == 1):
  *             phi[0] = -1.
  *             phi[1] = 0.             # <<<<<<<<<<<<<<
@@ -6050,7 +6047,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":362
+      /* "basis.pyx":364
  *             phi[0] = -1.
  *             phi[1] = 0.
  *             phi[2] = 1.             # <<<<<<<<<<<<<<
@@ -6060,7 +6057,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 1.;
 
-      /* "basis.pyx":359
+      /* "basis.pyx":361
  *             phi[1] = 1.
  *             phi[2] = 0.
  *         elif (idx == 0 and idy == 1):             # <<<<<<<<<<<<<<
@@ -6070,7 +6067,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
       goto __pyx_L7;
     }
 
-    /* "basis.pyx":364
+    /* "basis.pyx":366
  *             phi[2] = 1.
  *         else:
  *             phi[0] = 0.             # <<<<<<<<<<<<<<
@@ -6081,7 +6078,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":365
+      /* "basis.pyx":367
  *         else:
  *             phi[0] = 0.
  *             phi[1] = 0.             # <<<<<<<<<<<<<<
@@ -6091,7 +6088,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":366
+      /* "basis.pyx":368
  *             phi[0] = 0.
  *             phi[1] = 0.
  *             phi[2] = 0.             # <<<<<<<<<<<<<<
@@ -6103,7 +6100,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
     }
     __pyx_L7:;
 
-    /* "basis.pyx":350
+    /* "basis.pyx":352
  *     node_x[1] = 1.   ;  node_y[1] = 0.
  *     node_x[2] = 0.   ;  node_y[2] = 1.
  *     if ( (x+y-1)<=0. and x >= 0. and y >= 0.):             # <<<<<<<<<<<<<<
@@ -6113,7 +6110,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
     goto __pyx_L3;
   }
 
-  /* "basis.pyx":368
+  /* "basis.pyx":370
  *             phi[2] = 0.
  *     else:
  *         phi[0] = 0.             # <<<<<<<<<<<<<<
@@ -6124,7 +6121,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
     __pyx_t_1 = 0;
     *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-    /* "basis.pyx":369
+    /* "basis.pyx":371
  *     else:
  *         phi[0] = 0.
  *         phi[1] = 0.             # <<<<<<<<<<<<<<
@@ -6134,7 +6131,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
     __pyx_t_1 = 1;
     *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-    /* "basis.pyx":370
+    /* "basis.pyx":372
  *         phi[0] = 0.
  *         phi[1] = 0.
  *         phi[2] = 0.             # <<<<<<<<<<<<<<
@@ -6146,7 +6143,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
   }
   __pyx_L3:;
 
-  /* "basis.pyx":323
+  /* "basis.pyx":325
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void _shape2d_t3(int idx, int idy,  \             # <<<<<<<<<<<<<<
@@ -6157,7 +6154,7 @@ static void __pyx_f_5basis__shape2d_t3(int __pyx_v_idx, int __pyx_v_idy, double 
   /* function exit code */
 }
 
-/* "basis.pyx":376
+/* "basis.pyx":378
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void _shape2d_t6(int idx, int idy,  \             # <<<<<<<<<<<<<<
@@ -6170,7 +6167,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
   int __pyx_t_2;
   int __pyx_t_3;
 
-  /* "basis.pyx":400
+  /* "basis.pyx":402
  *     :param phi: (double[6])  shape function after idx order derivative on x and idy order derivative on y
  *     """
  *     node_x[0] = 0.       ;  node_y[0] = 0.             # <<<<<<<<<<<<<<
@@ -6182,7 +6179,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
   __pyx_t_1 = 0;
   *((double *) ( /* dim=0 */ (__pyx_v_node_y.data + __pyx_t_1 * __pyx_v_node_y.strides[0]) )) = 0.;
 
-  /* "basis.pyx":401
+  /* "basis.pyx":403
  *     """
  *     node_x[0] = 0.       ;  node_y[0] = 0.
  *     node_x[1] = 1.       ;  node_y[1] = 0.             # <<<<<<<<<<<<<<
@@ -6194,7 +6191,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
   __pyx_t_1 = 1;
   *((double *) ( /* dim=0 */ (__pyx_v_node_y.data + __pyx_t_1 * __pyx_v_node_y.strides[0]) )) = 0.;
 
-  /* "basis.pyx":402
+  /* "basis.pyx":404
  *     node_x[0] = 0.       ;  node_y[0] = 0.
  *     node_x[1] = 1.       ;  node_y[1] = 0.
  *     node_x[2] = 0.       ;  node_y[2] = 1.             # <<<<<<<<<<<<<<
@@ -6206,7 +6203,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
   __pyx_t_1 = 2;
   *((double *) ( /* dim=0 */ (__pyx_v_node_y.data + __pyx_t_1 * __pyx_v_node_y.strides[0]) )) = 1.;
 
-  /* "basis.pyx":403
+  /* "basis.pyx":405
  *     node_x[1] = 1.       ;  node_y[1] = 0.
  *     node_x[2] = 0.       ;  node_y[2] = 1.
  *     node_x[3] = 1. / 2.  ;  node_y[3] = 1. / 2.             # <<<<<<<<<<<<<<
@@ -6218,7 +6215,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
   __pyx_t_1 = 3;
   *((double *) ( /* dim=0 */ (__pyx_v_node_y.data + __pyx_t_1 * __pyx_v_node_y.strides[0]) )) = (1. / 2.);
 
-  /* "basis.pyx":404
+  /* "basis.pyx":406
  *     node_x[2] = 0.       ;  node_y[2] = 1.
  *     node_x[3] = 1. / 2.  ;  node_y[3] = 1. / 2.
  *     node_x[4] = 0.       ;  node_y[4] = 1. / 2.             # <<<<<<<<<<<<<<
@@ -6230,7 +6227,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
   __pyx_t_1 = 4;
   *((double *) ( /* dim=0 */ (__pyx_v_node_y.data + __pyx_t_1 * __pyx_v_node_y.strides[0]) )) = (1. / 2.);
 
-  /* "basis.pyx":405
+  /* "basis.pyx":407
  *     node_x[3] = 1. / 2.  ;  node_y[3] = 1. / 2.
  *     node_x[4] = 0.       ;  node_y[4] = 1. / 2.
  *     node_x[5] = 1. / 2.  ;  node_y[5] = 0.             # <<<<<<<<<<<<<<
@@ -6242,7 +6239,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
   __pyx_t_1 = 5;
   *((double *) ( /* dim=0 */ (__pyx_v_node_y.data + __pyx_t_1 * __pyx_v_node_y.strides[0]) )) = 0.;
 
-  /* "basis.pyx":406
+  /* "basis.pyx":408
  *     node_x[4] = 0.       ;  node_y[4] = 1. / 2.
  *     node_x[5] = 1. / 2.  ;  node_y[5] = 0.
  *     if ( (x+y-1) <= 0. and x >= 0. and y >= 0.):             # <<<<<<<<<<<<<<
@@ -6266,7 +6263,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "basis.pyx":407
+    /* "basis.pyx":409
  *     node_x[5] = 1. / 2.  ;  node_y[5] = 0.
  *     if ( (x+y-1) <= 0. and x >= 0. and y >= 0.):
  *         if (idx == 0 and idy == 0):             # <<<<<<<<<<<<<<
@@ -6284,7 +6281,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
     __pyx_L8_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "basis.pyx":408
+      /* "basis.pyx":410
  *     if ( (x+y-1) <= 0. and x >= 0. and y >= 0.):
  *         if (idx == 0 and idy == 0):
  *             phi[0] = 1. + 2. * x*x - 3. * y + 2. * y*y + x * (-3. + 4.* y)             # <<<<<<<<<<<<<<
@@ -6294,7 +6291,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((((1. + ((2. * __pyx_v_x) * __pyx_v_x)) - (3. * __pyx_v_y)) + ((2. * __pyx_v_y) * __pyx_v_y)) + (__pyx_v_x * (-3. + (4. * __pyx_v_y))));
 
-      /* "basis.pyx":409
+      /* "basis.pyx":411
  *         if (idx == 0 and idy == 0):
  *             phi[0] = 1. + 2. * x*x - 3. * y + 2. * y*y + x * (-3. + 4.* y)
  *             phi[1] = x * (-1. + 2. * x)             # <<<<<<<<<<<<<<
@@ -6304,7 +6301,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (__pyx_v_x * (-1. + (2. * __pyx_v_x)));
 
-      /* "basis.pyx":410
+      /* "basis.pyx":412
  *             phi[0] = 1. + 2. * x*x - 3. * y + 2. * y*y + x * (-3. + 4.* y)
  *             phi[1] = x * (-1. + 2. * x)
  *             phi[2] = y * (-1. + 2. * y)             # <<<<<<<<<<<<<<
@@ -6314,7 +6311,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (__pyx_v_y * (-1. + (2. * __pyx_v_y)));
 
-      /* "basis.pyx":411
+      /* "basis.pyx":413
  *             phi[1] = x * (-1. + 2. * x)
  *             phi[2] = y * (-1. + 2. * y)
  *             phi[3] = 4. * x * y             # <<<<<<<<<<<<<<
@@ -6324,7 +6321,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 3;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((4. * __pyx_v_x) * __pyx_v_y);
 
-      /* "basis.pyx":412
+      /* "basis.pyx":414
  *             phi[2] = y * (-1. + 2. * y)
  *             phi[3] = 4. * x * y
  *             phi[4] = -4. * y * (-1. + x + y)             # <<<<<<<<<<<<<<
@@ -6334,7 +6331,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 4;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((-4. * __pyx_v_y) * ((-1. + __pyx_v_x) + __pyx_v_y));
 
-      /* "basis.pyx":413
+      /* "basis.pyx":415
  *             phi[3] = 4. * x * y
  *             phi[4] = -4. * y * (-1. + x + y)
  *             phi[5] = -4. * x * (-1. + x + y)             # <<<<<<<<<<<<<<
@@ -6344,7 +6341,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 5;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((-4. * __pyx_v_x) * ((-1. + __pyx_v_x) + __pyx_v_y));
 
-      /* "basis.pyx":407
+      /* "basis.pyx":409
  *     node_x[5] = 1. / 2.  ;  node_y[5] = 0.
  *     if ( (x+y-1) <= 0. and x >= 0. and y >= 0.):
  *         if (idx == 0 and idy == 0):             # <<<<<<<<<<<<<<
@@ -6354,7 +6351,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       goto __pyx_L7;
     }
 
-    /* "basis.pyx":414
+    /* "basis.pyx":416
  *             phi[4] = -4. * y * (-1. + x + y)
  *             phi[5] = -4. * x * (-1. + x + y)
  *         elif (idx == 1 and idy == 0):             # <<<<<<<<<<<<<<
@@ -6372,7 +6369,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
     __pyx_L10_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "basis.pyx":415
+      /* "basis.pyx":417
  *             phi[5] = -4. * x * (-1. + x + y)
  *         elif (idx == 1 and idy == 0):
  *             phi[0] = -3. + 4. * x + 4. * y             # <<<<<<<<<<<<<<
@@ -6382,7 +6379,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((-3. + (4. * __pyx_v_x)) + (4. * __pyx_v_y));
 
-      /* "basis.pyx":416
+      /* "basis.pyx":418
  *         elif (idx == 1 and idy == 0):
  *             phi[0] = -3. + 4. * x + 4. * y
  *             phi[1] = -1. + 4. * x             # <<<<<<<<<<<<<<
@@ -6392,7 +6389,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (-1. + (4. * __pyx_v_x));
 
-      /* "basis.pyx":417
+      /* "basis.pyx":419
  *             phi[0] = -3. + 4. * x + 4. * y
  *             phi[1] = -1. + 4. * x
  *             phi[2] = 0.             # <<<<<<<<<<<<<<
@@ -6402,7 +6399,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":418
+      /* "basis.pyx":420
  *             phi[1] = -1. + 4. * x
  *             phi[2] = 0.
  *             phi[3] = 4. * y             # <<<<<<<<<<<<<<
@@ -6412,7 +6409,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 3;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (4. * __pyx_v_y);
 
-      /* "basis.pyx":419
+      /* "basis.pyx":421
  *             phi[2] = 0.
  *             phi[3] = 4. * y
  *             phi[4] = -4. * y             # <<<<<<<<<<<<<<
@@ -6422,7 +6419,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 4;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (-4. * __pyx_v_y);
 
-      /* "basis.pyx":420
+      /* "basis.pyx":422
  *             phi[3] = 4. * y
  *             phi[4] = -4. * y
  *             phi[5] = -4. * (-1. + 2. * x + y)             # <<<<<<<<<<<<<<
@@ -6432,7 +6429,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 5;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (-4. * ((-1. + (2. * __pyx_v_x)) + __pyx_v_y));
 
-      /* "basis.pyx":414
+      /* "basis.pyx":416
  *             phi[4] = -4. * y * (-1. + x + y)
  *             phi[5] = -4. * x * (-1. + x + y)
  *         elif (idx == 1 and idy == 0):             # <<<<<<<<<<<<<<
@@ -6442,7 +6439,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       goto __pyx_L7;
     }
 
-    /* "basis.pyx":421
+    /* "basis.pyx":423
  *             phi[4] = -4. * y
  *             phi[5] = -4. * (-1. + 2. * x + y)
  *         elif (idx == 0 and idy == 1):             # <<<<<<<<<<<<<<
@@ -6460,7 +6457,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
     __pyx_L12_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "basis.pyx":422
+      /* "basis.pyx":424
  *             phi[5] = -4. * (-1. + 2. * x + y)
  *         elif (idx == 0 and idy == 1):
  *             phi[0] = -3. + 4. * x + 4. * y             # <<<<<<<<<<<<<<
@@ -6470,7 +6467,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((-3. + (4. * __pyx_v_x)) + (4. * __pyx_v_y));
 
-      /* "basis.pyx":423
+      /* "basis.pyx":425
  *         elif (idx == 0 and idy == 1):
  *             phi[0] = -3. + 4. * x + 4. * y
  *             phi[1] = 0.             # <<<<<<<<<<<<<<
@@ -6480,7 +6477,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":424
+      /* "basis.pyx":426
  *             phi[0] = -3. + 4. * x + 4. * y
  *             phi[1] = 0.
  *             phi[2] = -1. + 4. * y             # <<<<<<<<<<<<<<
@@ -6490,7 +6487,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (-1. + (4. * __pyx_v_y));
 
-      /* "basis.pyx":425
+      /* "basis.pyx":427
  *             phi[1] = 0.
  *             phi[2] = -1. + 4. * y
  *             phi[3] = 4. * x             # <<<<<<<<<<<<<<
@@ -6500,7 +6497,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 3;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (4. * __pyx_v_x);
 
-      /* "basis.pyx":426
+      /* "basis.pyx":428
  *             phi[2] = -1. + 4. * y
  *             phi[3] = 4. * x
  *             phi[4] = -4. * (-1. + x + 2. * y)             # <<<<<<<<<<<<<<
@@ -6510,7 +6507,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 4;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (-4. * ((-1. + __pyx_v_x) + (2. * __pyx_v_y)));
 
-      /* "basis.pyx":427
+      /* "basis.pyx":429
  *             phi[3] = 4. * x
  *             phi[4] = -4. * (-1. + x + 2. * y)
  *             phi[5] = -4. * x             # <<<<<<<<<<<<<<
@@ -6520,7 +6517,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 5;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (-4. * __pyx_v_x);
 
-      /* "basis.pyx":421
+      /* "basis.pyx":423
  *             phi[4] = -4. * y
  *             phi[5] = -4. * (-1. + 2. * x + y)
  *         elif (idx == 0 and idy == 1):             # <<<<<<<<<<<<<<
@@ -6530,7 +6527,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       goto __pyx_L7;
     }
 
-    /* "basis.pyx":428
+    /* "basis.pyx":430
  *             phi[4] = -4. * (-1. + x + 2. * y)
  *             phi[5] = -4. * x
  *         elif (idx == 1 and idy == 1):             # <<<<<<<<<<<<<<
@@ -6548,7 +6545,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
     __pyx_L14_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "basis.pyx":429
+      /* "basis.pyx":431
  *             phi[5] = -4. * x
  *         elif (idx == 1 and idy == 1):
  *             phi[0] = 4.             # <<<<<<<<<<<<<<
@@ -6558,7 +6555,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 4.;
 
-      /* "basis.pyx":430
+      /* "basis.pyx":432
  *         elif (idx == 1 and idy == 1):
  *             phi[0] = 4.
  *             phi[1] = 0.             # <<<<<<<<<<<<<<
@@ -6568,7 +6565,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":431
+      /* "basis.pyx":433
  *             phi[0] = 4.
  *             phi[1] = 0.
  *             phi[2] = 0.             # <<<<<<<<<<<<<<
@@ -6578,7 +6575,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":432
+      /* "basis.pyx":434
  *             phi[1] = 0.
  *             phi[2] = 0.
  *             phi[3] = 4.             # <<<<<<<<<<<<<<
@@ -6588,7 +6585,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 3;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 4.;
 
-      /* "basis.pyx":433
+      /* "basis.pyx":435
  *             phi[2] = 0.
  *             phi[3] = 4.
  *             phi[4] = -4.             # <<<<<<<<<<<<<<
@@ -6598,7 +6595,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 4;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = -4.;
 
-      /* "basis.pyx":434
+      /* "basis.pyx":436
  *             phi[3] = 4.
  *             phi[4] = -4.
  *             phi[5] = -4.             # <<<<<<<<<<<<<<
@@ -6608,7 +6605,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 5;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = -4.;
 
-      /* "basis.pyx":428
+      /* "basis.pyx":430
  *             phi[4] = -4. * (-1. + x + 2. * y)
  *             phi[5] = -4. * x
  *         elif (idx == 1 and idy == 1):             # <<<<<<<<<<<<<<
@@ -6618,7 +6615,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       goto __pyx_L7;
     }
 
-    /* "basis.pyx":435
+    /* "basis.pyx":437
  *             phi[4] = -4.
  *             phi[5] = -4.
  *         elif (idx == 2 and idy == 0):             # <<<<<<<<<<<<<<
@@ -6636,7 +6633,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
     __pyx_L16_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "basis.pyx":436
+      /* "basis.pyx":438
  *             phi[5] = -4.
  *         elif (idx == 2 and idy == 0):
  *             phi[0] = 4.             # <<<<<<<<<<<<<<
@@ -6646,7 +6643,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 4.;
 
-      /* "basis.pyx":437
+      /* "basis.pyx":439
  *         elif (idx == 2 and idy == 0):
  *             phi[0] = 4.
  *             phi[1] = 4.             # <<<<<<<<<<<<<<
@@ -6656,7 +6653,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 4.;
 
-      /* "basis.pyx":438
+      /* "basis.pyx":440
  *             phi[0] = 4.
  *             phi[1] = 4.
  *             phi[2] = 0.             # <<<<<<<<<<<<<<
@@ -6666,7 +6663,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":439
+      /* "basis.pyx":441
  *             phi[1] = 4.
  *             phi[2] = 0.
  *             phi[3] = 0.             # <<<<<<<<<<<<<<
@@ -6676,7 +6673,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 3;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":440
+      /* "basis.pyx":442
  *             phi[2] = 0.
  *             phi[3] = 0.
  *             phi[4] = 0.             # <<<<<<<<<<<<<<
@@ -6686,7 +6683,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 4;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":441
+      /* "basis.pyx":443
  *             phi[3] = 0.
  *             phi[4] = 0.
  *             phi[5] = -8.             # <<<<<<<<<<<<<<
@@ -6696,7 +6693,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 5;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = -8.;
 
-      /* "basis.pyx":435
+      /* "basis.pyx":437
  *             phi[4] = -4.
  *             phi[5] = -4.
  *         elif (idx == 2 and idy == 0):             # <<<<<<<<<<<<<<
@@ -6706,7 +6703,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       goto __pyx_L7;
     }
 
-    /* "basis.pyx":442
+    /* "basis.pyx":444
  *             phi[4] = 0.
  *             phi[5] = -8.
  *         elif (idx == 0 and idy == 2):             # <<<<<<<<<<<<<<
@@ -6724,7 +6721,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
     __pyx_L18_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "basis.pyx":443
+      /* "basis.pyx":445
  *             phi[5] = -8.
  *         elif (idx == 0 and idy == 2):
  *             phi[0] = 4.             # <<<<<<<<<<<<<<
@@ -6734,7 +6731,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 4.;
 
-      /* "basis.pyx":444
+      /* "basis.pyx":446
  *         elif (idx == 0 and idy == 2):
  *             phi[0] = 4.
  *             phi[1] = 0.             # <<<<<<<<<<<<<<
@@ -6744,7 +6741,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":445
+      /* "basis.pyx":447
  *             phi[0] = 4.
  *             phi[1] = 0.
  *             phi[2] = 4.             # <<<<<<<<<<<<<<
@@ -6754,7 +6751,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 4.;
 
-      /* "basis.pyx":446
+      /* "basis.pyx":448
  *             phi[1] = 0.
  *             phi[2] = 4.
  *             phi[3] = 0.             # <<<<<<<<<<<<<<
@@ -6764,7 +6761,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 3;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":447
+      /* "basis.pyx":449
  *             phi[2] = 4.
  *             phi[3] = 0.
  *             phi[4] = -8.             # <<<<<<<<<<<<<<
@@ -6774,7 +6771,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 4;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = -8.;
 
-      /* "basis.pyx":448
+      /* "basis.pyx":450
  *             phi[3] = 0.
  *             phi[4] = -8.
  *             phi[5] = 0.             # <<<<<<<<<<<<<<
@@ -6784,7 +6781,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
       __pyx_t_1 = 5;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":442
+      /* "basis.pyx":444
  *             phi[4] = 0.
  *             phi[5] = -8.
  *         elif (idx == 0 and idy == 2):             # <<<<<<<<<<<<<<
@@ -6794,7 +6791,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
     }
     __pyx_L7:;
 
-    /* "basis.pyx":406
+    /* "basis.pyx":408
  *     node_x[4] = 0.       ;  node_y[4] = 1. / 2.
  *     node_x[5] = 1. / 2.  ;  node_y[5] = 0.
  *     if ( (x+y-1) <= 0. and x >= 0. and y >= 0.):             # <<<<<<<<<<<<<<
@@ -6804,7 +6801,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
     goto __pyx_L3;
   }
 
-  /* "basis.pyx":450
+  /* "basis.pyx":452
  *             phi[5] = 0.
  *     else:
  *         phi[0] = 0.             # <<<<<<<<<<<<<<
@@ -6815,7 +6812,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
     __pyx_t_1 = 0;
     *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-    /* "basis.pyx":451
+    /* "basis.pyx":453
  *     else:
  *         phi[0] = 0.
  *         phi[1] = 0.             # <<<<<<<<<<<<<<
@@ -6825,7 +6822,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
     __pyx_t_1 = 1;
     *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-    /* "basis.pyx":452
+    /* "basis.pyx":454
  *         phi[0] = 0.
  *         phi[1] = 0.
  *         phi[2] = 0.             # <<<<<<<<<<<<<<
@@ -6835,7 +6832,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
     __pyx_t_1 = 2;
     *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-    /* "basis.pyx":453
+    /* "basis.pyx":455
  *         phi[1] = 0.
  *         phi[2] = 0.
  *         phi[3] = 0.             # <<<<<<<<<<<<<<
@@ -6845,7 +6842,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
     __pyx_t_1 = 3;
     *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-    /* "basis.pyx":454
+    /* "basis.pyx":456
  *         phi[2] = 0.
  *         phi[3] = 0.
  *         phi[4] = 0.             # <<<<<<<<<<<<<<
@@ -6855,7 +6852,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
     __pyx_t_1 = 4;
     *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-    /* "basis.pyx":455
+    /* "basis.pyx":457
  *         phi[3] = 0.
  *         phi[4] = 0.
  *         phi[5] = 0.             # <<<<<<<<<<<<<<
@@ -6867,7 +6864,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
   }
   __pyx_L3:;
 
-  /* "basis.pyx":376
+  /* "basis.pyx":378
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void _shape2d_t6(int idx, int idy,  \             # <<<<<<<<<<<<<<
@@ -6878,7 +6875,7 @@ static void __pyx_f_5basis__shape2d_t6(int __pyx_v_idx, int __pyx_v_idy, double 
   /* function exit code */
 }
 
-/* "basis.pyx":462
+/* "basis.pyx":464
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void _shape2d_t10(int idx, int idy,  \             # <<<<<<<<<<<<<<
@@ -6891,7 +6888,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
   int __pyx_t_2;
   int __pyx_t_3;
 
-  /* "basis.pyx":488
+  /* "basis.pyx":490
  *     :param phi: (double[10])  shape function after idx order derivative on x and idy order derivative on y
  *     """
  *     node_x[0] = 0.       ;  node_y[0] = 0.             # <<<<<<<<<<<<<<
@@ -6903,7 +6900,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
   __pyx_t_1 = 0;
   *((double *) ( /* dim=0 */ (__pyx_v_node_y.data + __pyx_t_1 * __pyx_v_node_y.strides[0]) )) = 0.;
 
-  /* "basis.pyx":489
+  /* "basis.pyx":491
  *     """
  *     node_x[0] = 0.       ;  node_y[0] = 0.
  *     node_x[1] = 1.       ;  node_y[1] = 0.             # <<<<<<<<<<<<<<
@@ -6915,7 +6912,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
   __pyx_t_1 = 1;
   *((double *) ( /* dim=0 */ (__pyx_v_node_y.data + __pyx_t_1 * __pyx_v_node_y.strides[0]) )) = 0.;
 
-  /* "basis.pyx":490
+  /* "basis.pyx":492
  *     node_x[0] = 0.       ;  node_y[0] = 0.
  *     node_x[1] = 1.       ;  node_y[1] = 0.
  *     node_x[2] = 0.       ;  node_y[2] = 1.             # <<<<<<<<<<<<<<
@@ -6927,7 +6924,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
   __pyx_t_1 = 2;
   *((double *) ( /* dim=0 */ (__pyx_v_node_y.data + __pyx_t_1 * __pyx_v_node_y.strides[0]) )) = 1.;
 
-  /* "basis.pyx":491
+  /* "basis.pyx":493
  *     node_x[1] = 1.       ;  node_y[1] = 0.
  *     node_x[2] = 0.       ;  node_y[2] = 1.
  *     node_x[3] = 2. / 3.  ;  node_y[3] = 1. / 3.             # <<<<<<<<<<<<<<
@@ -6939,7 +6936,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
   __pyx_t_1 = 3;
   *((double *) ( /* dim=0 */ (__pyx_v_node_y.data + __pyx_t_1 * __pyx_v_node_y.strides[0]) )) = (1. / 3.);
 
-  /* "basis.pyx":492
+  /* "basis.pyx":494
  *     node_x[2] = 0.       ;  node_y[2] = 1.
  *     node_x[3] = 2. / 3.  ;  node_y[3] = 1. / 3.
  *     node_x[4] = 1. / 3.  ;  node_y[4] = 2. / 3.             # <<<<<<<<<<<<<<
@@ -6951,7 +6948,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
   __pyx_t_1 = 4;
   *((double *) ( /* dim=0 */ (__pyx_v_node_y.data + __pyx_t_1 * __pyx_v_node_y.strides[0]) )) = (2. / 3.);
 
-  /* "basis.pyx":493
+  /* "basis.pyx":495
  *     node_x[3] = 2. / 3.  ;  node_y[3] = 1. / 3.
  *     node_x[4] = 1. / 3.  ;  node_y[4] = 2. / 3.
  *     node_x[5] = 0.       ;  node_y[5] = 1. / 3.             # <<<<<<<<<<<<<<
@@ -6963,7 +6960,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
   __pyx_t_1 = 5;
   *((double *) ( /* dim=0 */ (__pyx_v_node_y.data + __pyx_t_1 * __pyx_v_node_y.strides[0]) )) = (1. / 3.);
 
-  /* "basis.pyx":494
+  /* "basis.pyx":496
  *     node_x[4] = 1. / 3.  ;  node_y[4] = 2. / 3.
  *     node_x[5] = 0.       ;  node_y[5] = 1. / 3.
  *     node_x[6] = 0.       ;  node_y[6] = 2. / 3.             # <<<<<<<<<<<<<<
@@ -6975,7 +6972,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
   __pyx_t_1 = 6;
   *((double *) ( /* dim=0 */ (__pyx_v_node_y.data + __pyx_t_1 * __pyx_v_node_y.strides[0]) )) = (2. / 3.);
 
-  /* "basis.pyx":495
+  /* "basis.pyx":497
  *     node_x[5] = 0.       ;  node_y[5] = 1. / 3.
  *     node_x[6] = 0.       ;  node_y[6] = 2. / 3.
  *     node_x[7] = 1. / 3.  ;  node_y[7] = 0.             # <<<<<<<<<<<<<<
@@ -6987,7 +6984,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
   __pyx_t_1 = 7;
   *((double *) ( /* dim=0 */ (__pyx_v_node_y.data + __pyx_t_1 * __pyx_v_node_y.strides[0]) )) = 0.;
 
-  /* "basis.pyx":496
+  /* "basis.pyx":498
  *     node_x[6] = 0.       ;  node_y[6] = 2. / 3.
  *     node_x[7] = 1. / 3.  ;  node_y[7] = 0.
  *     node_x[8] = 2. / 3.  ;  node_y[8] = 0.             # <<<<<<<<<<<<<<
@@ -6999,7 +6996,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
   __pyx_t_1 = 8;
   *((double *) ( /* dim=0 */ (__pyx_v_node_y.data + __pyx_t_1 * __pyx_v_node_y.strides[0]) )) = 0.;
 
-  /* "basis.pyx":497
+  /* "basis.pyx":499
  *     node_x[7] = 1. / 3.  ;  node_y[7] = 0.
  *     node_x[8] = 2. / 3.  ;  node_y[8] = 0.
  *     node_x[9] = 1. / 3.  ;  node_y[9] = 1. / 3.             # <<<<<<<<<<<<<<
@@ -7011,7 +7008,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
   __pyx_t_1 = 9;
   *((double *) ( /* dim=0 */ (__pyx_v_node_y.data + __pyx_t_1 * __pyx_v_node_y.strides[0]) )) = (1. / 3.);
 
-  /* "basis.pyx":498
+  /* "basis.pyx":500
  *     node_x[8] = 2. / 3.  ;  node_y[8] = 0.
  *     node_x[9] = 1. / 3.  ;  node_y[9] = 1. / 3.
  *     if ( (x+y-1)<=0. and x >= 0. and y >=0.):             # <<<<<<<<<<<<<<
@@ -7035,7 +7032,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "basis.pyx":499
+    /* "basis.pyx":501
  *     node_x[9] = 1. / 3.  ;  node_y[9] = 1. / 3.
  *     if ( (x+y-1)<=0. and x >= 0. and y >=0.):
  *         if (idx == 0 and idy == 0):             # <<<<<<<<<<<<<<
@@ -7053,7 +7050,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
     __pyx_L8_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "basis.pyx":500
+      /* "basis.pyx":502
  *     if ( (x+y-1)<=0. and x >= 0. and y >=0.):
  *         if (idx == 0 and idy == 0):
  *             phi[0] = (2. - 9. * x*x*x - 11. * y + 18.* y*y - 9.* y*y*y - 9. * x*x *(-2. + 3. * y) + x * (-11. + 36. * y - 27. * y*y))/2.             # <<<<<<<<<<<<<<
@@ -7063,7 +7060,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (((((((2. - (((9. * __pyx_v_x) * __pyx_v_x) * __pyx_v_x)) - (11. * __pyx_v_y)) + ((18. * __pyx_v_y) * __pyx_v_y)) - (((9. * __pyx_v_y) * __pyx_v_y) * __pyx_v_y)) - (((9. * __pyx_v_x) * __pyx_v_x) * (-2. + (3. * __pyx_v_y)))) + (__pyx_v_x * ((-11. + (36. * __pyx_v_y)) - ((27. * __pyx_v_y) * __pyx_v_y)))) / 2.);
 
-      /* "basis.pyx":501
+      /* "basis.pyx":503
  *         if (idx == 0 and idy == 0):
  *             phi[0] = (2. - 9. * x*x*x - 11. * y + 18.* y*y - 9.* y*y*y - 9. * x*x *(-2. + 3. * y) + x * (-11. + 36. * y - 27. * y*y))/2.
  *             phi[1] = (x * (2. - 9. * x + 9. * x*x ))/2.             # <<<<<<<<<<<<<<
@@ -7073,7 +7070,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((__pyx_v_x * ((2. - (9. * __pyx_v_x)) + ((9. * __pyx_v_x) * __pyx_v_x))) / 2.);
 
-      /* "basis.pyx":502
+      /* "basis.pyx":504
  *             phi[0] = (2. - 9. * x*x*x - 11. * y + 18.* y*y - 9.* y*y*y - 9. * x*x *(-2. + 3. * y) + x * (-11. + 36. * y - 27. * y*y))/2.
  *             phi[1] = (x * (2. - 9. * x + 9. * x*x ))/2.
  *             phi[2] = (y * (2. - 9. * y + 9. * y*y ))/2.             # <<<<<<<<<<<<<<
@@ -7083,7 +7080,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((__pyx_v_y * ((2. - (9. * __pyx_v_y)) + ((9. * __pyx_v_y) * __pyx_v_y))) / 2.);
 
-      /* "basis.pyx":503
+      /* "basis.pyx":505
  *             phi[1] = (x * (2. - 9. * x + 9. * x*x ))/2.
  *             phi[2] = (y * (2. - 9. * y + 9. * y*y ))/2.
  *             phi[3] = (9.* x * (-1. + 3. * x ) * y)/2.             # <<<<<<<<<<<<<<
@@ -7093,7 +7090,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 3;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((((9. * __pyx_v_x) * (-1. + (3. * __pyx_v_x))) * __pyx_v_y) / 2.);
 
-      /* "basis.pyx":504
+      /* "basis.pyx":506
  *             phi[2] = (y * (2. - 9. * y + 9. * y*y ))/2.
  *             phi[3] = (9.* x * (-1. + 3. * x ) * y)/2.
  *             phi[4] = (9. * x * y * (-1. + 3. * y))/2.             # <<<<<<<<<<<<<<
@@ -7103,7 +7100,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 4;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((((9. * __pyx_v_x) * __pyx_v_y) * (-1. + (3. * __pyx_v_y))) / 2.);
 
-      /* "basis.pyx":505
+      /* "basis.pyx":507
  *             phi[3] = (9.* x * (-1. + 3. * x ) * y)/2.
  *             phi[4] = (9. * x * y * (-1. + 3. * y))/2.
  *             phi[5] = (9. * y * (2. + 3.* x*x - 5. * y + 3 * y*y + x * (-5. + 6 * y) ))/2.             # <<<<<<<<<<<<<<
@@ -7113,7 +7110,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 5;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (((9. * __pyx_v_y) * ((((2. + ((3. * __pyx_v_x) * __pyx_v_x)) - (5. * __pyx_v_y)) + ((3.0 * __pyx_v_y) * __pyx_v_y)) + (__pyx_v_x * (-5. + (6.0 * __pyx_v_y))))) / 2.);
 
-      /* "basis.pyx":506
+      /* "basis.pyx":508
  *             phi[4] = (9. * x * y * (-1. + 3. * y))/2.
  *             phi[5] = (9. * y * (2. + 3.* x*x - 5. * y + 3 * y*y + x * (-5. + 6 * y) ))/2.
  *             phi[6] = (-9. * y * (-1. + x + y) * (-1. + 3. * y))/2.             # <<<<<<<<<<<<<<
@@ -7123,7 +7120,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 6;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((((-9. * __pyx_v_y) * ((-1. + __pyx_v_x) + __pyx_v_y)) * (-1. + (3. * __pyx_v_y))) / 2.);
 
-      /* "basis.pyx":507
+      /* "basis.pyx":509
  *             phi[5] = (9. * y * (2. + 3.* x*x - 5. * y + 3 * y*y + x * (-5. + 6 * y) ))/2.
  *             phi[6] = (-9. * y * (-1. + x + y) * (-1. + 3. * y))/2.
  *             phi[7] = (9. * x * (2. + 3. * x*x - 5. * y + 3. * y*y + x * (-5. + 6. * y)))/2.             # <<<<<<<<<<<<<<
@@ -7133,7 +7130,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 7;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (((9. * __pyx_v_x) * ((((2. + ((3. * __pyx_v_x) * __pyx_v_x)) - (5. * __pyx_v_y)) + ((3. * __pyx_v_y) * __pyx_v_y)) + (__pyx_v_x * (-5. + (6. * __pyx_v_y))))) / 2.);
 
-      /* "basis.pyx":508
+      /* "basis.pyx":510
  *             phi[6] = (-9. * y * (-1. + x + y) * (-1. + 3. * y))/2.
  *             phi[7] = (9. * x * (2. + 3. * x*x - 5. * y + 3. * y*y + x * (-5. + 6. * y)))/2.
  *             phi[8] = (-9. * x * (-1. + 3. * x) * (-1. + x + y))/2.             # <<<<<<<<<<<<<<
@@ -7143,7 +7140,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 8;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((((-9. * __pyx_v_x) * (-1. + (3. * __pyx_v_x))) * ((-1. + __pyx_v_x) + __pyx_v_y)) / 2.);
 
-      /* "basis.pyx":509
+      /* "basis.pyx":511
  *             phi[7] = (9. * x * (2. + 3. * x*x - 5. * y + 3. * y*y + x * (-5. + 6. * y)))/2.
  *             phi[8] = (-9. * x * (-1. + 3. * x) * (-1. + x + y))/2.
  *             phi[9] = -27. * x * y * (-1. + x + y)             # <<<<<<<<<<<<<<
@@ -7153,7 +7150,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 9;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (((-27. * __pyx_v_x) * __pyx_v_y) * ((-1. + __pyx_v_x) + __pyx_v_y));
 
-      /* "basis.pyx":499
+      /* "basis.pyx":501
  *     node_x[9] = 1. / 3.  ;  node_y[9] = 1. / 3.
  *     if ( (x+y-1)<=0. and x >= 0. and y >=0.):
  *         if (idx == 0 and idy == 0):             # <<<<<<<<<<<<<<
@@ -7163,7 +7160,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       goto __pyx_L7;
     }
 
-    /* "basis.pyx":510
+    /* "basis.pyx":512
  *             phi[8] = (-9. * x * (-1. + 3. * x) * (-1. + x + y))/2.
  *             phi[9] = -27. * x * y * (-1. + x + y)
  *         elif (idx == 1 and idy == 0):             # <<<<<<<<<<<<<<
@@ -7181,7 +7178,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
     __pyx_L10_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "basis.pyx":511
+      /* "basis.pyx":513
  *             phi[9] = -27. * x * y * (-1. + x + y)
  *         elif (idx == 1 and idy == 0):
  *             phi[0] = (-11. - 27. * x*x + x * (36. - 54. * y) + 36. * y - 27. * y*y)/2.             # <<<<<<<<<<<<<<
@@ -7191,7 +7188,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (((((-11. - ((27. * __pyx_v_x) * __pyx_v_x)) + (__pyx_v_x * (36. - (54. * __pyx_v_y)))) + (36. * __pyx_v_y)) - ((27. * __pyx_v_y) * __pyx_v_y)) / 2.);
 
-      /* "basis.pyx":512
+      /* "basis.pyx":514
  *         elif (idx == 1 and idy == 0):
  *             phi[0] = (-11. - 27. * x*x + x * (36. - 54. * y) + 36. * y - 27. * y*y)/2.
  *             phi[1] = 1. - 9. * x + (27. * x*x )/2.             # <<<<<<<<<<<<<<
@@ -7201,7 +7198,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((1. - (9. * __pyx_v_x)) + (((27. * __pyx_v_x) * __pyx_v_x) / 2.));
 
-      /* "basis.pyx":513
+      /* "basis.pyx":515
  *             phi[0] = (-11. - 27. * x*x + x * (36. - 54. * y) + 36. * y - 27. * y*y)/2.
  *             phi[1] = 1. - 9. * x + (27. * x*x )/2.
  *             phi[2] = 0.             # <<<<<<<<<<<<<<
@@ -7211,7 +7208,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":514
+      /* "basis.pyx":516
  *             phi[1] = 1. - 9. * x + (27. * x*x )/2.
  *             phi[2] = 0.
  *             phi[3] = (9. * (-1. + 6. * x) * y)/2.             # <<<<<<<<<<<<<<
@@ -7221,7 +7218,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 3;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (((9. * (-1. + (6. * __pyx_v_x))) * __pyx_v_y) / 2.);
 
-      /* "basis.pyx":515
+      /* "basis.pyx":517
  *             phi[2] = 0.
  *             phi[3] = (9. * (-1. + 6. * x) * y)/2.
  *             phi[4] = (9. * y * (-1. + 3. * y ))/2.             # <<<<<<<<<<<<<<
@@ -7231,7 +7228,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 4;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (((9. * __pyx_v_y) * (-1. + (3. * __pyx_v_y))) / 2.);
 
-      /* "basis.pyx":516
+      /* "basis.pyx":518
  *             phi[3] = (9. * (-1. + 6. * x) * y)/2.
  *             phi[4] = (9. * y * (-1. + 3. * y ))/2.
  *             phi[5] = (9. * y * (-5. + 6. * x + 6. * y))/2.             # <<<<<<<<<<<<<<
@@ -7241,7 +7238,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 5;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (((9. * __pyx_v_y) * ((-5. + (6. * __pyx_v_x)) + (6. * __pyx_v_y))) / 2.);
 
-      /* "basis.pyx":517
+      /* "basis.pyx":519
  *             phi[4] = (9. * y * (-1. + 3. * y ))/2.
  *             phi[5] = (9. * y * (-5. + 6. * x + 6. * y))/2.
  *             phi[6] = (9. * (1. - 3. * y ) * y)/2.             # <<<<<<<<<<<<<<
@@ -7251,7 +7248,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 6;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (((9. * (1. - (3. * __pyx_v_y))) * __pyx_v_y) / 2.);
 
-      /* "basis.pyx":518
+      /* "basis.pyx":520
  *             phi[5] = (9. * y * (-5. + 6. * x + 6. * y))/2.
  *             phi[6] = (9. * (1. - 3. * y ) * y)/2.
  *             phi[7] = (9. * (2. + 9. * x*x - 5. * y + 3. * y*y + 2. * x * (-5. + 6. * y)))/2.             # <<<<<<<<<<<<<<
@@ -7261,7 +7258,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 7;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((9. * ((((2. + ((9. * __pyx_v_x) * __pyx_v_x)) - (5. * __pyx_v_y)) + ((3. * __pyx_v_y) * __pyx_v_y)) + ((2. * __pyx_v_x) * (-5. + (6. * __pyx_v_y))))) / 2.);
 
-      /* "basis.pyx":519
+      /* "basis.pyx":521
  *             phi[6] = (9. * (1. - 3. * y ) * y)/2.
  *             phi[7] = (9. * (2. + 9. * x*x - 5. * y + 3. * y*y + 2. * x * (-5. + 6. * y)))/2.
  *             phi[8] = (-9. * (1. + 9. * x*x - y + x * (-8. + 6. * y)))/2.             # <<<<<<<<<<<<<<
@@ -7271,7 +7268,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 8;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((-9. * (((1. + ((9. * __pyx_v_x) * __pyx_v_x)) - __pyx_v_y) + (__pyx_v_x * (-8. + (6. * __pyx_v_y))))) / 2.);
 
-      /* "basis.pyx":520
+      /* "basis.pyx":522
  *             phi[7] = (9. * (2. + 9. * x*x - 5. * y + 3. * y*y + 2. * x * (-5. + 6. * y)))/2.
  *             phi[8] = (-9. * (1. + 9. * x*x - y + x * (-8. + 6. * y)))/2.
  *             phi[9] = -27. * y * (-1. + 2. * x + y)             # <<<<<<<<<<<<<<
@@ -7281,7 +7278,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 9;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((-27. * __pyx_v_y) * ((-1. + (2. * __pyx_v_x)) + __pyx_v_y));
 
-      /* "basis.pyx":510
+      /* "basis.pyx":512
  *             phi[8] = (-9. * x * (-1. + 3. * x) * (-1. + x + y))/2.
  *             phi[9] = -27. * x * y * (-1. + x + y)
  *         elif (idx == 1 and idy == 0):             # <<<<<<<<<<<<<<
@@ -7291,7 +7288,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       goto __pyx_L7;
     }
 
-    /* "basis.pyx":521
+    /* "basis.pyx":523
  *             phi[8] = (-9. * (1. + 9. * x*x - y + x * (-8. + 6. * y)))/2.
  *             phi[9] = -27. * y * (-1. + 2. * x + y)
  *         elif (idx == 0 and idy == 1):             # <<<<<<<<<<<<<<
@@ -7309,7 +7306,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
     __pyx_L12_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "basis.pyx":522
+      /* "basis.pyx":524
  *             phi[9] = -27. * y * (-1. + 2. * x + y)
  *         elif (idx == 0 and idy == 1):
  *             phi[0] = (-11. - 27. * x*x + x * (36. - 54. * y) + 36. * y - 27. * y*y)/2.             # <<<<<<<<<<<<<<
@@ -7319,7 +7316,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (((((-11. - ((27. * __pyx_v_x) * __pyx_v_x)) + (__pyx_v_x * (36. - (54. * __pyx_v_y)))) + (36. * __pyx_v_y)) - ((27. * __pyx_v_y) * __pyx_v_y)) / 2.);
 
-      /* "basis.pyx":523
+      /* "basis.pyx":525
  *         elif (idx == 0 and idy == 1):
  *             phi[0] = (-11. - 27. * x*x + x * (36. - 54. * y) + 36. * y - 27. * y*y)/2.
  *             phi[1] = 0.             # <<<<<<<<<<<<<<
@@ -7329,7 +7326,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":524
+      /* "basis.pyx":526
  *             phi[0] = (-11. - 27. * x*x + x * (36. - 54. * y) + 36. * y - 27. * y*y)/2.
  *             phi[1] = 0.
  *             phi[2] = 1. - 9. * y + (27. * y*y)/2.             # <<<<<<<<<<<<<<
@@ -7339,7 +7336,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((1. - (9. * __pyx_v_y)) + (((27. * __pyx_v_y) * __pyx_v_y) / 2.));
 
-      /* "basis.pyx":525
+      /* "basis.pyx":527
  *             phi[1] = 0.
  *             phi[2] = 1. - 9. * y + (27. * y*y)/2.
  *             phi[3] = (9. * x * (-1. + 3. * x ))/2.             # <<<<<<<<<<<<<<
@@ -7349,7 +7346,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 3;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (((9. * __pyx_v_x) * (-1. + (3. * __pyx_v_x))) / 2.);
 
-      /* "basis.pyx":526
+      /* "basis.pyx":528
  *             phi[2] = 1. - 9. * y + (27. * y*y)/2.
  *             phi[3] = (9. * x * (-1. + 3. * x ))/2.
  *             phi[4] = (9. * x * (-1. + 6. * y ))/2.             # <<<<<<<<<<<<<<
@@ -7359,7 +7356,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 4;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (((9. * __pyx_v_x) * (-1. + (6. * __pyx_v_y))) / 2.);
 
-      /* "basis.pyx":527
+      /* "basis.pyx":529
  *             phi[3] = (9. * x * (-1. + 3. * x ))/2.
  *             phi[4] = (9. * x * (-1. + 6. * y ))/2.
  *             phi[5] = (9. * (2. + 3. * x*x - 10. * y + 9. * y*y + x * (-5. + 12. * y)))/2.             # <<<<<<<<<<<<<<
@@ -7369,7 +7366,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 5;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((9. * ((((2. + ((3. * __pyx_v_x) * __pyx_v_x)) - (10. * __pyx_v_y)) + ((9. * __pyx_v_y) * __pyx_v_y)) + (__pyx_v_x * (-5. + (12. * __pyx_v_y))))) / 2.);
 
-      /* "basis.pyx":528
+      /* "basis.pyx":530
  *             phi[4] = (9. * x * (-1. + 6. * y ))/2.
  *             phi[5] = (9. * (2. + 3. * x*x - 10. * y + 9. * y*y + x * (-5. + 12. * y)))/2.
  *             phi[6] = (-9. * (1. - 8. * y + 9. * y*y + x * (-1. + 6. * y)))/2.             # <<<<<<<<<<<<<<
@@ -7379,7 +7376,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 6;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((-9. * (((1. - (8. * __pyx_v_y)) + ((9. * __pyx_v_y) * __pyx_v_y)) + (__pyx_v_x * (-1. + (6. * __pyx_v_y))))) / 2.);
 
-      /* "basis.pyx":529
+      /* "basis.pyx":531
  *             phi[5] = (9. * (2. + 3. * x*x - 10. * y + 9. * y*y + x * (-5. + 12. * y)))/2.
  *             phi[6] = (-9. * (1. - 8. * y + 9. * y*y + x * (-1. + 6. * y)))/2.
  *             phi[7] = (9. * x * (-5. + 6. * x + 6. * y))/2.             # <<<<<<<<<<<<<<
@@ -7389,7 +7386,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 7;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (((9. * __pyx_v_x) * ((-5. + (6. * __pyx_v_x)) + (6. * __pyx_v_y))) / 2.);
 
-      /* "basis.pyx":530
+      /* "basis.pyx":532
  *             phi[6] = (-9. * (1. - 8. * y + 9. * y*y + x * (-1. + 6. * y)))/2.
  *             phi[7] = (9. * x * (-5. + 6. * x + 6. * y))/2.
  *             phi[8] = (9. * (1. - 3. * x) * x)/2.             # <<<<<<<<<<<<<<
@@ -7399,7 +7396,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 8;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (((9. * (1. - (3. * __pyx_v_x))) * __pyx_v_x) / 2.);
 
-      /* "basis.pyx":531
+      /* "basis.pyx":533
  *             phi[7] = (9. * x * (-5. + 6. * x + 6. * y))/2.
  *             phi[8] = (9. * (1. - 3. * x) * x)/2.
  *             phi[9] = -27. * x * (-1. + x + 2. * y)             # <<<<<<<<<<<<<<
@@ -7409,7 +7406,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 9;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((-27. * __pyx_v_x) * ((-1. + __pyx_v_x) + (2. * __pyx_v_y)));
 
-      /* "basis.pyx":521
+      /* "basis.pyx":523
  *             phi[8] = (-9. * (1. + 9. * x*x - y + x * (-8. + 6. * y)))/2.
  *             phi[9] = -27. * y * (-1. + 2. * x + y)
  *         elif (idx == 0 and idy == 1):             # <<<<<<<<<<<<<<
@@ -7419,7 +7416,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       goto __pyx_L7;
     }
 
-    /* "basis.pyx":532
+    /* "basis.pyx":534
  *             phi[8] = (9. * (1. - 3. * x) * x)/2.
  *             phi[9] = -27. * x * (-1. + x + 2. * y)
  *         elif (idx == 1 and idy == 1):             # <<<<<<<<<<<<<<
@@ -7437,7 +7434,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
     __pyx_L14_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "basis.pyx":533
+      /* "basis.pyx":535
  *             phi[9] = -27. * x * (-1. + x + 2. * y)
  *         elif (idx == 1 and idy == 1):
  *             phi[0] = -9. * (-2. + 3. * x + 3. * y)             # <<<<<<<<<<<<<<
@@ -7447,7 +7444,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (-9. * ((-2. + (3. * __pyx_v_x)) + (3. * __pyx_v_y)));
 
-      /* "basis.pyx":534
+      /* "basis.pyx":536
  *         elif (idx == 1 and idy == 1):
  *             phi[0] = -9. * (-2. + 3. * x + 3. * y)
  *             phi[1] = 0.             # <<<<<<<<<<<<<<
@@ -7457,7 +7454,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":535
+      /* "basis.pyx":537
  *             phi[0] = -9. * (-2. + 3. * x + 3. * y)
  *             phi[1] = 0.
  *             phi[2] = 0.             # <<<<<<<<<<<<<<
@@ -7467,7 +7464,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":536
+      /* "basis.pyx":538
  *             phi[1] = 0.
  *             phi[2] = 0.
  *             phi[3] = -4.5 + 27. * x             # <<<<<<<<<<<<<<
@@ -7477,7 +7474,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 3;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (-4.5 + (27. * __pyx_v_x));
 
-      /* "basis.pyx":537
+      /* "basis.pyx":539
  *             phi[2] = 0.
  *             phi[3] = -4.5 + 27. * x
  *             phi[4] = -4.5 + 27. * y             # <<<<<<<<<<<<<<
@@ -7487,7 +7484,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 4;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (-4.5 + (27. * __pyx_v_y));
 
-      /* "basis.pyx":538
+      /* "basis.pyx":540
  *             phi[3] = -4.5 + 27. * x
  *             phi[4] = -4.5 + 27. * y
  *             phi[5] = (9. * (-5. + 6. * x + 12. * y))/2.             # <<<<<<<<<<<<<<
@@ -7497,7 +7494,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 5;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((9. * ((-5. + (6. * __pyx_v_x)) + (12. * __pyx_v_y))) / 2.);
 
-      /* "basis.pyx":539
+      /* "basis.pyx":541
  *             phi[4] = -4.5 + 27. * y
  *             phi[5] = (9. * (-5. + 6. * x + 12. * y))/2.
  *             phi[6] = 4.5 - 27. * y             # <<<<<<<<<<<<<<
@@ -7507,7 +7504,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 6;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (4.5 - (27. * __pyx_v_y));
 
-      /* "basis.pyx":540
+      /* "basis.pyx":542
  *             phi[5] = (9. * (-5. + 6. * x + 12. * y))/2.
  *             phi[6] = 4.5 - 27. * y
  *             phi[7] = (9. * (-5. + 12. * x + 6. * y))/2.             # <<<<<<<<<<<<<<
@@ -7517,7 +7514,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 7;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = ((9. * ((-5. + (12. * __pyx_v_x)) + (6. * __pyx_v_y))) / 2.);
 
-      /* "basis.pyx":541
+      /* "basis.pyx":543
  *             phi[6] = 4.5 - 27. * y
  *             phi[7] = (9. * (-5. + 12. * x + 6. * y))/2.
  *             phi[8] = 4.5 - 27. * x             # <<<<<<<<<<<<<<
@@ -7527,7 +7524,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 8;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (4.5 - (27. * __pyx_v_x));
 
-      /* "basis.pyx":542
+      /* "basis.pyx":544
  *             phi[7] = (9. * (-5. + 12. * x + 6. * y))/2.
  *             phi[8] = 4.5 - 27. * x
  *             phi[9] = -27. * (-1. + 2. * x + 2. * y)             # <<<<<<<<<<<<<<
@@ -7537,7 +7534,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 9;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (-27. * ((-1. + (2. * __pyx_v_x)) + (2. * __pyx_v_y)));
 
-      /* "basis.pyx":532
+      /* "basis.pyx":534
  *             phi[8] = (9. * (1. - 3. * x) * x)/2.
  *             phi[9] = -27. * x * (-1. + x + 2. * y)
  *         elif (idx == 1 and idy == 1):             # <<<<<<<<<<<<<<
@@ -7547,7 +7544,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       goto __pyx_L7;
     }
 
-    /* "basis.pyx":543
+    /* "basis.pyx":545
  *             phi[8] = 4.5 - 27. * x
  *             phi[9] = -27. * (-1. + 2. * x + 2. * y)
  *         elif (idx == 2 and idy == 0):             # <<<<<<<<<<<<<<
@@ -7565,7 +7562,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
     __pyx_L16_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "basis.pyx":544
+      /* "basis.pyx":546
  *             phi[9] = -27. * (-1. + 2. * x + 2. * y)
  *         elif (idx == 2 and idy == 0):
  *             phi[0] = -9. * (-2. + 3. * x + 3. * y)             # <<<<<<<<<<<<<<
@@ -7575,7 +7572,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (-9. * ((-2. + (3. * __pyx_v_x)) + (3. * __pyx_v_y)));
 
-      /* "basis.pyx":545
+      /* "basis.pyx":547
  *         elif (idx == 2 and idy == 0):
  *             phi[0] = -9. * (-2. + 3. * x + 3. * y)
  *             phi[1] = -9. + 27. * x             # <<<<<<<<<<<<<<
@@ -7585,7 +7582,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (-9. + (27. * __pyx_v_x));
 
-      /* "basis.pyx":546
+      /* "basis.pyx":548
  *             phi[0] = -9. * (-2. + 3. * x + 3. * y)
  *             phi[1] = -9. + 27. * x
  *             phi[2] = 0.             # <<<<<<<<<<<<<<
@@ -7595,7 +7592,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":547
+      /* "basis.pyx":549
  *             phi[1] = -9. + 27. * x
  *             phi[2] = 0.
  *             phi[3] = 27. * y             # <<<<<<<<<<<<<<
@@ -7605,7 +7602,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 3;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (27. * __pyx_v_y);
 
-      /* "basis.pyx":548
+      /* "basis.pyx":550
  *             phi[2] = 0.
  *             phi[3] = 27. * y
  *             phi[4] = 0.             # <<<<<<<<<<<<<<
@@ -7615,7 +7612,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 4;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":549
+      /* "basis.pyx":551
  *             phi[3] = 27. * y
  *             phi[4] = 0.
  *             phi[5] = 27. * y             # <<<<<<<<<<<<<<
@@ -7625,7 +7622,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 5;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (27. * __pyx_v_y);
 
-      /* "basis.pyx":550
+      /* "basis.pyx":552
  *             phi[4] = 0.
  *             phi[5] = 27. * y
  *             phi[6] = 0.             # <<<<<<<<<<<<<<
@@ -7635,7 +7632,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 6;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":551
+      /* "basis.pyx":553
  *             phi[5] = 27. * y
  *             phi[6] = 0.
  *             phi[7] = 9. * (-5. + 9. * x + 6. * y)             # <<<<<<<<<<<<<<
@@ -7645,7 +7642,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 7;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (9. * ((-5. + (9. * __pyx_v_x)) + (6. * __pyx_v_y)));
 
-      /* "basis.pyx":552
+      /* "basis.pyx":554
  *             phi[6] = 0.
  *             phi[7] = 9. * (-5. + 9. * x + 6. * y)
  *             phi[8] = -9. * (-4. + 9. * x + 3. * y)             # <<<<<<<<<<<<<<
@@ -7655,7 +7652,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 8;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (-9. * ((-4. + (9. * __pyx_v_x)) + (3. * __pyx_v_y)));
 
-      /* "basis.pyx":553
+      /* "basis.pyx":555
  *             phi[7] = 9. * (-5. + 9. * x + 6. * y)
  *             phi[8] = -9. * (-4. + 9. * x + 3. * y)
  *             phi[9] = -54. * y             # <<<<<<<<<<<<<<
@@ -7665,7 +7662,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 9;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (-54. * __pyx_v_y);
 
-      /* "basis.pyx":543
+      /* "basis.pyx":545
  *             phi[8] = 4.5 - 27. * x
  *             phi[9] = -27. * (-1. + 2. * x + 2. * y)
  *         elif (idx == 2 and idy == 0):             # <<<<<<<<<<<<<<
@@ -7675,7 +7672,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       goto __pyx_L7;
     }
 
-    /* "basis.pyx":554
+    /* "basis.pyx":556
  *             phi[8] = -9. * (-4. + 9. * x + 3. * y)
  *             phi[9] = -54. * y
  *         elif (idx == 0 and idy == 2):             # <<<<<<<<<<<<<<
@@ -7693,7 +7690,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
     __pyx_L18_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "basis.pyx":555
+      /* "basis.pyx":557
  *             phi[9] = -54. * y
  *         elif (idx == 0 and idy == 2):
  *             phi[0] = -9. * (-2. + 3. * x + 3. * y)             # <<<<<<<<<<<<<<
@@ -7703,7 +7700,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (-9. * ((-2. + (3. * __pyx_v_x)) + (3. * __pyx_v_y)));
 
-      /* "basis.pyx":556
+      /* "basis.pyx":558
  *         elif (idx == 0 and idy == 2):
  *             phi[0] = -9. * (-2. + 3. * x + 3. * y)
  *             phi[1] = 0.             # <<<<<<<<<<<<<<
@@ -7713,7 +7710,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":557
+      /* "basis.pyx":559
  *             phi[0] = -9. * (-2. + 3. * x + 3. * y)
  *             phi[1] = 0.
  *             phi[2] = -9. + 27. * y             # <<<<<<<<<<<<<<
@@ -7723,7 +7720,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (-9. + (27. * __pyx_v_y));
 
-      /* "basis.pyx":558
+      /* "basis.pyx":560
  *             phi[1] = 0.
  *             phi[2] = -9. + 27. * y
  *             phi[3] = 0.             # <<<<<<<<<<<<<<
@@ -7733,7 +7730,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 3;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":559
+      /* "basis.pyx":561
  *             phi[2] = -9. + 27. * y
  *             phi[3] = 0.
  *             phi[4] = 27. * x             # <<<<<<<<<<<<<<
@@ -7743,7 +7740,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 4;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (27. * __pyx_v_x);
 
-      /* "basis.pyx":560
+      /* "basis.pyx":562
  *             phi[3] = 0.
  *             phi[4] = 27. * x
  *             phi[5] = 9. * (-5. + 6. * x + 9. * y)             # <<<<<<<<<<<<<<
@@ -7753,7 +7750,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 5;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (9. * ((-5. + (6. * __pyx_v_x)) + (9. * __pyx_v_y)));
 
-      /* "basis.pyx":561
+      /* "basis.pyx":563
  *             phi[4] = 27. * x
  *             phi[5] = 9. * (-5. + 6. * x + 9. * y)
  *             phi[6] = -9. * (-4. + 3. * x + 9. * y)             # <<<<<<<<<<<<<<
@@ -7763,7 +7760,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 6;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (-9. * ((-4. + (3. * __pyx_v_x)) + (9. * __pyx_v_y)));
 
-      /* "basis.pyx":562
+      /* "basis.pyx":564
  *             phi[5] = 9. * (-5. + 6. * x + 9. * y)
  *             phi[6] = -9. * (-4. + 3. * x + 9. * y)
  *             phi[7] = 27. * x             # <<<<<<<<<<<<<<
@@ -7773,7 +7770,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 7;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (27. * __pyx_v_x);
 
-      /* "basis.pyx":563
+      /* "basis.pyx":565
  *             phi[6] = -9. * (-4. + 3. * x + 9. * y)
  *             phi[7] = 27. * x
  *             phi[8] = 0.             # <<<<<<<<<<<<<<
@@ -7783,7 +7780,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 8;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":564
+      /* "basis.pyx":566
  *             phi[7] = 27. * x
  *             phi[8] = 0.
  *             phi[9] = -54. * x             # <<<<<<<<<<<<<<
@@ -7793,7 +7790,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 9;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = (-54. * __pyx_v_x);
 
-      /* "basis.pyx":554
+      /* "basis.pyx":556
  *             phi[8] = -9. * (-4. + 9. * x + 3. * y)
  *             phi[9] = -54. * y
  *         elif (idx == 0 and idy == 2):             # <<<<<<<<<<<<<<
@@ -7803,7 +7800,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       goto __pyx_L7;
     }
 
-    /* "basis.pyx":565
+    /* "basis.pyx":567
  *             phi[8] = 0.
  *             phi[9] = -54. * x
  *         elif (idx == 1 and idy == 2):             # <<<<<<<<<<<<<<
@@ -7821,7 +7818,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
     __pyx_L20_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "basis.pyx":566
+      /* "basis.pyx":568
  *             phi[9] = -54. * x
  *         elif (idx == 1 and idy == 2):
  *             phi[0] = -27.             # <<<<<<<<<<<<<<
@@ -7831,7 +7828,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = -27.;
 
-      /* "basis.pyx":567
+      /* "basis.pyx":569
  *         elif (idx == 1 and idy == 2):
  *             phi[0] = -27.
  *             phi[1] = 0.             # <<<<<<<<<<<<<<
@@ -7841,7 +7838,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":568
+      /* "basis.pyx":570
  *             phi[0] = -27.
  *             phi[1] = 0.
  *             phi[2] = 0.             # <<<<<<<<<<<<<<
@@ -7851,7 +7848,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":569
+      /* "basis.pyx":571
  *             phi[1] = 0.
  *             phi[2] = 0.
  *             phi[3] = 0.             # <<<<<<<<<<<<<<
@@ -7861,7 +7858,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 3;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":570
+      /* "basis.pyx":572
  *             phi[2] = 0.
  *             phi[3] = 0.
  *             phi[4] = 27.             # <<<<<<<<<<<<<<
@@ -7871,7 +7868,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 4;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 27.;
 
-      /* "basis.pyx":571
+      /* "basis.pyx":573
  *             phi[3] = 0.
  *             phi[4] = 27.
  *             phi[5] = 54.             # <<<<<<<<<<<<<<
@@ -7881,7 +7878,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 5;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 54.;
 
-      /* "basis.pyx":572
+      /* "basis.pyx":574
  *             phi[4] = 27.
  *             phi[5] = 54.
  *             phi[6] = -27.             # <<<<<<<<<<<<<<
@@ -7891,7 +7888,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 6;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = -27.;
 
-      /* "basis.pyx":573
+      /* "basis.pyx":575
  *             phi[5] = 54.
  *             phi[6] = -27.
  *             phi[7] = 27.             # <<<<<<<<<<<<<<
@@ -7901,7 +7898,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 7;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 27.;
 
-      /* "basis.pyx":574
+      /* "basis.pyx":576
  *             phi[6] = -27.
  *             phi[7] = 27.
  *             phi[8] = 0.             # <<<<<<<<<<<<<<
@@ -7911,7 +7908,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 8;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":575
+      /* "basis.pyx":577
  *             phi[7] = 27.
  *             phi[8] = 0.
  *             phi[9] = -54.             # <<<<<<<<<<<<<<
@@ -7921,7 +7918,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 9;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = -54.;
 
-      /* "basis.pyx":565
+      /* "basis.pyx":567
  *             phi[8] = 0.
  *             phi[9] = -54. * x
  *         elif (idx == 1 and idy == 2):             # <<<<<<<<<<<<<<
@@ -7931,7 +7928,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       goto __pyx_L7;
     }
 
-    /* "basis.pyx":576
+    /* "basis.pyx":578
  *             phi[8] = 0.
  *             phi[9] = -54.
  *         elif (idx == 2 and idy == 1):             # <<<<<<<<<<<<<<
@@ -7949,7 +7946,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
     __pyx_L22_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "basis.pyx":577
+      /* "basis.pyx":579
  *             phi[9] = -54.
  *         elif (idx == 2 and idy == 1):
  *             phi[0] = -27.             # <<<<<<<<<<<<<<
@@ -7959,7 +7956,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = -27.;
 
-      /* "basis.pyx":578
+      /* "basis.pyx":580
  *         elif (idx == 2 and idy == 1):
  *             phi[0] = -27.
  *             phi[1] = 0.             # <<<<<<<<<<<<<<
@@ -7969,7 +7966,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":579
+      /* "basis.pyx":581
  *             phi[0] = -27.
  *             phi[1] = 0.
  *             phi[2] = 0.             # <<<<<<<<<<<<<<
@@ -7979,7 +7976,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":580
+      /* "basis.pyx":582
  *             phi[1] = 0.
  *             phi[2] = 0.
  *             phi[3] = 27.             # <<<<<<<<<<<<<<
@@ -7989,7 +7986,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 3;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 27.;
 
-      /* "basis.pyx":581
+      /* "basis.pyx":583
  *             phi[2] = 0.
  *             phi[3] = 27.
  *             phi[4] = 0.             # <<<<<<<<<<<<<<
@@ -7999,7 +7996,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 4;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":582
+      /* "basis.pyx":584
  *             phi[3] = 27.
  *             phi[4] = 0.
  *             phi[5] = 27.             # <<<<<<<<<<<<<<
@@ -8009,7 +8006,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 5;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 27.;
 
-      /* "basis.pyx":583
+      /* "basis.pyx":585
  *             phi[4] = 0.
  *             phi[5] = 27.
  *             phi[6] = 0.             # <<<<<<<<<<<<<<
@@ -8019,7 +8016,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 6;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":584
+      /* "basis.pyx":586
  *             phi[5] = 27.
  *             phi[6] = 0.
  *             phi[7] = 54.             # <<<<<<<<<<<<<<
@@ -8029,7 +8026,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 7;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 54.;
 
-      /* "basis.pyx":585
+      /* "basis.pyx":587
  *             phi[6] = 0.
  *             phi[7] = 54.
  *             phi[8] = -27.             # <<<<<<<<<<<<<<
@@ -8039,7 +8036,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 8;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = -27.;
 
-      /* "basis.pyx":586
+      /* "basis.pyx":588
  *             phi[7] = 54.
  *             phi[8] = -27.
  *             phi[9] = -54.             # <<<<<<<<<<<<<<
@@ -8049,7 +8046,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 9;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = -54.;
 
-      /* "basis.pyx":576
+      /* "basis.pyx":578
  *             phi[8] = 0.
  *             phi[9] = -54.
  *         elif (idx == 2 and idy == 1):             # <<<<<<<<<<<<<<
@@ -8059,7 +8056,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       goto __pyx_L7;
     }
 
-    /* "basis.pyx":587
+    /* "basis.pyx":589
  *             phi[8] = -27.
  *             phi[9] = -54.
  *         elif (idx == 3 and idy == 0):             # <<<<<<<<<<<<<<
@@ -8077,7 +8074,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
     __pyx_L24_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "basis.pyx":588
+      /* "basis.pyx":590
  *             phi[9] = -54.
  *         elif (idx == 3 and idy == 0):
  *             phi[0] = -27.             # <<<<<<<<<<<<<<
@@ -8087,7 +8084,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = -27.;
 
-      /* "basis.pyx":589
+      /* "basis.pyx":591
  *         elif (idx == 3 and idy == 0):
  *             phi[0] = -27.
  *             phi[1] = 27.             # <<<<<<<<<<<<<<
@@ -8097,7 +8094,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 27.;
 
-      /* "basis.pyx":590
+      /* "basis.pyx":592
  *             phi[0] = -27.
  *             phi[1] = 27.
  *             phi[2] = 0.             # <<<<<<<<<<<<<<
@@ -8107,7 +8104,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":591
+      /* "basis.pyx":593
  *             phi[1] = 27.
  *             phi[2] = 0.
  *             phi[3] = 0.             # <<<<<<<<<<<<<<
@@ -8117,7 +8114,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 3;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":592
+      /* "basis.pyx":594
  *             phi[2] = 0.
  *             phi[3] = 0.
  *             phi[4] = 0.             # <<<<<<<<<<<<<<
@@ -8127,7 +8124,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 4;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":593
+      /* "basis.pyx":595
  *             phi[3] = 0.
  *             phi[4] = 0.
  *             phi[5] = 0.             # <<<<<<<<<<<<<<
@@ -8137,7 +8134,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 5;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":594
+      /* "basis.pyx":596
  *             phi[4] = 0.
  *             phi[5] = 0.
  *             phi[6] = 0.             # <<<<<<<<<<<<<<
@@ -8147,7 +8144,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 6;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":595
+      /* "basis.pyx":597
  *             phi[5] = 0.
  *             phi[6] = 0.
  *             phi[7] = 81.             # <<<<<<<<<<<<<<
@@ -8157,7 +8154,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 7;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 81.;
 
-      /* "basis.pyx":596
+      /* "basis.pyx":598
  *             phi[6] = 0.
  *             phi[7] = 81.
  *             phi[8] = -81.             # <<<<<<<<<<<<<<
@@ -8167,7 +8164,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 8;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = -81.;
 
-      /* "basis.pyx":597
+      /* "basis.pyx":599
  *             phi[7] = 81.
  *             phi[8] = -81.
  *             phi[9] = 0.             # <<<<<<<<<<<<<<
@@ -8177,7 +8174,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 9;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":587
+      /* "basis.pyx":589
  *             phi[8] = -27.
  *             phi[9] = -54.
  *         elif (idx == 3 and idy == 0):             # <<<<<<<<<<<<<<
@@ -8187,7 +8184,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       goto __pyx_L7;
     }
 
-    /* "basis.pyx":598
+    /* "basis.pyx":600
  *             phi[8] = -81.
  *             phi[9] = 0.
  *         elif (idx == 0 and idy == 3):             # <<<<<<<<<<<<<<
@@ -8205,7 +8202,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
     __pyx_L26_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "basis.pyx":599
+      /* "basis.pyx":601
  *             phi[9] = 0.
  *         elif (idx == 0 and idy == 3):
  *             phi[0] = -27.             # <<<<<<<<<<<<<<
@@ -8215,7 +8212,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 0;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = -27.;
 
-      /* "basis.pyx":600
+      /* "basis.pyx":602
  *         elif (idx == 0 and idy == 3):
  *             phi[0] = -27.
  *             phi[1] = 0.             # <<<<<<<<<<<<<<
@@ -8225,7 +8222,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 1;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":601
+      /* "basis.pyx":603
  *             phi[0] = -27.
  *             phi[1] = 0.
  *             phi[2] = 27.             # <<<<<<<<<<<<<<
@@ -8235,7 +8232,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 2;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 27.;
 
-      /* "basis.pyx":602
+      /* "basis.pyx":604
  *             phi[1] = 0.
  *             phi[2] = 27.
  *             phi[3] = 0.             # <<<<<<<<<<<<<<
@@ -8245,7 +8242,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 3;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":603
+      /* "basis.pyx":605
  *             phi[2] = 27.
  *             phi[3] = 0.
  *             phi[4] = 0.             # <<<<<<<<<<<<<<
@@ -8255,7 +8252,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 4;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":604
+      /* "basis.pyx":606
  *             phi[3] = 0.
  *             phi[4] = 0.
  *             phi[5] = 81.             # <<<<<<<<<<<<<<
@@ -8265,7 +8262,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 5;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 81.;
 
-      /* "basis.pyx":605
+      /* "basis.pyx":607
  *             phi[4] = 0.
  *             phi[5] = 81.
  *             phi[6] = -81.             # <<<<<<<<<<<<<<
@@ -8275,7 +8272,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 6;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = -81.;
 
-      /* "basis.pyx":606
+      /* "basis.pyx":608
  *             phi[5] = 81.
  *             phi[6] = -81.
  *             phi[7] = 0.             # <<<<<<<<<<<<<<
@@ -8285,7 +8282,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 7;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":607
+      /* "basis.pyx":609
  *             phi[6] = -81.
  *             phi[7] = 0.
  *             phi[8] = 0.             # <<<<<<<<<<<<<<
@@ -8295,7 +8292,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 8;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":608
+      /* "basis.pyx":610
  *             phi[7] = 0.
  *             phi[8] = 0.
  *             phi[9] = 0.             # <<<<<<<<<<<<<<
@@ -8305,7 +8302,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
       __pyx_t_1 = 9;
       *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-      /* "basis.pyx":598
+      /* "basis.pyx":600
  *             phi[8] = -81.
  *             phi[9] = 0.
  *         elif (idx == 0 and idy == 3):             # <<<<<<<<<<<<<<
@@ -8315,7 +8312,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
     }
     __pyx_L7:;
 
-    /* "basis.pyx":498
+    /* "basis.pyx":500
  *     node_x[8] = 2. / 3.  ;  node_y[8] = 0.
  *     node_x[9] = 1. / 3.  ;  node_y[9] = 1. / 3.
  *     if ( (x+y-1)<=0. and x >= 0. and y >=0.):             # <<<<<<<<<<<<<<
@@ -8325,7 +8322,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
     goto __pyx_L3;
   }
 
-  /* "basis.pyx":610
+  /* "basis.pyx":612
  *             phi[9] = 0.
  *     else:
  *         phi[0] = 0.             # <<<<<<<<<<<<<<
@@ -8336,7 +8333,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
     __pyx_t_1 = 0;
     *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-    /* "basis.pyx":611
+    /* "basis.pyx":613
  *     else:
  *         phi[0] = 0.
  *         phi[1] = 0.             # <<<<<<<<<<<<<<
@@ -8346,7 +8343,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
     __pyx_t_1 = 1;
     *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-    /* "basis.pyx":612
+    /* "basis.pyx":614
  *         phi[0] = 0.
  *         phi[1] = 0.
  *         phi[2] = 0.             # <<<<<<<<<<<<<<
@@ -8356,7 +8353,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
     __pyx_t_1 = 2;
     *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-    /* "basis.pyx":613
+    /* "basis.pyx":615
  *         phi[1] = 0.
  *         phi[2] = 0.
  *         phi[3] = 0.             # <<<<<<<<<<<<<<
@@ -8366,7 +8363,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
     __pyx_t_1 = 3;
     *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-    /* "basis.pyx":614
+    /* "basis.pyx":616
  *         phi[2] = 0.
  *         phi[3] = 0.
  *         phi[4] = 0.             # <<<<<<<<<<<<<<
@@ -8376,7 +8373,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
     __pyx_t_1 = 4;
     *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-    /* "basis.pyx":615
+    /* "basis.pyx":617
  *         phi[3] = 0.
  *         phi[4] = 0.
  *         phi[5] = 0.             # <<<<<<<<<<<<<<
@@ -8386,7 +8383,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
     __pyx_t_1 = 5;
     *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-    /* "basis.pyx":616
+    /* "basis.pyx":618
  *         phi[4] = 0.
  *         phi[5] = 0.
  *         phi[6] = 0.             # <<<<<<<<<<<<<<
@@ -8396,7 +8393,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
     __pyx_t_1 = 6;
     *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-    /* "basis.pyx":617
+    /* "basis.pyx":619
  *         phi[5] = 0.
  *         phi[6] = 0.
  *         phi[7] = 0.             # <<<<<<<<<<<<<<
@@ -8406,7 +8403,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
     __pyx_t_1 = 7;
     *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-    /* "basis.pyx":618
+    /* "basis.pyx":620
  *         phi[6] = 0.
  *         phi[7] = 0.
  *         phi[8] = 0.             # <<<<<<<<<<<<<<
@@ -8416,7 +8413,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
     __pyx_t_1 = 8;
     *((double *) ( /* dim=0 */ (__pyx_v_phi.data + __pyx_t_1 * __pyx_v_phi.strides[0]) )) = 0.;
 
-    /* "basis.pyx":619
+    /* "basis.pyx":621
  *         phi[7] = 0.
  *         phi[8] = 0.
  *         phi[9] = 0.             # <<<<<<<<<<<<<<
@@ -8428,7 +8425,7 @@ static void __pyx_f_5basis__shape2d_t10(int __pyx_v_idx, int __pyx_v_idy, double
   }
   __pyx_L3:;
 
-  /* "basis.pyx":462
+  /* "basis.pyx":464
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void _shape2d_t10(int idx, int idy,  \             # <<<<<<<<<<<<<<
@@ -24629,25 +24626,10 @@ static int __Pyx_modinit_variable_export_code(void) {
 
 static int __Pyx_modinit_function_export_code(void) {
   __Pyx_RefNannyDeclarations
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_function_export_code", 0);
   /*--- Function export code ---*/
-  if (__Pyx_ExportFunction("_affinemap1d_xhat_to_x", (void (*)(void))__pyx_f_5basis__affinemap1d_xhat_to_x, "double (double, double, double)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  if (__Pyx_ExportFunction("_shape1d_node2", (void (*)(void))__pyx_f_5basis__shape1d_node2, "void (int, double, __Pyx_memviewslice, __Pyx_memviewslice)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  if (__Pyx_ExportFunction("_shape1d_node3", (void (*)(void))__pyx_f_5basis__shape1d_node3, "void (int, double, __Pyx_memviewslice, __Pyx_memviewslice)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  if (__Pyx_ExportFunction("_shape1d_node4", (void (*)(void))__pyx_f_5basis__shape1d_node4, "void (int, double, __Pyx_memviewslice, __Pyx_memviewslice)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  if (__Pyx_ExportFunction("_gauss_legendre_quadrature_set1d", (void (*)(void))__pyx_f_5basis__gauss_legendre_quadrature_set1d, "void (int, __Pyx_memviewslice, __Pyx_memviewslice)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  if (__Pyx_ExportFunction("_shape2d_t3", (void (*)(void))__pyx_f_5basis__shape2d_t3, "void (int, int, double, double, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  if (__Pyx_ExportFunction("_shape2d_t6", (void (*)(void))__pyx_f_5basis__shape2d_t6, "void (int, int, double, double, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  if (__Pyx_ExportFunction("_shape2d_t10", (void (*)(void))__pyx_f_5basis__shape2d_t10, "void (int, int, double, double, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  if (__Pyx_ExportFunction("_gauss_quadrature_triangle", (void (*)(void))__pyx_f_5basis__gauss_quadrature_triangle, "void (int, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
-  __pyx_L1_error:;
-  __Pyx_RefNannyFinishContext();
-  return -1;
 }
 
 static int __Pyx_modinit_type_init_code(void) {
@@ -24983,7 +24965,7 @@ if (!__Pyx_RefNanny) {
   /*--- Global type/function init code ---*/
   (void)__Pyx_modinit_global_init_code();
   (void)__Pyx_modinit_variable_export_code();
-  if (unlikely(__Pyx_modinit_function_export_code() < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
+  (void)__Pyx_modinit_function_export_code();
   if (unlikely(__Pyx_modinit_type_init_code() < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
   if (unlikely(__Pyx_modinit_type_import_code() < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
   (void)__Pyx_modinit_variable_import_code();
@@ -29466,43 +29448,6 @@ raise_neg_overflow:
         return PyErr_WarnEx(NULL, message, 1);
     }
     return 0;
-}
-
-/* FunctionExport */
-  static int __Pyx_ExportFunction(const char *name, void (*f)(void), const char *sig) {
-    PyObject *d = 0;
-    PyObject *cobj = 0;
-    union {
-        void (*fp)(void);
-        void *p;
-    } tmp;
-    d = PyObject_GetAttrString(__pyx_m, (char *)"__pyx_capi__");
-    if (!d) {
-        PyErr_Clear();
-        d = PyDict_New();
-        if (!d)
-            goto bad;
-        Py_INCREF(d);
-        if (PyModule_AddObject(__pyx_m, (char *)"__pyx_capi__", d) < 0)
-            goto bad;
-    }
-    tmp.fp = f;
-#if PY_VERSION_HEX >= 0x02070000
-    cobj = PyCapsule_New(tmp.p, sig, 0);
-#else
-    cobj = PyCObject_FromVoidPtrAndDesc(tmp.p, (void *)sig, 0);
-#endif
-    if (!cobj)
-        goto bad;
-    if (PyDict_SetItemString(d, name, cobj) < 0)
-        goto bad;
-    Py_DECREF(cobj);
-    Py_DECREF(d);
-    return 0;
-bad:
-    Py_XDECREF(cobj);
-    Py_XDECREF(d);
-    return -1;
 }
 
 /* InitStrings */

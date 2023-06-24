@@ -4,7 +4,7 @@ import numpy
 
 setup(ext_modules = cythonize(Extension(
     'test',
-    sources=['test.pyx'],
+    sources=['test2.pyx'],
     language='c',
     include_dirs=[numpy.get_include()],
     extra_compile_args = ["-O3", '-fopenmp'],
