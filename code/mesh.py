@@ -23,7 +23,7 @@ class Mesh1d:
         # mesh coordinate matrix
         self.P = x1d_nodes
         # mesh elment node number matrix, starts from 1
-        self.T = np.arange(x1d_nodes.shape[0]) + 1
+        self.T = np.arange(x1d_nodes.shape[0], dtype=np.int32) + 1
         self.CT = self.T - 1  # T matrix in C format (index starts from 0)
         # FE node coordinate matrix
         self.Pb = self._get_Pb()
@@ -57,7 +57,7 @@ class Mesh1d:
         return Pb
 
     def _get_Tb(self):
-        Tb = np.zeros((self.Nlb, self.N), dtype=int)
+        Tb = np.zeros((self.Nlb, self.N), dtype=np.int32)
         for n in range(self.N):
             for i in range(self.Nlb):
                 Tb[i, n] = self.Nlb * n - n + i
@@ -156,7 +156,7 @@ class TriMesh2d:
          """
         # self.nx = x1d_mesh.shape[0] - 1
         # self.ny = y1d_mesh.shape[0] - 1
-        T = np.zeros((3, self.N), dtype=int)
+        T = np.zeros((3, self.N), dtype=np.int32)
         for i in range(self.nx):
             for j in range(self.ny):
                 """
@@ -254,7 +254,7 @@ class TriMesh2d:
 
 
     def _get_Tb(self):
-        Tb = np.zeros((self.Nlb, self.N), dtype=int)
+        Tb = np.zeros((self.Nlb, self.N), dtype=np.int32)
         if (self.Nlb == 3):
             return self.T
         elif (self.Nlb == 6):

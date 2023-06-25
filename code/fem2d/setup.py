@@ -4,7 +4,7 @@ import numpy
 
 setup(ext_modules = cythonize(Extension(
     'fem2d',
-    sources=['fem2d.pyx'],
+    sources=['fem2d_problem.pyx'],
     language='c',
     include_dirs=[numpy.get_include()],
     extra_compile_args = ["-O3", '-fopenmp'],

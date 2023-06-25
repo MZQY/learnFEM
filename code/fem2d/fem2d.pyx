@@ -170,6 +170,130 @@ cdef double _quad_tri_trial_test(COEFF_FUNC cfunc,
     return res
 
 
+
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cdef void _get_vecb (COEFF_FUNC cfunc, \
+        int N, int Nb,\
+        double[:,:] matP, int[:,:] CmatT, \
+        int[:,:] CmatTb_test,  \
+        int Nlb_test, \
+        int test_func_ndx,  int test_func_ndy, \
+        double[:] vecb) nogil:
+    """
+    :param cfunc: (cython function) coefficient function
+    :param N: (int) number of mesh element
+    :param Nb: (int) number of FE basis functions, which is also the number of FE nodes
+    :param matP: (2d double matrix) mesh coordinate matrix
+    :param CmatT: (2d int matrix) mesh element node number matrix, index starts from 0 (C form)
+    :param CmatTb_test: (2d int matrix) FE node number matrix for test functions, index starts from 0 (C form)
+    :param Nlb_test: (int) test basis function number on a single mesh element, which is also the number of FE nodes on the single mesh element
+    :param test_func_ndx: (int) derivative order in the x-dir for test function
+    :param test_func_ndy: (int) derivative order in the y-dir for test function
+    :param matA: (2d double matrix [Nb, Nb]) stiffness matrix
+    """
+    cdef int n=0
+    for n in prange(N, nogil=True):
+        _vecb_element_loop (cfunc, \
+        n, Nb,\
+        matP, CmatT, \
+        CmatTb_test,  \
+        Nlb_test, \
+        test_func_ndx, test_func_ndy, \
+        vecb)
+
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cdef void _vecb_element_loop (COEFF_FUNC cfunc, \
+        int n, int Nb,\
+        double[:,:] matP, int[:,:] CmatT, \
+        int[:,:] CmatTb_test,  \
+        int Nlb_test, \
+        int test_func_ndx,  int test_func_ndy, \
+        double[:] vecb) nogil:
+    cdef int vertNum1 = CmatT[0,n]
+    cdef int vertNum2 = CmatT[1,n]
+    cdef int vertNum3 = CmatT[2,n]
+    cdef double x1 = matP[0, vertNum1]
+    cdef double y1 = matP[1, vertNum1]
+    cdef double x2 = matP[0, vertNum2]
+    cdef double y2 = matP[1, vertNum2]
+    cdef double x3 = matP[0, vertNum3]
+    cdef double y3 = matP[1, vertNum3]
+    cdef int beta=0, i
+    cdef double temp = 0.
+    for beta in range(Nlb_test):
+        temp = _quad_tri_test(cfunc,
+                           x1, y1,
+                           x2, y2,
+                           x3, y3,
+                           Nlb_test,
+                           beta,
+                           test_func_ndx,  test_func_ndy)
+        i = CmatTb_test[beta, n]
+        vecb[i] += temp
+
+
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cdef double _quad_tri_test(COEFF_FUNC cfunc,
+                               double x1, double y1,
+                               double x2, double y2,
+                               double x3, double y3,
+                               int Nlb_test,
+                               int beta,
+                               int test_func_ndx,  int test_func_ndy, \
+                               ) nogil:
+    """
+    :param cfunc: (cython function) coefficient function
+    :param x1, y1, x2, y2, x3, y3: (double) coordinates of the local triangle vertices
+    :param Nlb_test: (int) test basis function number on a single mesh element, which is also the number of FE nodes on the single mesh element
+    :param beta: (int) index for test local basis functions
+    :param test_func_ndx: (int) derivative order of test function in x-dir
+    :param test_func_ndy: (int) derivative order of test function in y-dir
+    """
+    cdef int gauss_quad_num = 9
+    cdef double[9] gauss_quad_refx
+    cdef double[9] gauss_quad_refy
+    cdef double[9] gauss_quad_refw
+    cdef int i=0
+    cdef double temp_loc_x
+    cdef double temp_loc_y
+    cdef double dux_dx, dux_dy, duy_dx, duy_dy
+    cdef double jfac = 0.
+    cdef double res = 0.
+
+    # get gauss points and weights on ref triangle
+    _gauss_quad_triangle_9p(gauss_quad_refx, gauss_quad_refy, gauss_quad_refw)
+
+    # calculate the jacobian factor det(J)
+    jfac = fabs((x2 - x1) * (y3 - y1) - (x3 - x1) * (y2 - y1))
+    
+    # calc derivative term due to integration by part
+    dux_dx = (y3 - y1) / jfac
+    dux_dy = (x1 - x3) / jfac
+    duy_dx = (y1 - y2) / jfac
+    duy_dy = (x2 - x1) / jfac
+
+    for i in range(gauss_quad_num):
+        temp_loc_x = gauss_quad_refx[i] * (x2 - x1) + gauss_quad_refy[i] * (x3 - x1) + x1
+        temp_loc_y = gauss_quad_refx[i] * (y2 - y1) + gauss_quad_refy[i] * (y3 - y1) + y1
+        
+        res += cfunc(temp_loc_x, temp_loc_y) * \
+                _shape2d_ref_include_int_by_part(Nlb_test, beta, test_func_ndx, test_func_ndy,\
+                                                 gauss_quad_refx[i], gauss_quad_refy[i], \
+                                                 dux_dx, dux_dy, \
+                                                 duy_dx, duy_dy)
+    
+    res = res * 0.5 * jfac
+    
+    return res
+
+
+
 @cython.boundscheck(False)
 @cython.wraparound(False)
 cdef double _shape2d_ref_include_int_by_part(int Nlb, int basis_id, \
