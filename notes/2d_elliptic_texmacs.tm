@@ -260,9 +260,9 @@
     c\<nabla\>u|)> d \<Omega\>-<big|int><rsub|\<Omega\>>c\<nabla\>u\<cdot\>\<nabla\>v
     d \<Omega\>|)>>|<cell|=>|<cell|<big|int><rsub|\<Omega\>>f v
     d\<Omega\>>>|<row|<cell|<big|int><rsub|\<Omega\>>c\<nabla\>u\<cdot\>\<nabla\>v
-    d \<Omega\>-<big|int><rsub|\<partial\>\<Omega\>>v
+    d \<Omega\><with|color|dark green|-<big|int><rsub|\<partial\>\<Omega\>>v
     c\<nabla\>u\<cdot\><wide|n|\<vect\>> d
-    S>|<cell|=>|<cell|<big|int><rsub|\<Omega\>>f v d\<Omega\>>>>>>
+    S>>|<cell|=>|<cell|<big|int><rsub|\<Omega\>>f v d\<Omega\>>>>>>
   </equation>
 
   Thridly, discretize the equation. The trial function has the form
@@ -270,25 +270,27 @@
   and the test function has the form <math|v<rsub|<rsub|h>>=\<psi\><rsub|i>>,
 
   <\equation>
-    <big|sum><rsub|j=1><rsup|N<rsub|b>>u<rsub|j><big|int><rsub|\<Omega\>>c\<nabla\>\<varphi\><rsub|j>\<cdot\>\<nabla\>\<psi\><rsub|i>
-    d \<Omega\>-<big|sum><rsub|j=1><rsup|N<rsub|b>>u<rsub|j><big|int><rsub|\<partial\>\<Omega\>>\<psi\><rsub|i>
+    <with|color|black|<big|sum><rsub|j=1><rsup|N<rsub|b>>u<rsub|j><with|color|red|<big|int><rsub|\<Omega\>>c\<nabla\>\<varphi\><rsub|j>\<cdot\>\<nabla\>\<psi\><rsub|i>
+    d \<Omega\>>><with|color|dark green|-><with|color|dark
+    green|<with|color|black|<big|sum><rsub|j=1><rsup|N<rsub|b>>u<rsub|j>><big|int><rsub|\<partial\>\<Omega\>>\<psi\><rsub|i>
     c\<nabla\>\<varphi\><rsub|j>\<cdot\><wide|n|\<vect\>> d
-    S=<big|int>f\<psi\><rsub|i>d\<Omega\>
+    S>=<with|color|blue|<big|int>f\<psi\><rsub|i>d\<Omega\>>
   </equation>
 
-  The second term is determined by the boundary conditions.
+  The second term is determined by the <with|color|dark cyan|<with|color|dark
+  green|boundary conditions>>.
 
-  The stiff matrix <math|<wide|<wide|A|\<vect\>>|\<vect\>>>, has the form
+  The stiffness matrix <math|<wide|<wide|A|\<vect\>>|\<vect\>>>, has the form
 
   <\equation>
-    <wide|<wide|A|\<vect\>>|\<vect\>>=<around*|[|a<rsub|ij>|]><rsub|i,j=1><rsup|N<rsub|b>>,<space|1em>a<rsub|ij>=<big|int><rsub|\<Omega\>>c\<nabla\>\<varphi\><rsub|j>\<cdot\>\<nabla\>\<psi\><rsub|i>
+    <with|color|red|<wide|<wide|A|\<vect\>>|\<vect\>>=<around*|[|a<rsub|ij>|]><rsub|i,j=1><rsup|N<rsub|b>>>,<space|1em>a<rsub|ij>=<big|int><rsub|\<Omega\>>c\<nabla\>\<varphi\><rsub|j>\<cdot\>\<nabla\>\<psi\><rsub|i>
     d \<Omega\>
   </equation>
 
   The load vector <math|<wide|b|\<vect\>>>, has the form
 
   <\equation>
-    <wide|b|\<vect\>>=<around*|[|b<rsub|i>|]><rsub|i=1><rsup|N<rsub|b>>,<space|1em>b<rsub|i>=<big|int>f\<psi\><rsub|i>d\<Omega\>
+    <with|color|blue|<wide|b|\<vect\>>=<around*|[|b<rsub|i>|]><rsub|i=1><rsup|N<rsub|b>>>,<space|1em>b<rsub|i>=<big|int>f\<psi\><rsub|i>d\<Omega\>
   </equation>
 
   The unknown vector <math|<wide|x|\<vect\>>>, has the form
@@ -321,6 +323,13 @@
     \<psi\><rsub|i>=0<space|1em>on \<partial\>\<Omega\>
   </equation>
 
+  Thus the equation turns out to be
+
+  <\equation>
+    <tabular|<tformat|<cwith|1|1|1|1|cell-halign|r>|<table|<row|<cell|<big|int><rsub|\<Omega\>>c\<nabla\>u\<cdot\>\<nabla\>v
+    d \<Omega\>>|<cell|=>|<cell|<big|int><rsub|\<Omega\>>f v d\<Omega\>>>>>>
+  </equation>
+
   The pseudo code has the form:
 
   <\render-code>
@@ -349,12 +358,29 @@
     \<nabla\>u\<cdot\><wide|n|\<vect\>>=p
   </equation>
 
-  Thus
+  Thus the boundary condition term <math|<big|int><rsub|\<partial\>\<Omega\>>v
+  c\<nabla\>u\<cdot\><wide|n|\<vect\>> d S>
 
   <\equation>
     <big|int><rsub|\<partial\>\<Omega\>>v
     c\<nabla\>u\<cdot\><wide|n|\<vect\>> d
     S=<big|int><rsub|\<partial\>\<Omega\>> c p v d S
+  </equation>
+
+  And the target equation turns out to be
+
+  <\equation>
+    <tabular|<tformat|<cwith|1|1|1|1|cell-halign|r>|<cwith|2|2|1|1|cell-hyphen|n>|<cwith|2|2|1|1|cell-halign|r>|<cwith|3|3|1|1|cell-hyphen|t>|<cwith|3|3|1|1|cell-halign|r>|<table|<row|<cell|<big|int><rsub|\<Omega\>>c\<nabla\>u\<cdot\>\<nabla\>v
+    d \<Omega\><with|color|dark green|-<big|int><rsub|\<partial\>\<Omega\>>v
+    c\<nabla\>u\<cdot\><wide|n|\<vect\>> d
+    S>>|<cell|=>|<cell|<big|int><rsub|\<Omega\>>f v
+    d\<Omega\>>>|<row|<cell|<big|int><rsub|\<Omega\>>c\<nabla\>u\<cdot\>\<nabla\>v
+    d \<Omega\>-<with|color|dark green|<big|int><rsub|\<partial\>\<Omega\>> c
+    p v d S>>|<cell|=>|<cell|<big|int><rsub|\<Omega\>>f v
+    d\<Omega\>>>|<row|<\cell>
+      <big|int><rsub|\<Omega\>>c\<nabla\>u\<cdot\>\<nabla\>v d \<Omega\>
+    </cell>|=|<cell|<big|int><rsub|\<Omega\>>f v d\<Omega\>+<with|color|dark
+    green|<big|int><rsub|\<partial\>\<Omega\>> c p v d S>>>>>>
   </equation>
 
   After the discretization\ 
@@ -390,19 +416,60 @@
     S-<big|int><rsub|\<partial\>\<Omega\>>v c r u d S
   </equation>
 
+  And the target equation turns out to be
+
+  <\equation>
+    <tabular|<tformat|<cwith|1|1|1|1|cell-halign|r>|<cwith|2|2|1|1|cell-hyphen|n>|<cwith|2|2|1|1|cell-halign|r>|<cwith|3|3|1|1|cell-hyphen|t>|<cwith|3|3|1|1|cell-halign|r>|<table|<row|<cell|<big|int><rsub|\<Omega\>>c\<nabla\>u\<cdot\>\<nabla\>v
+    d \<Omega\><with|color|dark green|-<big|int><rsub|\<partial\>\<Omega\>>v
+    c\<nabla\>u\<cdot\><wide|n|\<vect\>> d
+    S>>|<cell|=>|<cell|<big|int><rsub|\<Omega\>>f v
+    d\<Omega\>>>|<row|<cell|<big|int><rsub|\<Omega\>>c\<nabla\>u\<cdot\>\<nabla\>v
+    d \<Omega\>-<with|color|dark green|<around*|(|<big|int><rsub|\<partial\>\<Omega\>>v
+    c q d S-<big|int><rsub|\<partial\>\<Omega\>>v c r u d
+    S|)>>>|<cell|=>|<cell|<big|int><rsub|\<Omega\>>f v
+    d\<Omega\>>>|<row|<\cell>
+      <big|int><rsub|\<Omega\>>c\<nabla\>u\<cdot\>\<nabla\>v d
+      \<Omega\>+<with|color|dark green|<big|int><rsub|\<partial\>\<Omega\>>v
+      c r u d S>
+    </cell>|=|<cell|<big|int><rsub|\<Omega\>>f v d\<Omega\>+<with|color|dark
+    green|<big|int><rsub|\<partial\>\<Omega\>>v c q d S>>>>>>
+  </equation>
+
   Thus after the discretization, the stiff matrix has the form
 
   <\equation>
-    a<rsub|ij,final>=a<rsub|ij>+<big|int><rsub|\<partial\>\<Omega\>>c r
-    \<psi\><rsub|i> \ \<varphi\><rsub|j> d S
+    a<rsub|ij,final>=a<rsub|ij>+<with|color|dark cyan|<with|color|dark
+    green|<big|int><rsub|\<partial\>\<Omega\>>c r \<psi\><rsub|i>
+    \ \<varphi\><rsub|j> d S>>
   </equation>
 
   and the load vector has the form
 
   <\equation>
-    b<rsub|i,final>=b<rsub|i>+<big|int><rsub|\<partial\>\<Omega\>>\<psi\><rsub|i>
-    c q d S
+    b<rsub|i,final>=b<rsub|i>+<with|color|dark yellow|<with|color|dark
+    green|<big|int><rsub|\<partial\>\<Omega\>>\<psi\><rsub|i> c q d S>>
   </equation>
+
+  <section|FEM discretization>
+
+  For the stiffness matrix in the Cartesian coordinate, the matrix element
+  has the form
+
+  <\equation>
+    a<rsub|ij>=<big|int><rsub|\<Omega\>>c\<nabla\>\<varphi\><rsub|j>\<cdot\>\<nabla\>\<psi\><rsub|i>
+    d \<Omega\>=<big|int><rsub|\<Omega\>>c<frac|\<partial\>\<varphi\><rsub|j>|\<partial\>x><frac|\<partial\>\<psi\><rsub|i>|\<partial\>x>
+    d \<Omega\>+<big|int><rsub|\<Omega\>>c<frac|\<partial\>\<varphi\><rsub|j>|\<partial\>y><frac|\<partial\>\<psi\><rsub|i>|\<partial\>y>
+    d \<Omega\>=A<rsub|1>+A<rsub|2>
+  </equation>
+
+  For the load vector in the Cartesian coordinate, the vector element has the
+  form
+
+  <\equation>
+    b<rsub|i>=<big|int>f\<psi\><rsub|i>d\<Omega\>
+  </equation>
+
+  \;
 </body>
 
 <\initial>
@@ -418,6 +485,7 @@
     <associate|auto-3|<tuple|2.1|3>>
     <associate|auto-4|<tuple|2.2|4>>
     <associate|auto-5|<tuple|2.3|4>>
+    <associate|auto-6|<tuple|3|?>>
   </collection>
 </references>
 
