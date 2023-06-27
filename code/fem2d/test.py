@@ -1,6 +1,7 @@
 import fem2d
 import numpy as np
 import matplotlib.pyplot as plt
+import scipy.sparse as sparse
 
 
 class TriMesh2d:
@@ -294,7 +295,8 @@ def test():
     x1d_mesh = np.linspace(1., 7., 3)
     y1d_mesh = np.linspace(1., 7., 3)
     mesh2d = TriMesh2d(x1d_nodes=x1d_mesh, y1d_nodes=y1d_mesh, FE_node_num=6)
-    matA = np.zeros((mesh2d.Nb, mesh2d.Nb))
+    # matA = np.zeros((mesh2d.Nb, mesh2d.Nb))
+    matA = sparse.lil_matrix((mesh2d.Nb, mesh2d.Nb), dtype=np.double)
     fem2d.pget_matA(mesh2d.N, mesh2d.Nb, mesh2d.P, mesh2d.CT,\
             mesh2d.CTb, mesh2d.CTb, mesh2d.Nlb, mesh2d.Nlb, \
             0, 0, 0, 0, matA)

@@ -1,0 +1,10 @@
+scipy sparse matrix in coo format:
+https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.coo_matrix.html
+
+https://www.codeproject.com/Articles/5314545/Construction-of-Sparse-Matrices-for-Finite-Element
+
+parallel:
+ for alpha ...
+    for beta ...
+       S[..]
+A = A + S
