@@ -470,6 +470,8 @@
   </equation>
 
   \;
+
+  \;
 </body>
 
 <\initial>
@@ -485,7 +487,10 @@
     <associate|auto-3|<tuple|2.1|3>>
     <associate|auto-4|<tuple|2.2|4>>
     <associate|auto-5|<tuple|2.3|4>>
-    <associate|auto-6|<tuple|3|?>>
+    <associate|auto-6|<tuple|3|5>>
+    <associate|auto-7|<tuple|4|?>>
+    <associate|auto-8|<tuple|4.1|?>>
+    <associate|auto-9|<tuple|1|?>>
   </collection>
 </references>
 
@@ -511,6 +516,10 @@
       <with|par-left|<quote|1tab>|2.3<space|2spc>Robin boundary condition
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|3<space|2spc>FEM
+      discretization> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-6><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>

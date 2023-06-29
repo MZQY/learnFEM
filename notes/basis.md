@@ -167,7 +167,7 @@ Note that ,
 $$
 \frac{\partial}{\partial y} = \frac{\partial}{\partial \hat{y}}
 \frac{\partial \hat{y}}{\partial y} + \frac{\partial}{\partial \hat{x}}
-\frac{\partial \hat{x}}{\partial y} 
+\frac{\partial \hat{x}}{\partial y}
 $$
 
 $$
