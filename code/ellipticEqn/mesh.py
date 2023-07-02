@@ -372,7 +372,7 @@ class TriMesh2d:
 
 class BoundaryData2d:
     """
-    get bcMeshEdge matrix and bcFEnode matrix
+    get bcMeshEdge matrix and bcFEnode matrix in C-form (index starts from 0)
     bcMeshEdge: mesh boundary edge matrix, only relates to mesh
     bcMeshEdge[0,k] : type of kth boundary edge
     bcMeshEdge[1,k] : index of element contains kth boundary edge
@@ -401,6 +401,7 @@ class BoundaryData2d:
         self.ymin = np.amin(Pmat[1,:])
         self.bcMeshEdge = self._get_bcMeshEdge(Pmat, CTmat)
         self.bcFEnode = self._get_bcFEnode(Pbmat, CTbmat)
+        self.nbn = self.bcFEnode.shape[1]
 
         if print_flag:
             self._print()

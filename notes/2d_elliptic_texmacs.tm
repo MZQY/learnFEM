@@ -14,15 +14,24 @@
     <no-break><pageref|auto-1><vspace|0.5fn>
 
     <vspace*|1fn><with|font-series|bold|math-font-series|bold|2<space|2spc>Target
-    problems> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+    problem> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
     <no-break><pageref|auto-2><vspace|0.5fn>
 
     <with|par-left|1tab|2.1<space|2spc>Dirichilet boundary condition
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
     <no-break><pageref|auto-3>>
 
-    <with|par-left|1tab|2.2<space|2spc> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+    <with|par-left|1tab|2.2<space|2spc>Neumann boundary condition
+    <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
     <no-break><pageref|auto-4>>
+
+    <with|par-left|1tab|2.3<space|2spc>Robin boundary condition
+    <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+    <no-break><pageref|auto-5>>
+
+    <vspace*|1fn><with|font-series|bold|math-font-series|bold|3<space|2spc>FEM
+    discretization> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+    <no-break><pageref|auto-6><vspace|0.5fn>
   </table-of-contents>
 
   <section|Hilbert spaces>
@@ -488,9 +497,6 @@
     <associate|auto-4|<tuple|2.2|4>>
     <associate|auto-5|<tuple|2.3|4>>
     <associate|auto-6|<tuple|3|5>>
-    <associate|auto-7|<tuple|4|?>>
-    <associate|auto-8|<tuple|4.1|?>>
-    <associate|auto-9|<tuple|1|?>>
   </collection>
 </references>
 

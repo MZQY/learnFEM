@@ -58,8 +58,10 @@ def get_matA(int cfunc_num, int N, int Nb,
     :param test_func_ndy: (int) derivative order in the y-dir for test function
     """
 
-    cdef int n = 0
+    cdef int n = 0, i=0, j=0
     cdef double[:,:] matS = np.zeros((Nlb_test, Nlb_trial), dtype=np.double)
+    cdef int[:] temp_node_idx_test = np.zeros(Nlb_test, dtype=np.int32)
+    cdef int[:] temp_node_idx_trial = np.zeros(Nlb_trial, dtype=np.int32)
     matA = sparse.lil_matrix((Nb, Nb), dtype=np.double)
     
     for n in range(N):
@@ -73,7 +75,12 @@ def get_matA(int cfunc_num, int N, int Nb,
         test_func_ndx,  test_func_ndy, \
         matS)
         # He, ppt, ch3, p40
-        matA[CmatTb_test[:,n], CmatTb_trial[:,n]] = matA[CmatTb_test[:,n], CmatTb_trial[:,n]] + matS
+        # matA[CmatTb_test[:,n], CmatTb_trial[:,n]] = matA[CmatTb_test[:,n], CmatTb_trial[:,n]] + matS
+        temp_node_idx_test = CmatTb_test[:,n]
+        temp_node_idx_trial = CmatTb_trial[:,n]
+        for i in range(temp_node_idx_test.shape[0]):
+            for j in range(temp_node_idx_trial.shape[0]):
+                matA[temp_node_idx_test[i], temp_node_idx_trial[j]] += matS[i,j]
     return matA
         
     
@@ -208,7 +215,8 @@ cdef double _quad_tri_trial_test(int cfunc_num,
                 _shape2d_ref_include_int_by_part(Nlb_test, beta, test_func_ndx, test_func_ndy,\
                                                  gauss_quad_refx[i], gauss_quad_refy[i], \
                                                  dux_dx, dux_dy, \
-                                                 duy_dx, duy_dy)
+                                                 duy_dx, duy_dy) * \
+                gauss_quad_refw[i]
     
     res = res * 0.5 * jfac
     
@@ -331,7 +339,8 @@ cdef double _quad_tri_test(int cfunc_num,
                 _shape2d_ref_include_int_by_part(Nlb_test, beta, test_func_ndx, test_func_ndy,\
                                                  gauss_quad_refx[i], gauss_quad_refy[i], \
                                                  dux_dx, dux_dy, \
-                                                 duy_dx, duy_dy)
+                                                 duy_dx, duy_dy) * \
+                gauss_quad_refw[i]
     
     res = res * 0.5 * jfac
     
