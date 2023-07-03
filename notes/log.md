@@ -19,5 +19,8 @@
     * The `mesh.py` supports 2-D nonuniform rectangular mesh grid with FE node number equals 3 or 6 or 10 in a single triangle mesh element.
     * The `mesh.py` generates the necessary informations about mesh and FE nodes for the FEM matrix assembly, i.e. $N_m$ (total mesh node number), $N$ (total mesh element number), $N_l$ (local mesh node number), $N_{lb}$ (local FE node number),  $P$ (mesh coordinate matrix),  $T$ (mesh element node number matrix), $P_b$ (FE node coordinate matrix) ,  $T_b$  (FE node number matrix), and C-form $T$ and $T_b$ matrix (node number index starts from zero).
   * Finish `fem2d.pyx`
-    * The assembly of the stiffness matrix and the load vector.
+    * The assembly of the stiffness matrix A and the load vector b.
     * Found a lot of problems when using Cython with the nogil flag.
+  * Finish 1st problem in chapter 3 (Dirichlet BC for 2D elliptic equation).
+
+* 2023.07
