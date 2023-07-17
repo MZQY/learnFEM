@@ -201,6 +201,8 @@ class TriMesh2d:
         """
         Pb = np.zeros((2, self.Nb))
         if (self.Nlb == 3):
+            self.x1d_FE = self.x1d_mesh
+            self.y1d_FE = self.y1d_mesh
             return self.P
         elif (self.Nlb == 6):
             # node number =       mesh node number       + inner node number
@@ -256,6 +258,8 @@ class TriMesh2d:
         else:
             raise ValueError("Nlb can only be 3, 6, 10")
         
+        self.x1d_FE = x1d_FE
+        self.y1d_FE = y1d_FE
         return Pb
 
 
