@@ -37,6 +37,8 @@ import time
 from numba import jit
 np.set_printoptions(threshold=sys.maxsize)
 
+import postprocessing
+
 def problem1(Nlb = 3):
     
     @jit(nopython=True, cache=True)
@@ -66,8 +68,8 @@ def problem1(Nlb = 3):
     time1 = time.time()
 
     # generate mesh grid, FE data, and BC data
-    x1d_mesh_node = np.linspace(-1., 1., 257)
-    y1d_mesh_node = np.linspace(-1., 1., 257)
+    x1d_mesh_node = np.linspace(-1., 1., 16)
+    y1d_mesh_node = np.linspace(-1., 1., 16)
     mesh2d = TriMesh2d(x1d_mesh_node, y1d_mesh_node, FE_node_num=Nlb)
     bc_data = BoundaryData2d(mesh2d.P, mesh2d.CT, mesh2d.Pb, mesh2d.CTb)
 
@@ -150,7 +152,9 @@ def problem1(Nlb = 3):
     time9 = time.time()
     print("estimate absolute error -> time usage = %f sec" % (time9 - time8))
 
-
+    x2d_FE, y2d_FE, val2d_FE = postprocessing.convert_2d_data(mesh2d.x1d_FE, mesh2d.y1d_FE, mesh2d.Pb, vecx)
+    postprocessing.plot_2d_data(x2d_FE, y2d_FE, val2d_FE)
+    
     pass
 
 
