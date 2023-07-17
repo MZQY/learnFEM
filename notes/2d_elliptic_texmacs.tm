@@ -243,6 +243,10 @@
     </equation*>
   </remark>
 
+  <section|Error calculation>
+
+  \;
+
   <section|Target problem>
 
   Consider the 2D 2-order elliptic equation
@@ -493,10 +497,11 @@
   <\collection>
     <associate|auto-1|<tuple|1|1>>
     <associate|auto-2|<tuple|2|3>>
-    <associate|auto-3|<tuple|2.1|3>>
-    <associate|auto-4|<tuple|2.2|4>>
-    <associate|auto-5|<tuple|2.3|4>>
-    <associate|auto-6|<tuple|3|5>>
+    <associate|auto-3|<tuple|3|3>>
+    <associate|auto-4|<tuple|3.1|4>>
+    <associate|auto-5|<tuple|3.2|4>>
+    <associate|auto-6|<tuple|3.3|5>>
+    <associate|auto-7|<tuple|4|?>>
   </collection>
 </references>
 
