@@ -23,4 +23,7 @@
     * Found a lot of problems when using Cython with the nogil flag.
   * Finish 1st problem in chapter 3 (Dirichlet BC for 2D elliptic equation).
 
-* 2023.07
+
+
+* 2023.12
+  * Restart this project!!! I am a hopeless lazybones.
